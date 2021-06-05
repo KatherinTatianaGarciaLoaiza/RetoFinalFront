@@ -6,7 +6,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 export default function NavbarSofKa() {
     return (
         <div>
-            <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">

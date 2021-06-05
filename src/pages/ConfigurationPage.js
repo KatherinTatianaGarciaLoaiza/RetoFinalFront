@@ -1,4 +1,5 @@
 import React from 'react'
+import NavbarSofKa from "../components/Navbar";
 
 export default function ConfigurationPage() {
     return (
