@@ -11,6 +11,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -60,6 +61,7 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} />
       <Divider />
+      <Link to={`/MyOKRS`} className="button">Mis OKR</Link>
       <List>
         {['Dashboard', 'Administracion'].map((text, index) => (
           <ListItem button key={text}>

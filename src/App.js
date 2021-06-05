@@ -13,6 +13,7 @@ import AllOKRSPage from "./pages/AllOKRSPage";
 import MyOKRS from "./pages/MyOKRS";
 import UserOKRS from "./pages/UserOKRS";
 import ProfilePage from "./pages/ProfilePage";
+import CreateOKR from "./pages/CreateOKR";
 
 function App() {
  
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/Home" component={HomePage}/>
             <Route exact path="/UserOKRS" component={UserOKRS}/>
             <Route exact path="/ProfileUser" component={ProfilePage}/>
+            <Route exact path="/CreateOKR" component={CreateOKR}/>
             <Route exact path="/ConfigurationNotifications" component={ConfigurationPage}/>
         </Switch>
       </> 

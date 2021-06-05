@@ -15,7 +15,7 @@ export default function NavbarSofKa() {
                     <Nav>
                         <NotificationsIcon style={{ color: 'white' }} fontSize = "large"/>
                         <Link to="/AllOKRS">Todos los OKRS</Link>
-                        <Link to="/MyOKRS">Mis OKRS</Link>
+                        <Link to="/CreateOKR">CrearOKR</Link>
                         <Link to="/UserOKRS">OKRS del usuario</Link>
                         <Link to="/ProfileUser">Perfil del usuario</Link>
                         <Link to="/ConfigurationNotifications">Estas son las configuraciones</Link>
