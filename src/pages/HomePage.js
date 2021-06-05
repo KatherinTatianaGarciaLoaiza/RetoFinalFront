@@ -1,19 +1,19 @@
 import React from 'react'
+import { Container, Row, Col} from 'react-bootstrap';
 import NavbarSofKa from "../components/Navbar";
-import ResponsiveDrawer from "../components/Sidebar";
+import ClippedDrawer from "../components/Sidebar";
 
 const HomePage = () => (
-    <section>
-        <div className="container">
-            <div className = "row">
-                <div className = "col-md"><NavbarSofKa /></div>
-                <p>Estas en Home</p>
-            </div>
-            <div className = "row">
-                <div className = "col-md-2"><ResponsiveDrawer/></div>
-                <div className = "col-md-10"></div>
-            </div>
-        </div>
-    </section>
+        <Container>
+            <Row>
+                <Col md={12}>
+                <NavbarSofKa />
+                </Col>
+                
+            </Row>
+            <Row>
+                <ClippedDrawer />
+            </Row>
+        </Container>
 )
 export default HomePage
