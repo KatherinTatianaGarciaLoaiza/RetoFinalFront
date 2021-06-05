@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import NavbarSofKa from "../components/Navbar";
 import ResponsiveDrawer from "../components/Sidebar";
 
@@ -8,6 +7,7 @@ const HomePage = () => (
         <div className="container">
             <div className = "row">
                 <div className = "col-md"><NavbarSofKa /></div>
+                <p>Estas en Home</p>
             </div>
             <div className = "row">
                 <div className = "col-md-2"><ResponsiveDrawer/></div>

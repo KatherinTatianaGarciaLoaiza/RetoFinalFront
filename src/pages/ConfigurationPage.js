@@ -7,6 +7,7 @@ export default function ConfigurationPage() {
             <div className="container">
                 <div className="row">
                     <div className="col-md"><NavbarSofKa /></div>
+                    <p>Estas son las configuraciones de las notificaciones</p>
                 </div>
                 <div className="row">
                     <div className="col-md"></div>

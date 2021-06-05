@@ -1,11 +1,13 @@
 import React from 'react'
+import NavbarSofKa from "../components/Navbar";
 
-export default function OKRSPage() {
+export default function MyOKRS() {
     return (
         <section>
             <div className="container">
                 <div className="row">
                     <div className="col-md"><NavbarSofKa /></div>
+                    <p>Mis OKRS</p>
                 </div>
                 <div className="row">
                     <div className="col-md-2"></div>
