@@ -1,9 +1,20 @@
-import NavbarSofKa from "./components/Navbar";
+import React from 'react'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
+import ConfigurationPage from './pages/ConfigurationPage';
+
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <div className="App">
-    <NavbarSofKa/>
+      <HomePage />
+      <ConfigurationPage/>
     </div>
   );
 }
