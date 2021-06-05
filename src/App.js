@@ -1,17 +1,20 @@
-import NavbarSofKa from "./components/Navbar";
-import ResponsiveDrawer from "./components/Sidebar"
+import React from 'react'
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
+import ConfigurationPage from './pages/ConfigurationPage';
+
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <div className="App">
-      <div className="container">
-        <div className="row">
-          <NavbarSofKa/>
-        </div>
-        <div className="row">
-          {/* <ResponsiveDrawer/> */}
-        </div>
-      </div>
+      <HomePage />
+      <ConfigurationPage/>
     </div>
   );
 }
