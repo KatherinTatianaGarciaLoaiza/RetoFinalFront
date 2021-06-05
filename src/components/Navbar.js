@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 export default function NavbarSofKa() {
     return (
-        <div >
+        <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand href="/Home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />

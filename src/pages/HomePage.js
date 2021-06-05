@@ -1,5 +1,6 @@
 import React from 'react'
 import NavbarSofKa from "../components/Navbar";
+import ResponsiveDrawer from "../components/Sidebar";
 
 const HomePage = () => (
     <section>
@@ -9,7 +10,7 @@ const HomePage = () => (
                 <p>Estas en Home</p>
             </div>
             <div className = "row">
-                <div className = "col-md-2"></div>
+                <div className = "col-md-2"><ResponsiveDrawer/></div>
                 <div className = "col-md-10"></div>
             </div>
         </div>
