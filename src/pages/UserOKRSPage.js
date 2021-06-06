@@ -2,10 +2,12 @@ import React from "react";
 import NavbarSofKa from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Toolbar from "@material-ui/core/Toolbar";
-import ProgressOkr from "../components/dashboard-folder/ProgressOkr"
+import ProgressOkr from "../components/dashboard-folder/ProgressOkr";
 import { estilos } from "../components/DesignNaSi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/dashboardStyles.css";
+
+import Dashboard from "../components/dashboard-folder/FormOkr";
 
 const UserOKRSPage = () => {
   const classes = estilos();
@@ -29,15 +31,12 @@ const UserOKRSPage = () => {
         </div>
         <div className="row">
           <div className="col-lg-2">
-            <ProgressOkr/>
+            <ProgressOkr />
           </div>
           <div className="col-lg-6">
-            <h1>Dashboard</h1>
           </div>
           <div className="col-lg-2">
-            <button style={{ alignItems: "flex-end" }}>
-              <h1>david</h1>
-            </button>
+            <Dashboard />
           </div>
         </div>
         <div className="row">
