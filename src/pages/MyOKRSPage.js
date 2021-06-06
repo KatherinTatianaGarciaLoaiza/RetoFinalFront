@@ -4,12 +4,12 @@ import Sidebar from '../components/Sidebar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { estilos } from '../components/DesignNaSi';
 
-const AllOKRSPage = () => {
+const MyOKRSPage = () => {
     const classes = estilos();
     return (
         <div className={classes.root}  >
             <NavbarSofKa classes={classes} />
-            <Sidebar texto="Mis OKR" ruta="/MyOKRS" />
+            <Sidebar texto="Crear OKR" ruta="/CreateOKR" />
             <main className={classes.content}>
                 <Toolbar />
                 {
@@ -20,4 +20,4 @@ const AllOKRSPage = () => {
     )
 }
 
-export default AllOKRSPage
+export default MyOKRSPage

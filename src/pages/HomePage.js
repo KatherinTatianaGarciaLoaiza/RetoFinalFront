@@ -1,5 +1,4 @@
 import React from 'react'
-import ClippedDrawer from "../components/DesignNaSi";
 import NavbarSofKa from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,7 +9,7 @@ const HomePage = () => {
     return (
         <div className={classes.root}  >
             <NavbarSofKa classes={classes} />
-            <Sidebar texto="Mis OKR" ruta="" />
+            <Sidebar texto="Mis OKR" ruta="/MyOKRS" />
             <main className={classes.content}>
                 <Toolbar />
                 {

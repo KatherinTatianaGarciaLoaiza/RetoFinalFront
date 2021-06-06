@@ -12,7 +12,7 @@ export default function NavbarSofKa({ classes }) {
         <AppBar position="fixed" className={classes.appBar} style={{ background: "#F0950E" }} >
             <div className="col-md">
                 <Navbar collapseOnSelect expand="lg" variant="dark">
-                    <Navbar.Brand href="/Home"> <label className="title">React-Bootstrap</label></Navbar.Brand>
+                <Navbar.Brand href="/Home"> <label className="title">SOKFA OKR</label></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">

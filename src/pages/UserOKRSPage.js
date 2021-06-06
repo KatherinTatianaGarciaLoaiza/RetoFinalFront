@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { estilos } from '../components/DesignNaSi';
 
-const AllOKRSPage = () => {
+const UserOKRSPage = () => {
     const classes = estilos();
     return (
         <div className={classes.root}  >
@@ -20,4 +20,4 @@ const AllOKRSPage = () => {
     )
 }
 
-export default AllOKRSPage
+export default UserOKRSPage

@@ -1,19 +1,23 @@
 import React from 'react'
-import NavbarSofKa from "../components/Navbar";
+import NavbarSofKa from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { estilos } from '../components/DesignNaSi';
 
-export default function ProfilePage() {
+const ProfilePage = () => {
+    const classes = estilos();
     return (
-        <section>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md"><NavbarSofKa /></div>
-                    <p>Este es el perfil del usuario</p>
-                </div>
-                <div className="row">
-                    <div className="col-md-2"></div>
-                    <div className="col-md-10"></div>
-                </div>
-            </div>
-        </section>
+        <div className={classes.root}  >
+            <NavbarSofKa classes={classes} />
+            <Sidebar texto="Mis OKR" ruta="/MyOKRS" />
+            <main className={classes.content}>
+                <Toolbar />
+                {
+                    <h1>Aca trabajan ustedes</h1>
+                }
+            </main>
+        </div>
     )
 }
+
+export default ProfilePage
