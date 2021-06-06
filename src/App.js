@@ -3,35 +3,33 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect,
+  Route
 } from 'react-router-dom'
 
 import ConfigurationPage from './pages/ConfigurationPage';
 import HomePage from "./pages/HomePage";
 import AllOKRSPage from "./pages/AllOKRSPage";
-import MyOKRS from "./pages/MyOKRS";
-import UserOKRS from "./pages/UserOKRS";
+import MyOKRSPage from "./pages/MyOKRSPage";
+import UserOKRSPage from "./pages/UserOKRSPage";
 import ProfilePage from "./pages/ProfilePage";
+import CreateOKRPage from "./pages/CreateOKRPage";
 
 function App() {
- 
+
   return (
     <Router>
-      <>
         <Switch>
           <Route exact path="/" component={() => {
             return <HomePage/>}} />
             <Route exact path="/AllOKRS" component={AllOKRSPage}/>
-            <Route exact path="/MyOKRS" component={MyOKRS}/>
+            <Route exact path="/MyOKRS" component={MyOKRSPage}/>
             <Route exact path="/Home" component={HomePage}/>
-            <Route exact path="/UserOKRS" component={UserOKRS}/>
+            <Route exact path="/UserOKRS" component={UserOKRSPage}/>
             <Route exact path="/ProfileUser" component={ProfilePage}/>
+            <Route exact path="/CreateOKR" component={CreateOKRPage}/>
             <Route exact path="/ConfigurationNotifications" component={ConfigurationPage}/>
-        </Switch>
-      </> 
-    
-  </Router>
+        </Switch> 
+  </Router>   
   );
 }
 

@@ -1,18 +1,21 @@
 import React from 'react'
-import NavbarSofKa from "../components/Navbar";
+import NavbarSofKa from '../components/Navbar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { estilos } from '../components/DesignNaSi';
 
-export default function ConfigurationPage() {
+const ConfigurationPage = () => {
+    const classes = estilos();
     return (
-        <section>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md"><NavbarSofKa /></div>
-                    <p>Estas son las configuraciones de las notificaciones</p>
-                </div>
-                <div className="row">
-                    <div className="col-md"></div>
-                </div>
-            </div>
-        </section>
+        <div className={classes.root}  >
+            <NavbarSofKa classes={classes} />
+            <main className={classes.content}>
+                <Toolbar />
+                {
+                    <h1>Aca trabajan ustedes</h1>
+                }
+            </main>
+        </div>
     )
 }
+
+export default ConfigurationPage
