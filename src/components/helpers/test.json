@@ -1,0 +1,15 @@
+{
+    "userId":"50010",
+    "title":"titulo21",
+    "objective":"objetivo5",
+    "responName":"pepe",
+    "responEmail":"correo3",
+    "vertical":"vertical2",
+    "description":"prueba ",
+    "krs":[
+        {"keyResult":"key6","responName":"juan","responEmail":"corre3","percentageWeight":0,"startDate":"2021-06-06","endDate":"2021-06-07","description":"esta es la descripcion"},
+        {"keyResult":"key7","responName":"juan","responEmail":"corre3","percentageWeight":50,"startDate":"2021-06-06","endDate":"2021-06-07","description":"esta es la descripcion"},
+        {"keyResult":"key8","responName":"juan","responEmail":"corre3","percentageWeight":50,"startDate":"2021-06-06","endDate":"2021-06-07","description":"esta es la descripcion"},
+        {"keyResult":"key9","responName":"juan","responEmail":"corre3","percentageWeight":30,"startDate":"2021-06-06","endDate":"2021-06-07","description":"esta es la descripcion"}
+    ]
+}
