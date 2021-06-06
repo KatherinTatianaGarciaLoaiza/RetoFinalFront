@@ -6,6 +6,8 @@ import { estilos } from '../components/DesignNaSi';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import '../styles/dashboardStyles.css';
 
+import Dashboard from '../components/dashboard-folder/FormOkr';
+
 const UserOKRSPage = () => {
     const classes = estilos();
     return (
@@ -29,7 +31,7 @@ const UserOKRSPage = () => {
                         <h1>Dashboard</h1>
                     </div>
                     <div className = "col-lg-2">
-                        <button style = {{alignItems:'flex-end'}}><h1>david</h1></button>
+                       <Dashboard />
                     </div>
                 </div>
                 <div className = "row">
