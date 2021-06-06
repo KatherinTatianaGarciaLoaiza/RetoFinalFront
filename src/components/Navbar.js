@@ -5,13 +5,14 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppBar from '@material-ui/core/AppBar';
 import { Link } from 'react-router-dom'
+import '../styles/style.css'
 
 export default function NavbarSofKa({ classes }) {
     return (
         <AppBar position="fixed" className={classes.appBar} style={{ background: "#F0950E" }} >
             <div className="col-md">
                 <Navbar collapseOnSelect expand="lg" variant="dark">
-                    <Navbar.Brand href="/Home">React-Bootstrap</Navbar.Brand>
+                    <Navbar.Brand href="/Home"> <label className="title">React-Bootstrap</label></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
