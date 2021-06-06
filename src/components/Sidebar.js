@@ -9,7 +9,9 @@ import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Link } from 'react-router-dom'
-import {estilos} from './DesignNaSi';
+import { estilos } from './DesignNaSi';
+import '../styles/style.css';
+import Button from "react-bootstrap/Button";
 
 export default function Sidebar({ texto, ruta }) {
   const classes = estilos();
@@ -24,7 +26,13 @@ export default function Sidebar({ texto, ruta }) {
       <Toolbar />
       <div className={classes.drawerContainer}>
         <List>
-          <Link className="button" to={ruta}>{texto}</Link>
+          <Link to={ruta}>
+            <div className="btn" style={{background:"#ffffff"}}>
+            <Button variant="outline-light" size="lg">
+              {texto}
+            </Button>
+            </div>
+          </Link>
         </List>
         <Divider />
         <List>
