@@ -3,6 +3,8 @@ import NavbarSofKa from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { estilos } from '../components/DesignNaSi';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import '../styles/dashboardStyles.css';
 
 const UserOKRSPage = () => {
     const classes = estilos();
@@ -12,9 +14,32 @@ const UserOKRSPage = () => {
             <Sidebar texto="Mis OKR" ruta="/MyOKRS" />
             <main className={classes.content}>
                 <Toolbar />
-                {
-                    <h1>Aca trabajan ustedes</h1>
-                }
+                <div className = "row">
+                    <div className = "col -md-6">
+                        <h1>Dashboard</h1>
+                    </div>
+                    <div className = "col -md-6">
+                        <div className = "dropdown"> 
+                        <button><h1>david</h1></button>
+                        </div>  
+                    </div>
+                </div>
+                <div className = "row">
+                <div className = "col-lg-8">
+                        <h1>Dashboard</h1>
+                    </div>
+                    <div className = "col-lg-2">
+                        <button style = {{alignItems:'flex-end'}}><h1>david</h1></button>
+                    </div>
+                </div>
+                <div className = "row">
+                <div className = "col-lg-8">
+                        <h1>Dashboard</h1>
+                    </div>
+                    <div className = "col-lg-2">
+                        <button style = {{alignItems:'flex-end'}}><h1>david</h1></button>
+                    </div>
+                </div>
             </main>
         </div>
     )
