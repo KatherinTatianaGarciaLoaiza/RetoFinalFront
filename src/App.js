@@ -79,14 +79,10 @@ export function SignIn() {
 export function SignOut() {
   return (
     auth.currentUser && (
-      <button 
-        onClick={() => {
+      <ExitToAppIcon onClick={() => {
           localStorage.removeItem("uid");
           auth.signOut();
-        }}
-      >
-      <ExitToAppIcon style={{ color: 'white' }} fontSize="large" />
-      </button>
+        }} style={{ color: 'white' }} fontSize="large" />
     )
   );
 }

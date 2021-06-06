@@ -33,12 +33,12 @@ export default function Sidebar({ texto, ruta }) {
         <Divider />
         <List>
           <p>Dashboard</p>
-          <ListItem> <Link to={`/AllOKRS`} className="button">Todos los OKR</Link> </ListItem>
-          <ListItem> <Link to={`/UserOKRS`} className="button">Pepito Perez y vertical</Link> </ListItem>
+          <ListItem> <Link to={`/AllOKRS`} className="button" style={{color:"#000"}}>Todos los OKR</Link> </ListItem>
+          <ListItem> <Link to={`/UserOKRS`} className="button" style={{color:"#000"}}>Pepito Perez y vertical</Link> </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem> <Link to={`/ConfigurationNotifications`} className="button">Configuracion de notificaciones</Link> </ListItem>
+          <ListItem> <Link to={`/ConfigurationNotifications`} className="button" style={{color:"#000"}}>Configuracion de notificaciones</Link> </ListItem>
         </List>
       </div>
     </Drawer>
