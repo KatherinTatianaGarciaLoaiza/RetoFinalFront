@@ -8,14 +8,16 @@ export default function LandingPage() {
     <div>
       <Container>
         <Row style={{background:"#F0950E",color:"#ffffff"}}>
-          <h1 >SOFKA OKR</h1>
+          <div className="title2">
+            <h1 >SOFKA OKR</h1>
+          </div>
         </Row>
         <Row>
           <Col>
-            <h1>Nosotros</h1>
-            <p>Nuestro nombre Sofka viene de la unión de Software + Kaizen 
+            <h1 className="title" style={{color:"#000"}}>Nosotros</h1>
+            <p className="body">Nuestro nombre Sofka viene de la unión de Software + Kaizen 
               (Filosofía de mejora continua, compromiso y disciplina).</p>
-            <p>Somos una compañía que desde sus inicios viene desarrollando 
+            <p className="body">Somos una compañía que desde sus inicios viene desarrollando 
               el talento tanto técnico como humano, para estar a la vanguardia
                de la industria tecnológica generando soluciones de alto impacto
                 para nuestros clientes con los que siempre trabajamos en equipo.</p>

@@ -5,6 +5,14 @@
     color: #ffffff;
 }
 
+.title2 {
+  font-family: 'Roboto', sans-serif;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .btn {
     -webkit-border-radius: 28;
     -moz-border-radius: 28;
