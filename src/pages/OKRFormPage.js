@@ -8,19 +8,19 @@ import { createOKR } from '../actions/okrActions';
 
 const OkrFormPage = ({
   dispatch,
-  titleOKR,
+  title,
   objective,
-  respName,
-  respEmail,
+  responName,
+  responEmail,
   vertical,
   description,
 }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      title: titleOKR,
+      title: title,
       objective: objective,
-      respName: respName,
-      respEmail: respEmail,
+      responName: responName,
+      responEmail: responEmail,
       vertical: vertical,
       description: description,
     },
@@ -146,10 +146,10 @@ const OkrFormPage = ({
 };
 
 const mapStateToProps = (state) => ({
-  titleOKR: state.okr.OKR.title,
+  title: state.okr.OKR.title,
   objective: state.okr.OKR.objective,
-  respName: state.okr.OKR.respName,
-  respEmail: state.okr.OKR.respEmail,
+  responName: state.okr.OKR.responName,
+  responEmail: state.okr.OKR.responEmail,
   vertical: state.okr.OKR.vertical,
   description: state.okr.OKR.description,
 });

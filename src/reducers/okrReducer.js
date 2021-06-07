@@ -2,50 +2,58 @@ import * as actions from '../actions/okrActions';
 
 export const initialState = {
   OKR: {
+    userId: '',
     title: '',
     objective: '',
-    respName: '',
-    respEmail: '',
+    responName: '',
+    responEmail: '',
     vertical: '',
     description: '',
-    KR: [],
+    krs: [],
   },
 };
 
 export default function okrReducer(state = initialState, action) {
+  const payload = action.payload;
   switch (action.type) {
     case actions.CREATEOKR:
-      const payload = action.payload;
       return {
         ...state,
         OKR: {
           ...state.OKR,
           title: payload.title,
           objective: payload.objective,
-          respName: payload.respName,
-          respEmail: payload.respEmail,
+          responName: payload.respName,
+          responEmail: payload.respEmail,
           vertical: payload.vertical,
           description: payload.description,
         },
       };
     case actions.CREATEKR:
-      const payload1 = action.payload;
       return {
         ...state,
         OKR: {
           ...state.OKR,
-          KR: [
-            ...state.OKR.KR,
+          krs: [
+            ...state.OKR.krs,
             {
-              keyResult: payload1.keyResult,
-              name: payload1.name,
-              email: payload1.email,
-              description: payload1.description,
-              initDate: payload1.initDay,
-              finalDate: payload1.endDay,
-              percentageWeight: payload1.slider,
+              keyResult: payload.keyResult,
+              responName: payload.responName,
+              responEmail: payload.responEmail,
+              description: payload.description,
+              startDate: payload.startDate,
+              endDate: payload.endDate,
+              percentageWeight: payload.percentageWeight,
             },
           ],
+        },
+      };
+    case actions.LOGIN:
+      return {
+        ...state,
+        OKR: {
+          ...state.OKR,
+          userId: payload
         },
       };
     default:

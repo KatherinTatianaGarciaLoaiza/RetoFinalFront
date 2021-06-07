@@ -13,9 +13,9 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 // actions
-import { createKR } from '../actions/okrActions';
+import { createKR, postOKR } from '../actions/okrActions';
 
-const KRPage = ({ dispatch }) => {
+const KRPage = ({ dispatch, okr }) => {
   //form hook
   const { register, handleSubmit } = useForm();
   // estados fechas
@@ -26,9 +26,10 @@ const KRPage = ({ dispatch }) => {
   const [slider, setSlider] = useState(50);
 
   const onSubmit = (data) => {
-    data.initDay = startDate.toLocaleDateString();
-    data.endDay = finalDate.toLocaleDateString();
-    data.slider = slider;
+    
+    data.startDate = startDate.toISOString().slice(0,10);
+    data.endDate = finalDate.toISOString().slice(0,10);
+    data.percentageWeight = slider;
     console.log(data);
     dispatch(createKR(data));
   };
@@ -72,7 +73,7 @@ const KRPage = ({ dispatch }) => {
                 id='input_name'
                 placeholder='Nombre del Responsable'
                 className='input-style'
-                {...register('name', { required: true })}
+                {...register('responName', { required: true })}
               />
             </div>
 
@@ -83,7 +84,7 @@ const KRPage = ({ dispatch }) => {
                 id='input_email'
                 placeholder='Correo del Responsable'
                 className='input-style'
-                {...register('email', { required: true })}
+                {...register('responEmail', { required: true })}
               />
             </div>
             <div className='kr-input'>
@@ -112,7 +113,7 @@ const KRPage = ({ dispatch }) => {
                 id='input_date_init'
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
-                dateFormat='yyyy/MM/dd'
+                dateFormat='yyyy-MM-dd'
               />
             </div>
             <div className='kr-input'>
@@ -122,7 +123,7 @@ const KRPage = ({ dispatch }) => {
                 id='input_date_end'
                 selected={finalDate}
                 onChange={(date) => setFinalDate(date)}
-                dateFormat='yyyy/MM/dd'
+                dateFormat='yyyy-MM-dd'
               />
             </div>
             <div className='kr-input'>
@@ -154,7 +155,12 @@ const KRPage = ({ dispatch }) => {
             Anterior
           </button>
           <button type='submit'>Guardar</button>
-          <button className='añadir-otro' type='button'>
+          <button
+            className='añadir-otro'
+            type='button'
+            onClick={() => {
+              dispatch(postOKR(okr));
+            }}>
             Añadir otro KR
           </button>
         </div>
@@ -163,6 +169,8 @@ const KRPage = ({ dispatch }) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  okr: state.okr.OKR,
+});
 
 export default connect(mapStateToProps)(KRPage);

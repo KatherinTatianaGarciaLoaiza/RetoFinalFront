@@ -22,6 +22,8 @@ import ProfilePage from './pages/ProfilePage';
 import CreateOKRPage from './pages/CreateOKRPage';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import KRFormPage from './pages/KRFormPage';
+import { login } from './actions/okrActions';
+import { connect } from 'react-redux';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyDTOXqAZxbGqbsgdqSj1wm87Gc_TnLJHD8',
@@ -35,10 +37,10 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 
-function App() {
+function App({ dispatch }) {
   const [user] = useAuthState(auth);
   if (user?.uid) {
-    localStorage.setItem('uid', user?.uid);
+    dispatch(login(user.uid));
   }
   return (
     <Router>
@@ -108,4 +110,4 @@ export function SignOut() {
   );
 }
 
-export default App;
+export default connect()(App);
