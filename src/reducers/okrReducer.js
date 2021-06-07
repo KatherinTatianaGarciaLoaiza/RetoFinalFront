@@ -28,6 +28,26 @@ export default function okrReducer(state = initialState, action) {
           description: payload.description,
         },
       };
+    case actions.CREATEKR:
+      const payload1 = action.payload;
+      return {
+        ...state,
+        OKR: {
+          ...state.OKR,
+          KR: [
+            ...state.OKR.KR,
+            {
+              keyResult: payload1.keyResult,
+              name: payload1.name,
+              email: payload1.email,
+              description: payload1.description,
+              initDate: payload1.initDay,
+              finalDate: payload1.endDay,
+              percentageWeight: payload1.slider,
+            },
+          ],
+        },
+      };
     default:
       return state;
   }

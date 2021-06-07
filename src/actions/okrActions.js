@@ -6,3 +6,8 @@ export const createOKR = (data) => ({
   // payload: { titulo, objetivo, nombre, correo, type, description },
   payload: data,
 });
+
+export const createKR = (data) => ({
+  type: CREATEKR,
+  payload: data,
+});

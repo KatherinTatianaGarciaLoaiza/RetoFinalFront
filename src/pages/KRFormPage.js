@@ -12,6 +12,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 //History from react router
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+// actions
+import { createKR } from '../actions/okrActions';
 
 const KRPage = ({ dispatch }) => {
   //form hook
@@ -28,6 +30,7 @@ const KRPage = ({ dispatch }) => {
     data.endDay = finalDate.toLocaleDateString();
     data.slider = slider;
     console.log(data);
+    dispatch(createKR(data));
   };
 
   const onClick = () => {
