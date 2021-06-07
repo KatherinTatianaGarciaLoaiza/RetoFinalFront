@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppBar from '@material-ui/core/AppBar';
-import { Link } from 'react-router-dom'
 
 export default function NavbarSofKa({ classes }) {
     return (
