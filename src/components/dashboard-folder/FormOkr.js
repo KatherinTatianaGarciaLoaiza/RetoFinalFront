@@ -24,22 +24,19 @@ const Dashboard = () => {
         <EditIcon className="icon" />
       </div>
       <hr className="hr-title" />
-      <h4>
+      <h4 className="content-kr">
         Obejtivo: <br /> {okr.objective}
       </h4>
       <hr />
-
-      <h4>Resultado Clave </h4>
+      <h4 className="content-kr">Resultados Clave </h4>
       <Element
         style={{
           position: "relative",
-          height: "200px",
-          overflow: "scroll",
+          height: "180px",
+          overflowY: "scroll",
         }}
       >
-        <Element
-          name="firstInsideContainer"
-        >
+        <Element name="firstInsideContainer">
           {test.krs.map((el, index) => (
             <Krs key={uuidv4()} el={el} lenght={index} />
           ))}

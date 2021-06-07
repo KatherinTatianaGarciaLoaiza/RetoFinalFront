@@ -27,10 +27,10 @@ const UserOKRSPage = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-2" id="progress-okr">
+          <div className="col-lg-1" id="progress-okr">
             <ProgressOkr />
           </div>
-          <div className="col-lg-6">
+          <div className="col-lg-7">
             <LineChart/>
           </div>
           <div className="col-lg-2">

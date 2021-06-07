@@ -9,7 +9,7 @@ export default function Example () {
       <div  className="uncontrolledDropdown" id="dropdown-title-okr">
     <UncontrolledDropdown >
       <DropdownToggle caret >
-        no quiero
+        Titulo del OKR
       </DropdownToggle>
       <DropdownMenu>{
           test.map((el)=>(

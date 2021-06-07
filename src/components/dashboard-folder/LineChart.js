@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React from 'react';
 import {Line} from 'react-chartjs-2';
 import test from "../helpers/test.json";
 
@@ -64,6 +64,12 @@ console.log(basicPorcentage);
             ],
           }}
           options={{
+            plugins: {
+              title: {
+                  display: true,
+                  text: 'Burndown Chart - OKR1'
+              }
+          },
             scales: {
               yAxes: [
                 {

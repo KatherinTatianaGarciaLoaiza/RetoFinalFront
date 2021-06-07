@@ -1,3 +1,14 @@
+:root{
+    --color-black: #000;
+    --color-orange: #F0950E;
+    --color-whithe: #ffff;
+
+    --color-text: rgb(119, 116, 116);
+}
+
+html{
+    font-family: 'Roboto', sans-serif;
+}
 
 .form-krs {
     display: flex;
@@ -14,11 +25,16 @@
 .title-context {
     justify-content: flex-start;
     display: flex;
-    background-color: #F0950E;
+    background-color: var(--color-orange);
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--color-whithe);
     padding: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.title-context h4{
+    margin: 0;
 }
 
 .hr-title {
@@ -27,23 +43,36 @@
 }
 
 .icon {
-    margin-left: 50px;
+    margin-left: 20px;
     cursor: pointer;
 }
 
+.content-kr{
+    margin: 0 10px 15px;
+    color: var(--color-text);
+}
+
+.CircularProgressbar{
+    margin-top: 70px;
+    width: 160%;
+}
+
 .CircularProgressbar .CircularProgressbar-path {
-    stroke: black;
+    stroke:var(--color-black);
 }
 
 .CircularProgressbar .CircularProgressbar-text {
-    fill: black;
+    fill: var(--color-black);
 }
 
 .dropdown-toggle {
-    background-color: #F0950E !important;
+    background-color: var(--color-orange) !important;
     margin-left: 150px;
 }
 
+.dropdown-toggle::after{
+margin-left: 30px;
+}
 .uncontrolledDropdown {
     display: flex;
     justify-content: center;
