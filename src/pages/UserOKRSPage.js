@@ -9,6 +9,7 @@ import "../styles/dashboardStyles.css";
 import Dropdown from "../components/dashboard-folder/Dropdown";
 import Dashboard from "../components/dashboard-folder/FormOkr";
 import LineChart from "../components/dashboard-folder/LineChart";
+import BarChart from "../components/dashboard-folder/BarChart"
 import { Button } from '@material-ui/core';
 
 const UserOKRSPage = () => {
@@ -43,10 +44,12 @@ const UserOKRSPage = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-8">
-            <h1>Dashboard</h1>
+          <div className="col-lg-4">
+            <BarChart/>
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-4">
+          </div>
+          <div className="col-lg-4">
             <button style={{ alignItems: "flex-end" }}>
               <h1>david</h1>
             </button>

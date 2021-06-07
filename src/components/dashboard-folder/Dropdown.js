@@ -2,6 +2,7 @@
 import React from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import test from "../helpers/krs.json";
+import test2 from "../helpers/test.json";
 
 export default function Example () {
     console.log(test)
@@ -9,7 +10,7 @@ export default function Example () {
       <div  className="uncontrolledDropdown" id="dropdown-title-okr">
     <UncontrolledDropdown >
       <DropdownToggle caret >
-        Titulo del OKR
+        {test2.title}
       </DropdownToggle>
       <DropdownMenu>{
           test.map((el)=>(
