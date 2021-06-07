@@ -1,19 +1,16 @@
-.dropdown{
-    display: flex;
-    justify-content: flex-end;
-}
 
-.form-krs{
+.form-krs {
     display: flex;
 }
 
-.context-data{
+.context-data {
     width: 300px;
     margin-top: 60px;
     margin-bottom: 60px;
     border-style: groove;
     border-radius: 10px;
 }
+
 .title-context {
     justify-content: flex-start;
     display: flex;
@@ -22,24 +19,32 @@
     justify-content: center;
     color: white;
     padding: 20px;
-
-} 
+}
 
 .hr-title {
     margin: 0px;
     margin-bottom: 20px;
 }
 
-
 .icon {
     margin-left: 50px;
     cursor: pointer;
-    
 }
 
-.CircularProgressbar .CircularProgressbar-path{
+.CircularProgressbar .CircularProgressbar-path {
     stroke: black;
 }
-.CircularProgressbar .CircularProgressbar-text{
+
+.CircularProgressbar .CircularProgressbar-text {
     fill: black;
+}
+
+.dropdown-toggle {
+    background-color: #F0950E !important;
+    margin-left: 150px;
+}
+
+.uncontrolledDropdown {
+    display: flex;
+    justify-content: center;
 }

@@ -18,7 +18,7 @@ const Dashboard = () => {
   console.log(okr);
 
   return (
-    <div className="context-data">
+    <div className="context-data" id="description-okr">
       <div className="title-context">
         <h4>{okr.title}</h4>
         <EditIcon className="icon" />
