@@ -33,6 +33,13 @@ html{
     border-radius: 10px 10px 0 0;
 }
 
+
+#center-senction {
+
+    border-top-style: ridge;
+    border-bottom-style: ridge; 
+}
+
 .title-context h4{
     margin: 0;
 }
@@ -54,7 +61,7 @@ html{
 
 .CircularProgressbar{
     margin-top: 70px;
-    width: 160%;
+    width: 120%;
 }
 
 .CircularProgressbar .CircularProgressbar-path {
