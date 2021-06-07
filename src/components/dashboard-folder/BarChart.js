@@ -26,17 +26,16 @@ let maxMontEnd = new Date(Math.max.apply(null,montArrayEnd));
 let dif = maxMontEnd.getMonth() - minMontStart.getMonth();
 let numberOfPorcentage = 100 / dif;
 
-for (var i = 0; i <= dif;i++){
+for (var i = 1; i <= dif;i++){
     montDif.push("mes " + i);
     
 }
 
 
 
-for(var i = 0; i <= dif; i++){
-    i === 0 ? porcentDif.push(0) : porcentDif.push(porcentDif[i -1] + numberOfPorcentage);
+for(var i = 0; i < dif; i++){
+    i === 0 ? porcentDif.push(numberOfPorcentage) : porcentDif.push(porcentDif[i -1] + numberOfPorcentage);
 }
-console.log(basicPorcentage);
 
 
     return(

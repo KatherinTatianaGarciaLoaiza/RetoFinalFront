@@ -15,7 +15,6 @@ const Dashboard = () => {
     setOkr(test);
   }, []);
 
-  console.log(okr);
 
   return (
     <div className="context-data" id="description-okr">

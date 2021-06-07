@@ -36,7 +36,6 @@ for (var i = 0; i <= dif;i++){
 for(var i = 0; i <= dif; i++){
     i === 0 ? porcentDif.push(0) : porcentDif.push(porcentDif[i -1] + numberOfPorcentage);
 }
-console.log(basicPorcentage);
 
 
     return(

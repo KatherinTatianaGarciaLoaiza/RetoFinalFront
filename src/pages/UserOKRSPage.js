@@ -11,6 +11,7 @@ import Dashboard from "../components/dashboard-folder/FormOkr";
 import LineChart from "../components/dashboard-folder/LineChart";
 import BarChart from "../components/dashboard-folder/BarChart"
 import { Button } from '@material-ui/core';
+import PieChart from "../components/dashboard-folder/PieChart";
 
 const UserOKRSPage = () => {
   const classes = estilos();
@@ -48,6 +49,7 @@ const UserOKRSPage = () => {
             <BarChart/>
           </div>
           <div className="col-lg-4">
+            <PieChart/>
           </div>
           <div className="col-lg-4">
             <button style={{ alignItems: "flex-end" }}>

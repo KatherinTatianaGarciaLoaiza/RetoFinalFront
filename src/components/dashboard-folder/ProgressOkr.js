@@ -12,7 +12,7 @@ const ProgressOkr = () => {
   }
 
   return (
-    <CircularProgressbar value={calcularPorcentaje()} text={`${percentage}%`} />
+    <CircularProgressbar value={calcularPorcentaje()} text={`${Math.round(percentage*100)/100}%`} />
   );
 };
 
