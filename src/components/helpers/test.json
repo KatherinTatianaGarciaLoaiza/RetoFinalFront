@@ -6,18 +6,18 @@
      "responEmail":"corre2",
       "vertical":"vertical1",
       "description":"prueba ",
-      "krs":[{"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"},
-            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-06-07"}
+      "krs":[{"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-04-06","endDate":"2021-08-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-04-06","endDate":"2021-09-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-04-06","endDate":"2021-12-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-11-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-09-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-05-06","endDate":"2021-07-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-07-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-08-06","endDate":"2021-11-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-07-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-04-06","endDate":"2021-07-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-07-07"},
+            {"keyResult":"key1","responName":"juan","responEmail":"corre3","percentageWeight":20,"startDate":"2021-06-06","endDate":"2021-07-07"}
 
     ]
     }

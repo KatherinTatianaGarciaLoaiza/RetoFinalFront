@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/dashboardStyles.css";
 import Dropdown from "../components/dashboard-folder/Dropdown";
 import Dashboard from "../components/dashboard-folder/FormOkr";
+import LineChart from "../components/dashboard-folder/LineChart";
 
 const UserOKRSPage = () => {
   const classes = estilos();
@@ -30,6 +31,7 @@ const UserOKRSPage = () => {
             <ProgressOkr />
           </div>
           <div className="col-lg-6">
+            <LineChart/>
           </div>
           <div className="col-lg-2">
             <Dashboard />
