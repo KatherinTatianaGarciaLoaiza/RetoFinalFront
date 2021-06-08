@@ -1,0 +1,84 @@
+body {
+  font-family: Lato;
+  font-weight: bold;
+}
+
+body label {
+  color: #47525e;
+  padding-right: 25px;
+}
+
+.title-center {
+  text-align: center;
+}
+
+.kr-input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  display: flex;
+  width: 500px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+input {
+  border: 1px solid #a6b0be;
+  height: 45px;
+  color: #18181a;
+  border-radius: 5px;
+  width: 300px;
+  border: 1px solid #d1d6de;
+}
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.left-side {
+  grid-area: 1 / 1 / 3 / 2;
+}
+
+.right-side {
+  grid-area: 1 / 2 / 3 / 3;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+.container-buttons button {
+  margin: 10px;
+  width: 16rem;
+  height: 4rem;
+  background-color: #47525e;
+  border-radius: 5px;
+  font-size: x-large;
+  color: white;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.input-style {
+  border: 1px solid #47525e;
+  padding: 3px 8px;
+}
+
+.input-style textarea {
+  border: 4px solid #47525e;
+}
+
+.add-field {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.add-field:hover {
+  color: rgb(47, 177, 47);
+  transition: color 0.7s;
+}
