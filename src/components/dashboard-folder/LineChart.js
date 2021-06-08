@@ -70,25 +70,7 @@ console.log(basicPorcentage);
                   text: 'Burndown Chart - OKR1'
               }
           },
-            scales: {
-              yAxes: [
-                {
-                  type: 'line',
-                  display: true,
-                  position: 'left',
-                  id: 'y-axis-1',
-                },
-                {
-                  type: 'linear',
-                  display: true,
-                  position: 'right',
-                  id: 'y-axis-2',
-                  gridLines: {
-                    drawOnArea: true,
-                  },
-                },
-              ],
-            },
+
           }}
         />
       </div>
