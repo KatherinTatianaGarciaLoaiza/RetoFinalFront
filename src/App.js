@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
         <Switch>
-          <Route exact path="/" component={() => {
+          <Route exact path="/Home" component={() => {
             return <HomePage/>}} />
             <Route exact path="/AllOKRS" component={AllOKRSPage}/>
             <Route exact path="/MyOKRS" component={MyOKRSPage}/>
