@@ -9,10 +9,6 @@ export const estilos = makeStyles((theme) => ({
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
     },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
