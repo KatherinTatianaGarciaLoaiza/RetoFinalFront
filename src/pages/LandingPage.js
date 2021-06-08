@@ -1,33 +1,31 @@
 import React from 'react'
-import { useAuthState } from "react-firebase-hooks/auth";
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-  } from 'react-router-dom'
-
-  import firebase from "firebase/app";
-  import "firebase/firestore";
-  import "firebase/auth";
-
-  firebase.initializeApp({
-    apiKey: "AIzaSyCZ3227IZBEdOlaf_1bGxnJUBUaJiLSwH8",
-    authDomain: "despliegueretofinal.firebaseapp.com",
-    projectId: "despliegueretofinal",
-    storageBucket: "despliegueretofinal.appspot.com",
-    messagingSenderId: "957933930402",
-    appId: "1:957933930402:web:0984f2015e9865858014fb",
-    measurementId: "G-90ZG9ST9LW"
-  });
-  
-  const auth = firebase.auth();
+import { Container, Row, Col } from 'react-bootstrap';
+import { SignIn } from '../App'
+import LandingImage from '../images/ImagenLanding.PNG';
 
 export default function LandingPage() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return (
+    <div>
+      <Container>
+        <Row style={{background:"#F0950E",color:"#ffffff"}}>
+          <div className="title2">
+            <h1 >SOFKA OKR</h1>
+          </div>
+        </Row>
+        <Row>
+          <Col>
+            <h1 className="title" style={{color:"#000"}}>Nosotros</h1>
+            <p className="body">Nuestro nombre Sofka viene de la unión de Software + Kaizen 
+              (Filosofía de mejora continua, compromiso y disciplina).</p>
+            <p className="body">Somos una compañía que desde sus inicios viene desarrollando 
+              el talento tanto técnico como humano, para estar a la vanguardia
+               de la industria tecnológica generando soluciones de alto impacto
+                para nuestros clientes con los que siempre trabajamos en equipo.</p>
+          </Col>
+          <Col><SignIn /> <img src={LandingImage}></img></Col>
+        </Row>
+      </Container>
+    </div>
+  )
 }
+
