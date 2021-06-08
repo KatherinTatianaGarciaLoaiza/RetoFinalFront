@@ -1,7 +1,7 @@
 :root{
     --color-black: #000;
     --color-orange: #F0950E;
-    --color-whithe: #ffff;
+    --color-white: #ffff;
 
     --color-text: rgb(119, 116, 116);
 }
@@ -87,4 +87,14 @@ margin-left: 30px;
 
 .line-chart {
     margin-top: 100px;
+}
+
+.btn-download-chart{
+    margin-top: 180px;
+    justify-content: center;
+    display: flex;
+}
+
+.btn-outline-light:hover {
+    color: var(--color-white);
 }

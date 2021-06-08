@@ -8,7 +8,7 @@ const Krs = (props) => {
   }, []);
 
   return (
-    <div className="form-okr content-kr">
+    <div className="form-okr content-kr" id="kr-description">
       <h4>Responsable: {props.el.responName}</h4>
       <div className="d-flex justify-content-between">
         <h4>

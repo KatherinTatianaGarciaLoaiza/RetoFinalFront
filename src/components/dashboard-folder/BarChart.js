@@ -1,9 +1,9 @@
 import React from 'react';
-import {Line} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 import test from "../helpers/test.json";
 
 
-const LineChart = () => {
+const BarChart = () => {
 let montArrayEnd = [];
 let montArrayStart = [];
 let montDif = [];
@@ -26,54 +26,61 @@ let maxMontEnd = new Date(Math.max.apply(null,montArrayEnd));
 let dif = maxMontEnd.getMonth() - minMontStart.getMonth();
 let numberOfPorcentage = 100 / dif;
 
-for (var i = 0; i <= dif;i++){
+for (var i = 1; i <= dif;i++){
     montDif.push("mes " + i);
     
 }
 
 
 
-for(var i = 0; i <= dif; i++){
-    i === 0 ? porcentDif.push(0) : porcentDif.push(porcentDif[i -1] + numberOfPorcentage);
+for(var i = 0; i < dif; i++){
+    i === 0 ? porcentDif.push(numberOfPorcentage) : porcentDif.push(porcentDif[i -1] + numberOfPorcentage);
 }
 
 
     return(
-<div className ="line-chart" id="burndown-chart">
-        <Line
+        <div id="bar-chart">
+        <Bar
           data={{
             labels: montDif,
             datasets: [
               {
-                label: "# of Votes",
+                label: "Progreso mensual",
                 data: porcentDif,
-                fill: false,
-                backgroundColor: "rgb(255, 99, 132)",
-                borderColor: "rgba(255, 99, 132, 0.2)",
-                yAxisID: "y-axis-1",
-              },
-              {
-                label: "# of No Votes",
-                data: basicPorcentage,
-                fill: false,
-                backgroundColor: "rgb(54, 162, 235)",
-                borderColor: "rgba(54, 162, 235, 0.2)",
-                yAxisID: "y-axis-2",
+                backgroundColor: 
+                  "rgb(75, 73, 73)"
+                ,
+                borderColor: [
+                    "rgb(75, 73, 73)"
+                ],
+                borderWidth: 1,
               },
             ],
           }}
+          height={400}
+          width={600}
           options={{
-            plugins: {
-              title: {
-                  display: true,
-                  text: 'Burndown Chart - OKR1'
-              }
-          },
+            maintainAspectRatio: false,
+            scales: {
+                
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                },
+              ],
+            },
+            legend: {
+              labels: {
+                fontSize: 25,
+              },
+            },
           }}
         />
       </div>
+
     );
 }
 
-export default LineChart;
-
+export default BarChart;
