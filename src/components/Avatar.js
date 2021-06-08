@@ -15,7 +15,7 @@ export default function AvatarUser({ photoURL, displayName }) {
     );
 }
 
-const nombre = (name) =>{
+export const nombre = (name) =>{
     let nombres;
     nombres=name.split(" ")
     return nombres[0];
