@@ -32,7 +32,7 @@ firebase.initializeApp({
 });
 
 
-const auth = firebase.auth();
+export const auth = firebase.auth();
 
 function App() {
   const [user] = useAuthState(auth);
@@ -68,10 +68,12 @@ function App() {
   );
 }
 
+export var info;
+
 export function SignIn() {
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    auth.signInWithPopup(provider).then(resultado => info=resultado );
   };
   return <button className="button right" onClick={signInWithGoogle}>Sign in with google</button>;
 }
