@@ -50,6 +50,7 @@ function App({ dispatch }) {
             component={ConfigurationPage}
           />
           <Route exact path='/CreateKR' component={KRFormPage} />
+          
         </Switch>
       ) : (
         <Switch>
@@ -60,6 +61,7 @@ function App({ dispatch }) {
               return <LandingPage />;
             }}
           />
+          <Redirect to='/' />
         </Switch>
       )}
     </Router>
