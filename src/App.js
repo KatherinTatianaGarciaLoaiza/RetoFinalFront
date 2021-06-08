@@ -24,6 +24,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import KRFormPage from './pages/KRFormPage';
 import { login } from './actions/okrActions';
 import { connect } from 'react-redux';
+import botonGoogle from '../src/images/BotonGoogle.png';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyDTOXqAZxbGqbsgdqSj1wm87Gc_TnLJHD8',
@@ -92,9 +93,8 @@ export function SignIn() {
     auth.signInWithPopup(provider).then(resultado => info=resultado );
   };
   return (
-    <button className='button right' onClick={signInWithGoogle}>
-      Sign in with google
-    </button>
+    <img src={botonGoogle} onClick={signInWithGoogle} style={{width:"50%",height:"30%"}}>
+    </img>
   );
 }
 

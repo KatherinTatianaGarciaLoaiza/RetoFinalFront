@@ -23,8 +23,9 @@ export default function LandingPage() {
                de la industria tecnológica generando soluciones de alto impacto
                 para nuestros clientes con los que siempre trabajamos en equipo.</p>
             <img src={Logo} style={{width:"80%",height:"30%"}}></img>
+            <SignIn />
           </Col>
-          <Col><SignIn /> <img src={LandingImage} ></img></Col>
+          <Col> <img src={LandingImage} ></img></Col>
         </Row>
       </Container>
     </div>
