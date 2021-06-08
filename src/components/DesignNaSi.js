@@ -41,3 +41,5 @@ export const estilosAvatar = makeStyles((theme) => ({
     height: theme.spacing(7),
   },
 }));
+
+

@@ -1,12 +1,13 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar';
-import { estilosAvatar } from './DesignNaSi';
+import { Link } from 'react-router-dom';
 
 export default function AvatarUser({ photoURL, displayName }) {
     return (
         <div>
             <picture>
-                <Avatar src={photoURL}  />
+                <Link to={`/ProfileUser`}>
+                <Avatar src={photoURL}/></Link>
                 {nombre(displayName)}
             </picture>
         </div>

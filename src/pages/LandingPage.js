@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
-import { SignIn } from '../App'
+import { SignIn } from '../components/Logging'
 import LandingImage from '../images/ImagenLanding.PNG';
 
 export default function LandingPage() {
