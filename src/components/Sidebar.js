@@ -48,7 +48,14 @@ export default function Sidebar({ texto, ruta }) {
         </List>
         <Divider />
         <List>
-          <ListItem> <Link to={`/ConfigurationNotifications`} className="button" style={{ color: "#000" }}>Configuracion de notificaciones</Link> </ListItem>
+          <Dropdown>
+            <Dropdown.Toggle style={{ background: "#ffffff", color: "#000" }}>
+              Adiministracion
+          </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item ><Link to={`/ConfigurationNotifications`} className="button" style={{ color: "#000" }}>Configuracion de notificaciones</Link></Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </List>
       </div>
     </Drawer>
