@@ -2,6 +2,7 @@ import firebase from "./FirebaseInit.js";
 import "firebase/firestore";
 import "firebase/auth";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import botonGoogle from '../images/BotonGoogle.png'
 
 export const auth = firebase.auth();
 
@@ -10,7 +11,8 @@ export function SignIn() {
       const provider = new firebase.auth.GoogleAuthProvider();
       auth.signInWithPopup(provider);
     };
-    return <button className="button right" onClick={signInWithGoogle}>Sign in with google</button>;
+    return <img src={botonGoogle} onClick={signInWithGoogle} style={{width:"50%",height:"30%"}}>
+    </img>;
   }
   
   export function SignOut() {
