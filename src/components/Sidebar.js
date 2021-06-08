@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom'
 import { estilos } from './DesignNaSi';
 import '../styles/style.css';
 import Button from "react-bootstrap/Button";
-import {Dropdown} from "react-bootstrap"
+import { Dropdown } from "react-bootstrap"
+import { auth } from './Logging';
+import { nombre } from './Avatar'
 
 export default function Sidebar({ texto, ruta }) {
   const classes = estilos();
@@ -34,18 +36,26 @@ export default function Sidebar({ texto, ruta }) {
         <Divider />
         <List>
           <Dropdown>
-            <Dropdown.Toggle style={{background:"#ffffff",color:"#000"}}>
+            <Dropdown.Toggle style={{ background: "#ffffff", color: "#000" }}>
               Dashboard
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item ><Link to={`/AllOKRS`} className="button" style={{ color: "#000" }}>Todos los OKR</Link></Dropdown.Item>
-              <Dropdown.Item ><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }}>Pepito Perez y vertical</Link></Dropdown.Item>
+              <Dropdown.Item ><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }} >
+                {nombre(auth.currentUser.displayName)}</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </List>
         <Divider />
         <List>
-          <ListItem> <Link to={`/ConfigurationNotifications`} className="button" style={{ color: "#000" }}>Configuracion de notificaciones</Link> </ListItem>
+          <Dropdown>
+            <Dropdown.Toggle style={{ background: "#ffffff", color: "#000" }}>
+              Adiministracion
+          </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item ><Link to={`/ConfigurationNotifications`} className="button" style={{ color: "#000" }}>Configuracion de notificaciones</Link></Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </List>
       </div>
     </Drawer>
