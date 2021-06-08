@@ -9,6 +9,7 @@ import { estilos } from './DesignNaSi';
 import '../styles/style.css';
 import Button from "react-bootstrap/Button";
 import {Dropdown} from "react-bootstrap"
+import {auth} from '../App';
 
 export default function Sidebar({ texto, ruta }) {
   const classes = estilos();
@@ -39,7 +40,7 @@ export default function Sidebar({ texto, ruta }) {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item ><Link to={`/AllOKRS`} className="button" style={{ color: "#000" }}>Todos los OKR</Link></Dropdown.Item>
-              <Dropdown.Item ><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }}>Pepito Perez y vertical</Link></Dropdown.Item>
+              <Dropdown.Item ><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }} >{auth.currentUser.displayName}</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </List>
