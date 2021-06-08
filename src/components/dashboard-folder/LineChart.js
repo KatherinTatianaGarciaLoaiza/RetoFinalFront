@@ -39,7 +39,7 @@ for(var i = 0; i <= dif; i++){
 
 
     return(
-<div className ="line-chart">
+<div className ="line-chart" id="burndown-chart">
         <Line
           data={{
             labels: montDif,

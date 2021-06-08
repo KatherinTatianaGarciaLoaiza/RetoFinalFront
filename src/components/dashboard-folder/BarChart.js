@@ -39,7 +39,7 @@ for(var i = 0; i < dif; i++){
 
 
     return(
-        <div>
+        <div id="bar-chart">
         <Bar
           data={{
             labels: montDif,

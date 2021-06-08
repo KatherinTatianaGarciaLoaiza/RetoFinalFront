@@ -12,7 +12,7 @@ const PieChart = () => {
   const generateColor = () => {
     return Math.floor(Math.random() * 16777215).toString(16);
   };
-
+  
   function calcularPorcentajeKr() {
     test.krs.map((el) => {
         dataPorcentage.push(Math.round((el.percentageWeight / test.krs.length)*100)/100)
@@ -46,13 +46,21 @@ const PieChart = () => {
   };
 
   const options = {
-    legend: {
-      display: true,
-      labels: {
-        fontColor: "rgb(255, 99, 132)",
+    plugins: {
+      title: {
+          display: true,
+          text: 'Progreso'
       },
-      position: "right",
-    },
+      legend: {
+        display: true,
+        labels: {
+          fontColor: "rgb(255, 99, 132)",
+        },
+        position: "bottom",
+        align: "start",
+      },
+  },
+    
   };
 
   return <Pie data={data} options={options} />;

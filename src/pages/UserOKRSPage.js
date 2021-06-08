@@ -12,6 +12,8 @@ import LineChart from "../components/dashboard-folder/LineChart";
 import BarChart from "../components/dashboard-folder/BarChart"
 import { Button } from '@material-ui/core';
 import PieChart from "../components/dashboard-folder/PieChart";
+import DownloadChart from "../components/dashboard-folder/DownloadChart";
+
 
 const UserOKRSPage = () => {
   const classes = estilos();
@@ -40,7 +42,7 @@ const UserOKRSPage = () => {
           <div className="col-lg-7">
             <LineChart/>
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-4">
             <Dashboard />
           </div>
         </div>
@@ -48,13 +50,11 @@ const UserOKRSPage = () => {
           <div className="col-lg-4">
             <BarChart/>
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-4" id="pie-chart">
             <PieChart/>
           </div>
-          <div className="col-lg-4">
-            <button style={{ alignItems: "flex-end" }}>
-              <h1>david</h1>
-            </button>
+          <div className="col-lg-3">
+              <DownloadChart/>
           </div>
         </div>
       </main>
