@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const KrCard = ({ key, keyResult, description }) => {
+const KrCard = ({ keyResult, description }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>

@@ -20,14 +20,6 @@ const MyOKRSPage = ({ dispatch, userId, okrs }) => {
       <Sidebar texto='Crear OKR' ruta='/CreateOKR' />
       <main className={classes.content}>
         <Toolbar />
-        {/* {okrs.map((okr) => (
-          <div key={okr.id}>
-            <h2 key={okr.id}>{okr.title}+botones</h2>
-            {okr.krs.map((kr) => (
-              <KrCard keyResult={kr.keyResult} description={kr.description} />
-            ))}
-          </div>
-        ))} */}
         {okrs.map((okr) => (
           <OkrCard key={okr.id} okr={okr} />
         ))}
