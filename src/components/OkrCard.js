@@ -17,7 +17,7 @@ const OkrCard = ({ okr }) => {
       </div>
       {okr.krs.map((kr) => (
         <KrCard
-          key={kr.id}
+          key={kr.krId}
           keyResult={kr.keyResult}
           description={kr.description}
         />
