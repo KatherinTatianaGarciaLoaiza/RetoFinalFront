@@ -28,8 +28,8 @@ export const update = (data) => ({
 
 export const postOKR = (data) => {
   return async () => {
-    // await axios.post(`${URI}/okr`, data);
-    // alert('Saved');
+    await axios.post(`${URI}/okr`, data);
+    alert('Saved');
   };
 };
 

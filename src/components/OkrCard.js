@@ -26,8 +26,8 @@ const OkrCard = ({ okr }) => {
             value={kr.progressKr}
           />
         ))}
-        <hr />
       </div>
+      <hr />
     </div>
   );
 };

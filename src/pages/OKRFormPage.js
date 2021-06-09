@@ -14,7 +14,7 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  TextField
+  TextField,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,13 +23,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OkrFormPage = ({
-  dispatch,
-  okr
-}) => {
+const OkrFormPage = ({ dispatch, okr }) => {
   const inputLabel = useRef(null);
   const [labelWidth, setLabelWidth] = useState(0);
-  const [disabledButton, setDisabledButton] = useState(true)
+  const [disabledButton, setDisabledButton] = useState(true);
   const classes = useStyles();
   const { handleSubmit, control } = useForm();
   const history = useHistory();
@@ -40,12 +37,12 @@ const OkrFormPage = ({
 
   const onChange = (data) => {
     const objectWithFields = control.fieldsRef.current;
-    const listFieldBlank = Object.keys(objectWithFields).filter(field =>
-      objectWithFields[field]._f.value === ""
-    )
-    setDisabledButton(listFieldBlank.length > 0)
+    const listFieldBlank = Object.keys(objectWithFields).filter(
+      (field) => objectWithFields[field]._f.value === ''
+    );
+    setDisabledButton(listFieldBlank.length > 0);
     if (!disabledButton) {
-      dispatch(updateStateOKR(data))
+      dispatch(updateStateOKR(data));
     }
   };
 
@@ -54,36 +51,36 @@ const OkrFormPage = ({
       <h2>Crear objetivo</h2>
       <Divider style={{ marginBottom: 20 }} />
       <Grid container spacing={2} style={{ marginBottom: 20 }}>
-        <Grid item xs={4} >
+        <Grid item xs={4}>
           <Controller
             render={({ field }) => (
               <TextField
                 {...field}
                 required
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                id="input_title_okr"
-                label="Titulo OKR"
+                id='input_title_okr'
+                label='Titulo OKR'
               />
             )}
-            name="title"
+            name='title'
             control={control}
             defaultValue={okr.description}
           />
         </Grid>
-        <Grid item xs={4} >
+        <Grid item xs={4}>
           <Controller
             render={({ field }) => (
               <TextField
                 {...field}
                 required
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                id="input_objective_okr"
-                label="Objetivo"
+                id='input_objective_okr'
+                label='Objetivo'
               />
             )}
-            name="objective"
+            name='objective'
             control={control}
             defaultValue={okr.objective}
           />
@@ -92,89 +89,98 @@ const OkrFormPage = ({
           <Controller
             render={({ field }) => (
               <FormControl variant='outlined' className={classes.formControl}>
-                <InputLabel ref={inputLabel} htmlFor="input_vertical">
+                <InputLabel ref={inputLabel} htmlFor='input_vertical'>
                   Seleccionar vertical
                 </InputLabel>
                 <Select
-                  input={<OutlinedInput labelWidth={labelWidth}
-                    id="input_vertical" />}
-                  {...field}
-                >
-                  <MenuItem value="DESARROLLO">DESARROLLO</MenuItem>
-                  <MenuItem value="SCRUM">SCRUM</MenuItem>
+                  input={
+                    <OutlinedInput
+                      labelWidth={labelWidth}
+                      id='input_vertical'
+                    />
+                  }
+                  {...field}>
+                  <MenuItem value='DESARROLLO'>Sofka testing</MenuItem>
+                  <MenuItem value='Agile Services'>Agile Services</MenuItem>
+                  <MenuItem value='Arquitectura y Desarrollo'>
+                    Arquitectura y Desarrollo
+                  </MenuItem>
+                  <MenuItem value='IA (inteligencia artificial)'>
+                    IA (inteligencia artificial)
+                  </MenuItem>
                 </Select>
               </FormControl>
             )}
-            name="vertical"
+            name='vertical'
             control={control}
             defaultValue={okr.vertical}
           />
         </Grid>
       </Grid>
       <h3>Responsable</h3>
-      <Grid container spacing={2}  >
-        <Grid item xs={5} >
+      <Grid container spacing={2}>
+        <Grid item xs={5}>
           <Controller
             render={({ field }) => (
               <TextField
                 {...field}
                 required
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                id="input_respon_okr"
-                label="Nombre"
+                id='input_respon_okr'
+                label='Nombre'
               />
             )}
-            name="responName"
+            name='responName'
             control={control}
             defaultValue={okr.responName}
           />
         </Grid>
-        <Grid item xs={5} >
+        <Grid item xs={5}>
           <Controller
             render={({ field }) => (
               <TextField
                 {...field}
                 required
-                variant="outlined"
+                variant='outlined'
                 fullWidth
-                id="input_responemail_okr"
-                label="Email"
+                id='input_responemail_okr'
+                label='Email'
               />
             )}
-            name="responEmail"
+            name='responEmail'
             control={control}
             defaultValue={okr.responEmail}
           />
         </Grid>
       </Grid>
-      <Grid container spacing={2} style={{ marginTop: 20 }} >
+      <Grid container spacing={2} style={{ marginTop: 20 }}>
         <Grid item xs={7}>
           <Controller
             render={({ field }) => (
               <TextField
                 {...field}
-                id="input_description_okr"
-                label="Descripcion"
+                id='input_description_okr'
+                label='Descripcion'
                 multiline
-                rows="3"
+                rows='3'
                 fullWidth
-                variant="outlined"
+                variant='outlined'
               />
             )}
-            name="description"
+            name='description'
             control={control}
             defaultValue={okr.description}
           />
         </Grid>
       </Grid>
-      <Grid container spacing={2} style={{ marginTop: 20 }} >
+      <Grid container spacing={2} style={{ marginTop: 20 }}>
         <Grid item xs={4}>
           <Button
             disabled={disabledButton}
-            onClick={() => history.push('/CreateKR')} variant="contained"
-            style={{ fontFamily: 'Lato' }}
-          >
+            onClick={() => history.push('/CreateKR')}
+            variant='contained'
+            style={{ fontFamily: 'Lato' }}>
             Siguiente
           </Button>
         </Grid>

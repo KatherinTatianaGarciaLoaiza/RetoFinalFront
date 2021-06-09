@@ -17,8 +17,8 @@ import { Slider } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    minWidth: 345,
+    maxWidth: 300,
+    minWidth: 300,
     margin: '25px',
   },
   media: {
