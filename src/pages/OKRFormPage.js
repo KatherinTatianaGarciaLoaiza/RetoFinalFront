@@ -1,156 +1,190 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useRef, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import '../styles/OkrFormCss.css';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createOKR } from '../actions/okrActions';
+import { updateStateOKR } from '../actions/okrActions';
+import {
+  Button,
+  Divider,
+  FormControl,
+  Grid,
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  TextField
+} from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    minWidth: 250,
+  },
+}));
 
 const OkrFormPage = ({
   dispatch,
-  title,
-  objective,
-  responName,
-  responEmail,
-  vertical,
-  description,
+  okr
 }) => {
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      title: title,
-      objective: objective,
-      responName: responName,
-      responEmail: responEmail,
-      vertical: vertical,
-      description: description,
-    },
-  });
-  let history = useHistory();
+  const inputLabel = useRef(null);
+  const [labelWidth, setLabelWidth] = useState(0);
+  const [disabledButton, setDisabledButton] = useState(true)
+  const classes = useStyles();
+  const { handleSubmit, control } = useForm();
+  const history = useHistory();
 
-  const onSubmit = (data) => {
-    dispatch(createOKR(data));
-    console.log(data);
-    history.push('/CreateKR');
-  };
+  useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth);
+  }, []);
 
-  // const next = (data) => {
-  //   console.log(data);
-  //   history.push('/CreateKR');
-  // };
-
-  const onClick = () => {
-    // let labelValue = prompt('Ingrese el tipo de campo: ');
-    // let father = document.getElementById('left-side');
-    // let label = document.createElement('LABEL');
-    // let input = document.createElement('INPUT');
-    // label.innerHTML = labelValue;
-    // input.type = 'text';
-    // input.className = 'input-style';
-    // input.placeholder = 'holaperros';
-    // input.id = 'input_' + labelValue;
-    // father.appendChild(label);
-    // father.appendChild(input);
+  const onChange = (data) => {
+    const objectWithFields = control.fieldsRef.current;
+    const listFieldBlank = Object.keys(objectWithFields).filter(field =>
+      objectWithFields[field]._f.value === ""
+    )
+    setDisabledButton(listFieldBlank.length > 0)
+    if (!disabledButton) {
+      dispatch(updateStateOKR(data))
+    }
   };
 
   return (
-    <section className='section'>
-      <h1 className='title-center'>Crear Objetivo</h1>
-
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='form'>
-          <section className='lado-izq'>
-            <div className='okr-input'>
-              <label htmlFor='titulo'>Titulo OKR</label>
-              <input
-                type='text'
-                id='input_Okr_titulo'
-                placeholder='Titulo del OKR'
-                className='input-style'
-                {...register('title', { required: true })}
+    <form onChange={handleSubmit(onChange)}>
+      <h2>Crear objetivo</h2>
+      <Divider style={{ marginBottom: 20 }} />
+      <Grid container spacing={2} style={{ marginBottom: 20 }}>
+        <Grid item xs={4} >
+          <Controller
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                variant="outlined"
+                fullWidth
+                id="input_title_okr"
+                label="Titulo OKR"
               />
-            </div>
-            <div className='okr-input'>
-              <label htmlFor='objetivo'>Objetivo</label>
-              <input
-                type='text'
-                id='input_Okr_objetivo'
-                placeholder='Objetivo del OKR'
-                className='input-style'
-                {...register('objective', { required: true })}
+            )}
+            name="title"
+            control={control}
+            defaultValue={okr.description}
+          />
+        </Grid>
+        <Grid item xs={4} >
+          <Controller
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                variant="outlined"
+                fullWidth
+                id="input_objective_okr"
+                label="Objetivo"
               />
-            </div>
-            <div>
-              <h3 className='title-center'>Responsable</h3>
-              <div className='okr-input'>
-                <label htmlFor='nombre'>Nombre</label>
-                <input
-                  type='text'
-                  id='input_Okr_nombre'
-                  placeholder='Nombre'
-                  className='input-style'
-                  {...register('respName', { required: true })}
-                />
-              </div>
-              <div className='okr-input'>
-                <label htmlFor='respEmail'>Correo</label>
-                <input
-                  type='email'
-                  id='input_Okr_email'
-                  placeholder='Correo'
-                  className='input-style'
-                  {...register('respEmail', { required: true })}
-                />
-              </div>
-              <div className='kr-input'>
-                <label htmlFor='text_description'>Agregar un campo</label>
-                <button onClick={onClick} className='add-field' type='button'>
-                  <AddCircleOutlineIcon />
-                </button>
-              </div>
-            </div>
-          </section>
-          <aside className='lado-der'>
-            <div className='okr-input'>
-              <label htmlFor='type'>Verticales:</label>
-              <select {...register('vertical')} id='input_Okr_verticales'>
-                <option value='Sofka testing'>Sofka testing</option>
-                <option value='Agile Services'>Agile Services </option>
-                <option value='Arquitectura y Desarrollo'>
-                  Arquitectura y Desarrollo{' '}
-                </option>
-                <option value='IA (inteligencia artificial)'>
-                  IA (inteligencia artificial){' '}
-                </option>
-              </select>
-            </div>
-            <div className='okr-input'>
-              <label htmlFor='description'>Descripcion</label>
-              <textarea
-                name='description'
-                id='description'
-                cols='20'
-                rows='10'
-                {...register('description', { required: true })}></textarea>
-            </div>
-          </aside>
-        </div>
-        <div className='container-buttons'>
-          <button type='submit' >
+            )}
+            name="objective"
+            control={control}
+            defaultValue={okr.objective}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <Controller
+            render={({ field }) => (
+              <FormControl variant='outlined' className={classes.formControl}>
+                <InputLabel ref={inputLabel} htmlFor="input_vertical">
+                  Seleccionar vertical
+                </InputLabel>
+                <Select
+                  input={<OutlinedInput labelWidth={labelWidth}
+                    id="input_vertical" />}
+                  {...field}
+                >
+                  <MenuItem value="DESARROLLO">DESARROLLO</MenuItem>
+                  <MenuItem value="SCRUM">SCRUM</MenuItem>
+                </Select>
+              </FormControl>
+            )}
+            name="vertical"
+            control={control}
+            defaultValue={okr.vertical}
+          />
+        </Grid>
+      </Grid>
+      <h3>Responsable</h3>
+      <Grid container spacing={2}  >
+        <Grid item xs={5} >
+          <Controller
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                variant="outlined"
+                fullWidth
+                id="input_respon_okr"
+                label="Nombre"
+              />
+            )}
+            name="responName"
+            control={control}
+            defaultValue={okr.responName}
+          />
+        </Grid>
+        <Grid item xs={5} >
+          <Controller
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                variant="outlined"
+                fullWidth
+                id="input_responemail_okr"
+                label="Email"
+              />
+            )}
+            name="responEmail"
+            control={control}
+            defaultValue={okr.responEmail}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} style={{ marginTop: 20 }} >
+        <Grid item xs={7}>
+          <Controller
+            render={({ field }) => (
+              <TextField
+                {...field}
+                id="input_description_okr"
+                label="Descripcion"
+                multiline
+                rows="3"
+                fullWidth
+                variant="outlined"
+              />
+            )}
+            name="description"
+            control={control}
+            defaultValue={okr.description}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} style={{ marginTop: 20 }} >
+        <Grid item xs={4}>
+          <Button
+            disabled={disabledButton}
+            onClick={() => history.push('/CreateKR')} variant="contained"
+            style={{ fontFamily: 'Lato' }}
+          >
             Siguiente
-          </button>
-        </div>
-      </form>
-    </section>
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
   );
 };
 
 const mapStateToProps = (state) => ({
-  title: state.okr.OKR.title,
-  objective: state.okr.OKR.objective,
-  responName: state.okr.OKR.responName,
-  responEmail: state.okr.OKR.responEmail,
-  vertical: state.okr.OKR.vertical,
-  description: state.okr.OKR.description,
+  okr: state.okr.OKR,
 });
 
 export default connect(mapStateToProps)(OkrFormPage);
