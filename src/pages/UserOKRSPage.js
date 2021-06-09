@@ -9,8 +9,8 @@ import "../styles/dashboardStyles.css";
 import Dropdown from "../components/dashboard-folder/Dropdown";
 import Dashboard from "../components/dashboard-folder/FormOkr";
 import LineChart from "../components/dashboard-folder/LineChart";
-import BarChart from "../components/dashboard-folder/BarChart"
-import { Button } from '@material-ui/core';
+import BarChart from "../components/dashboard-folder/BarChart";
+import { Button } from "@material-ui/core";
 import PieChart from "../components/dashboard-folder/PieChart";
 import DownloadChart from "../components/dashboard-folder/DownloadChart";
 import { getOwnOKR, getOkrById, getMaxProgressOkr } from '../actions/okrActions';

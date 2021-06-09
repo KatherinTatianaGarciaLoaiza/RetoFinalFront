@@ -1,15 +1,14 @@
 import axios from 'axios';
 const URI = 'http://localhost:8080';
 
-export const CREATEOKR = 'CREATE_OKR';
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
+export const UPDATE_STATE_OKR = 'UPDATE_STATE_OKR';
 export const UPDATEOKR = 'UPDATE_OKR';
 export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
 
-export const createOKR = (data) => ({
-  type: CREATEOKR,
-  // payload: { titulo, objetivo, nombre, correo, type, description },
+export const updateStateOKR = (data) => ({
+  type: UPDATE_STATE_OKR,
   payload: data,
 });
 
@@ -35,8 +34,8 @@ export const progressOkr = (data) => ({
 
 export const postOKR = (data) => {
   return async () => {
-    await axios.post(`${URI}/okr`, data);
-    alert('Saved');
+     await axios.post(`${URI}/okr`, data);
+     alert('Saved');
   };
 };
 

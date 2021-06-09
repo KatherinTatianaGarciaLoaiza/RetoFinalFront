@@ -22,10 +22,10 @@ export default function LandingPage() {
               el talento tanto técnico como humano, para estar a la vanguardia
                de la industria tecnológica generando soluciones de alto impacto
                 para nuestros clientes con los que siempre trabajamos en equipo.</p>
-            <img src={Logo} style={{width:"80%",height:"30%"}}></img>
+            <img src={Logo} alt='' style={{width:"80%",height:"30%"}}></img>
             <SignIn />
           </Col>
-          <Col> <img src={LandingImage} ></img></Col>
+          <Col> <img src={LandingImage} alt='' ></img></Col>
         </Row>
       </Container>
     </div>
