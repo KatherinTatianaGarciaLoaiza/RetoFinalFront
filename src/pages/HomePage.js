@@ -3,13 +3,11 @@ import NavbarSofKa from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { estilos } from '../components/DesignNaSi';
-import {WelcomeMessage} from "../components/WelcomeMessage"
 
 const HomePage = (state) => {
     const classes = estilos();    
     return (
         <div className={classes.root}  >
-            {/* {state && <WelcomeMessage state={state}/>} */}
             <NavbarSofKa classes={classes} />
             <Sidebar texto="Mis OKR" ruta="/MyOKRS" />
             {state = false}

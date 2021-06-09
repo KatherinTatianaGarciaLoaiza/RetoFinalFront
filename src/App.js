@@ -18,7 +18,7 @@ import UserOKRSPage from "./pages/UserOKRSPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreateOKRPage from "./pages/CreateOKRPage";
 import CreateKRPage from "./pages/CreateKRPage";
-import {WelcomeMessage} from "./components/WelcomeMessage"
+import Example from "./components/WelcomeMessage"
 
 import { login } from './actions/okrActions';
 import { connect } from 'react-redux';
@@ -37,7 +37,7 @@ function App({ dispatch }) {
             exact
             path='/'
             component={() => {
-              return <WelcomeMessage state ={true}/>;              
+              return  <Example/>              
             }}
           />
           <Route exact path='/AllOKRS' component={AllOKRSPage} />
