@@ -33,10 +33,10 @@ const OkrFormPage = ({
     history.push('/CreateKR');
   };
 
-  const next = (data) => {
-    console.log(data);
-    history.push('/CreateKR');
-  };
+  // const next = (data) => {
+  //   console.log(data);
+  //   history.push('/CreateKR');
+  // };
 
   const onClick = () => {
     // let labelValue = prompt('Ingrese el tipo de campo: ');
@@ -128,15 +128,14 @@ const OkrFormPage = ({
               <textarea
                 name='description'
                 id='description'
-                cols='30'
+                cols='20'
                 rows='10'
                 {...register('description', { required: true })}></textarea>
             </div>
           </aside>
         </div>
         <div className='container-buttons'>
-          <button type='submit'>Guardar</button>
-          <button type='button' onClick={next}>
+          <button type='submit' >
             Siguiente
           </button>
         </div>
