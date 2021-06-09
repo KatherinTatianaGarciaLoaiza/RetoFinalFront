@@ -1,24 +1,23 @@
-
 import React from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import test from "../helpers/krs.json";
-import test2 from "../helpers/test.json";
 
-export default function Example () {
-    console.log(test)
+const Example = (props) => {
+
   return (
-      <div  className="uncontrolledDropdown" id="dropdown-title-okr">
-    <UncontrolledDropdown >
-      <DropdownToggle caret >
-        {test2.title}
-      </DropdownToggle>
-      <DropdownMenu>{
-          test.map((el)=>(
-            <DropdownItem key={el.userId} > {el.title}</DropdownItem>
+    <div className="uncontrolledDropdown" id="dropdown-title-okr">
+      <UncontrolledDropdown >
+        <DropdownToggle caret >
+          {props.okrs.title}
+        </DropdownToggle>
+        <DropdownMenu>{
+          props.okrs.map((f) => (
+            <DropdownItem key={f.id} > {f.title}</DropdownItem>
           ))
-          }             
-      </DropdownMenu>
-    </UncontrolledDropdown>
+        }
+        </DropdownMenu>
+      </UncontrolledDropdown>
     </div>
   );
 }
+
+export default Example;
