@@ -11,7 +11,7 @@ export function SignIn() {
       const provider = new firebase.auth.GoogleAuthProvider();
       auth.signInWithPopup(provider);
     };
-    return <img src={botonGoogle} onClick={signInWithGoogle} style={{width:"50%",height:"30%"}}>
+    return <img src={botonGoogle} alt='' onClick={signInWithGoogle} style={{width:"50%",height:"30%"}}>
     </img>;
   }
   
