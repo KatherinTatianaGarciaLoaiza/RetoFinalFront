@@ -22,7 +22,6 @@ import WelcomeMessage from "./components/WelcomeMessage"
 
 import { login } from './actions/okrActions';
 import { connect } from 'react-redux';
-import Tiempo from './components/TiempoCierre';
 
 function App({ dispatch }) {
   const [user] = useAuthState(auth);
@@ -31,17 +30,13 @@ function App({ dispatch }) {
   }
   return (
     <Router>
-      {user ? (
-        
+      {user ? (        
         <Switch>
           <Route
             exact
             path='/'
             component={() => {
-              return <>  
-                {/* <WelcomeMessage/> */}
-                <Tiempo/>       
-                </>       
+              return <WelcomeMessage/>    
             }}
           />
           <Route exact path='/AllOKRS' component={AllOKRSPage} />
