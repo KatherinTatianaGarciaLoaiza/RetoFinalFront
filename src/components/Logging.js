@@ -3,25 +3,45 @@ import "firebase/firestore";
 import "firebase/auth";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import botonGoogle from '../images/BotonGoogle.png'
+import { Redirect } from "react-router";
+import swal from 'sweetalert';
 
 export const auth = firebase.auth();
+var IdleTime;
+window.onload = ResetClock;
+document.onkeypress = ResetClock;
+document.onmousemove = ResetClock;
 
 export function SignIn() {
-    const signInWithGoogle = () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider);
-    };
-    return <img src={botonGoogle} onClick={signInWithGoogle} style={{width:"50%",height:"30%"}}>
-    </img>;
+  const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+  };
+  return <img src={botonGoogle} onClick={signInWithGoogle} style={{ width: "50%", height: "30%" }}>
+  </img>;
+}
+
+export function SignOut() {
+  return (
+    auth.currentUser && (
+      <ExitToAppIcon onClick={() => {
+        localStorage.removeItem("uid");
+        auth.signOut();
+      }} style={{ color: 'white' }} fontSize="large" />
+    )
+  );
+}
+
+export function Logout() {
+  swal("¡¡¡Atencion!!!","Por exceder el tiempo de inactividad se ha cerrado la sesion","warning");
+  auth.signOut();
+  <Redirect to="/" />;
+}
+
+export function ResetClock() {
+  if (auth.currentUser) {
+    clearTimeout(IdleTime);
+    IdleTime = setTimeout(Logout, 120000)
   }
-  
-  export function SignOut() {
-    return (
-      auth.currentUser && (
-        <ExitToAppIcon onClick={() => {
-            localStorage.removeItem("uid");
-            auth.signOut();
-          }} style={{ color: 'white' }} fontSize="large" />
-      )
-    );
-  }
+}
+
