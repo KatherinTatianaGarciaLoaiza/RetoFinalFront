@@ -30,14 +30,13 @@ function App({ dispatch }) {
   }
   return (
     <Router>
-      {user ? (
-        
+      {user ? (        
         <Switch>
           <Route
             exact
             path='/'
             component={() => {
-              return  <WelcomeMessage/>              
+              return <WelcomeMessage/>    
             }}
           />
           <Route exact path='/AllOKRS' component={AllOKRSPage} />

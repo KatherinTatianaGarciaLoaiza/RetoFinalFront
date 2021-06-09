@@ -11,6 +11,7 @@ export const initialState = {
     description: '',
     krs: [],
   },
+  OKRUser: [],
 };
 
 export default function okrReducer(state = initialState, action) {
@@ -53,8 +54,13 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         OKR: {
           ...state.OKR,
-          userId: payload
+          userId: payload,
         },
+      };
+    case actions.UPDATEOKR:
+      return {
+        ...state,
+        OKRUser: payload,
       };
     default:
       return state;
