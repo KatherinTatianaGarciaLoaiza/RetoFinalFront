@@ -1,0 +1,9 @@
+.container_display_title {
+  display: flex;
+  margin: 15px 0;
+}
+
+.container_cards{
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -10,26 +10,50 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Box from '@material-ui/core/Box';
+import '../styles/Card.css';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    minWidth: 345,
+    margin: '25px',
   },
   media: {
     height: 140,
   },
 });
 
-const KrCard = ({ keyResult, description }) => {
+const KrCard = ({ keyResult, description, value }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image='/static/images/cards/contemplative-reptile.jpg'
-          title='Contemplative Reptile'
-        />
+        <CardMedia className='progressbar'>
+          <Box position='relative' display='inline-flex'>
+            <CircularProgress
+              variant='determinate'
+              color='primary'
+              value={value}
+              size={60}
+            />
+            <Box
+              top={0}
+              left={0}
+              bottom={0}
+              right={0}
+              position='absolute'
+              display='flex'
+              alignItems='center'
+              justifyContent='center'>
+              <Typography
+                variant='caption'
+                component='div'
+                color='textSecondary'>{`${value}%`}</Typography>
+            </Box>
+          </Box>
+        </CardMedia>
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
             {keyResult}
