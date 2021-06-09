@@ -3,7 +3,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import test from "../helpers/test.json";
 
-const ProgressOkr = () => {
+const ProgressOkr = ({progress}) => {
   let percentage = 0;
 
   function calcularPorcentaje() {
@@ -12,7 +12,7 @@ const ProgressOkr = () => {
   }
 
   return (
-    <CircularProgressbar value={calcularPorcentaje()} text={`${Math.round(percentage)}%`} />
+    <CircularProgressbar value={progress} text={`${progress}%`} />
   );
 };
 

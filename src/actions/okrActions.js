@@ -49,14 +49,14 @@ export function getOwnOKR(userId) {
 export function getOkrById(id) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/okr/${id}`);
-    dispatch(update(data));
+    console.log(data)
+    dispatch(progressOkr(data));
   };
 }
 
 export function getMaxProgressOkr(userId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/okr-max/${userId}`);
-    console.log(data)
     dispatch(progressOkr(data));
   };
 }

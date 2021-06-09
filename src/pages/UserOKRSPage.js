@@ -19,20 +19,9 @@ import { CheckBoxOutlineBlankRounded } from '@material-ui/icons';
 import { SelectionState } from '@devexpress/dx-react-chart';
 
 
-const UserOKRSPage = ({okrs, dispatch, id, title, userId}) => {
+const UserOKRSPage = ({okrs, dispatch, id, title, progress, userId, progressOkr}) => {
 
   const [redirect, setRedirect] = useState(false);
-
-
-  const maxProgress = (userId) =>{
-    dispatch(getMaxProgressOkr(userId))
-  }
-
-  const okrById = (id) => {
-    dispatch(getOkrById(id))
-  }
-
-  console.log(okrs)
 
   const classes = estilos();
 
@@ -51,12 +40,12 @@ const UserOKRSPage = ({okrs, dispatch, id, title, userId}) => {
             </nav>
           </div>
           <div className="col -md-6">
-            <Dropdown title={title} />
+            <Dropdown title={title} id={id}/>
           </div>
         </div>
         <div id="center-senction" className="row">
           <div className="col-lg-1" id="progress-okr">
-            <ProgressOkr/>
+            <ProgressOkr progress={progress} />
           </div>
           <div className="col-lg-7">
             <LineChart />
@@ -82,10 +71,9 @@ const UserOKRSPage = ({okrs, dispatch, id, title, userId}) => {
 };
 
 const mapStateToProps = (state) => ({
-  userId: state.okr.OKR.userId,
-  okrs: state.okr.OKRUser,
-  title: state.okr.OKR.title,
-
+title: state.okr.ProgressOKR.title,
+progress: state.okr.ProgressOKR.progressOkr,
+id : state.okr.ProgressOKR.id
 });
 
 export default connect(mapStateToProps)(UserOKRSPage);

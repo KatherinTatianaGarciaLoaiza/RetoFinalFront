@@ -19,6 +19,7 @@ function Sidebar({dispatch, userId, texto, ruta}) {
     dispatch(getMaxProgressOkr(userId))
   }
 
+  console.log(userId)
 
   const classes = estilos();
   return (
@@ -49,7 +50,6 @@ function Sidebar({dispatch, userId, texto, ruta}) {
             <Dropdown.Menu>
               <Dropdown.Item ><Link to={`/AllOKRS`} className="button" style={{ color: "#000" }}>Todos los OKR</Link></Dropdown.Item>
               <Dropdown.Item ><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }}  onClick={progressOkrMax(userId)}>
-              
                 {nombre(auth.currentUser.displayName)}</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
