@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import NavbarSofKa from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -13,9 +13,15 @@ import BarChart from "../components/dashboard-folder/BarChart"
 import { Button } from '@material-ui/core';
 import PieChart from "../components/dashboard-folder/PieChart";
 import DownloadChart from "../components/dashboard-folder/DownloadChart";
+import { getOwnOKR } from '../actions/okrActions';
+import { connect } from 'react-redux';
+import { CheckBoxOutlineBlankRounded } from '@material-ui/icons';
 
 
-const UserOKRSPage = () => {
+const UserOKRSPage = ({ dispatch, userId, okrs }) => {
+  useEffect(() => {
+    dispatch(getOwnOKR(userId));
+  }, [dispatch, userId]);
   const classes = estilos();
   return (
     <div className={classes.root}>
@@ -27,20 +33,20 @@ const UserOKRSPage = () => {
           <div className="col -md-6">
             <h1>Dashboard</h1>
             <nav>
-            <Button variant="contained">Default</Button>
-            <Button variant="contained">Default</Button>
+              <Button variant="contained">Default</Button>
+              <Button variant="contained">Default</Button>
             </nav>
           </div>
-          <div className="col -md-6">            
-              <Dropdown/>            
+          <div className="col -md-6">
+            <Dropdown {...{ okrs, userId }} />
           </div>
         </div>
-        <div id = "center-senction" className="row">
+        <div id="center-senction" className="row">
           <div className="col-lg-1" id="progress-okr">
             <ProgressOkr />
           </div>
           <div className="col-lg-7">
-            <LineChart/>
+            <LineChart />
           </div>
           <div className="col-lg-4">
             <Dashboard />
@@ -48,13 +54,13 @@ const UserOKRSPage = () => {
         </div>
         <div className="row">
           <div className="col-lg-4">
-            <BarChart/>
+            <BarChart />
           </div>
           <div className="col-lg-4" id="pie-chart">
-            <PieChart/>
+            <PieChart />
           </div>
           <div className="col-lg-3">
-              <DownloadChart/>
+            <DownloadChart />
           </div>
         </div>
       </main>
@@ -62,4 +68,9 @@ const UserOKRSPage = () => {
   );
 };
 
-export default UserOKRSPage;
+const mapStateToProps = (state) => ({
+  userId: state.okr.OKR.userId,
+  okrs: state.okr.OKRUser,
+});
+
+export default connect(mapStateToProps)(UserOKRSPage);

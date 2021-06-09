@@ -8,11 +8,11 @@ const ProgressOkr = () => {
 
   function calcularPorcentaje() {
     test.krs.forEach((el) => (percentage += el.percentageWeight));
-    return percentage = percentage / test.krs.length;
+    return percentage = percentage / test.krs.length; 
   }
 
   return (
-    <CircularProgressbar value={calcularPorcentaje()} text={`${Math.round(percentage*100)/100}%`} />
+    <CircularProgressbar value={calcularPorcentaje()} text={`${Math.round(percentage)}%`} />
   );
 };
 
