@@ -1,3 +1,8 @@
+.dashboard-page{
+    font-family: 'Roboto', sans-serif;
+}
+
+
 :root{
     --color-black: #000;
     --color-orange: #F0950E;
@@ -6,9 +11,6 @@
     --color-text: rgb(119, 116, 116);
 }
 
-html{
-    font-family: 'Roboto', sans-serif;
-}
 
 .form-krs {
     display: flex;
@@ -23,12 +25,13 @@ html{
 }
 
 .title-context {
+    font-family: 'Roboto', sans-serif;
     justify-content: flex-start;
     display: flex;
     background-color: var(--color-orange);
     align-items: center;
     justify-content: center;
-    color: var(--color-whithe);
+    color: var(--color-white);
     padding: 20px;
     border-radius: 10px 10px 0 0;
 }

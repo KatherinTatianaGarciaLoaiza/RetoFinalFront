@@ -20,7 +20,6 @@ export default function NavbarSofKa({ classes }) {
                         <Nav className="mr-auto">
                         </Nav>
                         <Nav>
-                            {console.log(displayName)}
                             <NotificationsIcon style={{ color: 'white' }} fontSize="large" />
                             <AvatarUser displayName={displayName} photoURL={photoURL} />
                             <SignOut />

@@ -17,8 +17,9 @@ import MyOKRSPage from "./pages/MyOKRSPage";
 import UserOKRSPage from "./pages/UserOKRSPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreateOKRPage from "./pages/CreateOKRPage";
+import CreateKRPage from "./pages/CreateKRPage";
+import WelcomeMessage from "./components/WelcomeMessage"
 
-import KRFormPage from './pages/KRFormPage';
 import { login } from './actions/okrActions';
 import { connect } from 'react-redux';
 
@@ -29,13 +30,13 @@ function App({ dispatch }) {
   }
   return (
     <Router>
-      {user ? (
+      {user ? (        
         <Switch>
           <Route
             exact
             path='/'
             component={() => {
-              return <HomePage />;
+              return <WelcomeMessage/>    
             }}
           />
           <Route exact path='/AllOKRS' component={AllOKRSPage} />
@@ -49,7 +50,7 @@ function App({ dispatch }) {
             path='/ConfigurationNotifications'
             component={ConfigurationPage}
           />
-          <Route exact path='/CreateKR' component={KRFormPage} />
+          <Route exact path='/CreateKR' component={CreateKRPage} />
           
         </Switch>
       ) : (
