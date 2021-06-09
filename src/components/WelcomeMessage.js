@@ -22,10 +22,10 @@ function Example() {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h2 className="title3">!!Te da la bienvenida {nombre(auth.currentUser.displayName)}!!</h2>
+                    <h3 className="title3">!!Te da la bienvenida {nombre(auth.currentUser.displayName)}, 
+                    Estamos felices de tenerte de nuevo con notros!!</h3>
                     <br />
-                    <h3 className="title3">Estamos felices de tenerte de nuevo con notros. Esperamos poder
-                        aprender mucho de tus aportes.</h3>
+                    <h5 className="title3"> Esperamos poder aprender mucho de tus aportes. </h5>
                     <br />
                 </Modal.Body>
                 <div style={{ display: "flex", justifyContent: "center" }}>
