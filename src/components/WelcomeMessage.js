@@ -5,6 +5,7 @@ import { nombre } from './Avatar'
 import { Link } from 'react-router-dom';
 import "../styles/style.css";
 import { Modal, Button } from 'react-bootstrap';
+import Avatar from '@material-ui/core/Avatar';
 
 function WelcomeMessage() {
 
@@ -23,8 +24,12 @@ function WelcomeMessage() {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body >
-                    <h3 className="title3">!!Te da la bienvenida {nombre(auth.currentUser.displayName)},
-                        Estamos felices de tenerte de nuevo con notros!!</h3>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <Avatar src={auth.currentUser.photoURL} style={{ width: "150px", height: "150px" }} />
+                    </div>
+                    <br />
+                    <h3 className="title3">!!Te damos la bienvenida {nombre(auth.currentUser.displayName).toUpperCase()},
+                        Estamos felices de tenerte con nosotros!!</h3>
                     <br />
                     <h5 className="title3"> Esperamos poder aprender mucho de tus aportes. </h5>
                     <br />
