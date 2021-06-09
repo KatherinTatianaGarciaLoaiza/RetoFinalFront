@@ -11,8 +11,16 @@ import Button from "react-bootstrap/Button";
 import { Dropdown } from "react-bootstrap"
 import { auth } from './Logging';
 import { nombre } from './Avatar'
+import { getMaxProgressOkr } from '../actions/okrActions';
+import { connect } from 'react-redux';
 
-export default function Sidebar({ texto, ruta }) {
+function Sidebar({dispatch, userId, texto, ruta}) {
+
+  const progressOkrMax = (userId) =>{
+    dispatch(getMaxProgressOkr(userId))
+  }
+
+
   const classes = estilos();
   return (
     <Drawer
@@ -41,7 +49,8 @@ export default function Sidebar({ texto, ruta }) {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item ><Link to={`/AllOKRS`} className="button" style={{ color: "#000" }}>Todos los OKR</Link></Dropdown.Item>
-              <Dropdown.Item ><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }} >
+              <Dropdown.Item ><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }}  onClick={progressOkrMax(userId)}>
+              
                 {nombre(auth.currentUser.displayName)}</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -61,3 +70,10 @@ export default function Sidebar({ texto, ruta }) {
     </Drawer>
   )
 }
+
+const mapStateToProps = (state) => ({
+  userId: state.okr.OKR.userId,
+});
+
+
+export default connect(mapStateToProps)(Sidebar);

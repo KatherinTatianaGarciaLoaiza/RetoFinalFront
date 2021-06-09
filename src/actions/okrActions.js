@@ -5,6 +5,7 @@ export const CREATEOKR = 'CREATE_OKR';
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
 export const UPDATEOKR = 'UPDATE_OKR';
+export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
 
 export const createOKR = (data) => ({
   type: CREATEOKR,
@@ -27,6 +28,11 @@ export const update = (data) => ({
   payload: data,
 });
 
+export const progressOkr = (data) => ({
+  type: OKRMAXPROGRESS,
+  payload: data,
+});
+
 export const postOKR = (data) => {
   return async () => {
     await axios.post(`${URI}/okr`, data);
@@ -38,6 +44,21 @@ export function getOwnOKR(userId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/all-okr/${userId}`);
     dispatch(update(data));
+  };
+}
+
+export function getOkrById(id) {
+  return async (dispatch) => {
+    const { data } = await axios.get(`${URI}/okr/${id}`);
+    dispatch(update(data));
+  };
+}
+
+export function getMaxProgressOkr(userId) {
+  return async (dispatch) => {
+    const { data } = await axios.get(`${URI}/okr-max/${userId}`);
+    console.log(data)
+    dispatch(progressOkr(data));
   };
 }
 

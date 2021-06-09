@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavbarSofKa from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -13,16 +13,29 @@ import BarChart from "../components/dashboard-folder/BarChart"
 import { Button } from '@material-ui/core';
 import PieChart from "../components/dashboard-folder/PieChart";
 import DownloadChart from "../components/dashboard-folder/DownloadChart";
-import { getOwnOKR } from '../actions/okrActions';
+import { getOwnOKR, getOkrById, getMaxProgressOkr } from '../actions/okrActions';
 import { connect } from 'react-redux';
 import { CheckBoxOutlineBlankRounded } from '@material-ui/icons';
+import { SelectionState } from '@devexpress/dx-react-chart';
 
 
-const UserOKRSPage = ({ dispatch, userId, okrs }) => {
-  useEffect(() => {
-    dispatch(getOwnOKR(userId));
-  }, [dispatch, userId]);
+const UserOKRSPage = ({okrs, dispatch, id, title, userId}) => {
+
+  const [redirect, setRedirect] = useState(false);
+
+
+  const maxProgress = (userId) =>{
+    dispatch(getMaxProgressOkr(userId))
+  }
+
+  const okrById = (id) => {
+    dispatch(getOkrById(id))
+  }
+
+  console.log(okrs)
+
   const classes = estilos();
+
   return (
     <div className={classes.root}>
       <NavbarSofKa classes={classes} />
@@ -38,12 +51,12 @@ const UserOKRSPage = ({ dispatch, userId, okrs }) => {
             </nav>
           </div>
           <div className="col -md-6">
-            <Dropdown {...{ okrs, userId }} />
+            <Dropdown title={title} />
           </div>
         </div>
         <div id="center-senction" className="row">
           <div className="col-lg-1" id="progress-okr">
-            <ProgressOkr />
+            <ProgressOkr/>
           </div>
           <div className="col-lg-7">
             <LineChart />
@@ -71,6 +84,8 @@ const UserOKRSPage = ({ dispatch, userId, okrs }) => {
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
   okrs: state.okr.OKRUser,
+  title: state.okr.OKR.title,
+
 });
 
 export default connect(mapStateToProps)(UserOKRSPage);

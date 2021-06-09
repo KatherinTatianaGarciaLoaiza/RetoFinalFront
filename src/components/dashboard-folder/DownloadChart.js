@@ -9,7 +9,6 @@ const DownloadChart = () => {
             </Button>
         </div>
     )
-
 }
 
 export default DownloadChart;
