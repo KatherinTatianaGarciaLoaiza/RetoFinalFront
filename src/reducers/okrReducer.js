@@ -17,17 +17,12 @@ export const initialState = {
 export default function okrReducer(state = initialState, action) {
   const payload = action.payload;
   switch (action.type) {
-    case actions.CREATEOKR:
+    case actions.UPDATE_STATE_OKR:
       return {
         ...state,
         OKR: {
           ...state.OKR,
-          title: payload.title,
-          objective: payload.objective,
-          responName: payload.respName,
-          responEmail: payload.respEmail,
-          vertical: payload.vertical,
-          description: payload.description,
+          ...payload,
         },
       };
     case actions.CREATEKR:
