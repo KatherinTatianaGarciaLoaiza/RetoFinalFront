@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,35 +6,21 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
+import {auth} from './components/Logging';
+
 import LandingPage from './pages/LandingPage';
 import ConfigurationPage from './pages/ConfigurationPage';
+import HomePage from "./pages/HomePage";
+import AllOKRSPage from "./pages/AllOKRSPage";
+import MyOKRSPage from "./pages/MyOKRSPage";
+import UserOKRSPage from "./pages/UserOKRSPage";
+import ProfilePage from "./pages/ProfilePage";
+import CreateOKRPage from "./pages/CreateOKRPage";
 
-import HomePage from './pages/HomePage';
-import AllOKRSPage from './pages/AllOKRSPage';
-import MyOKRSPage from './pages/MyOKRSPage';
-import UserOKRSPage from './pages/UserOKRSPage';
-import ProfilePage from './pages/ProfilePage';
-import CreateOKRPage from './pages/CreateOKRPage';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import KRFormPage from './pages/KRFormPage';
 import { login } from './actions/okrActions';
 import { connect } from 'react-redux';
-
-firebase.initializeApp({
-  apiKey: 'AIzaSyDTOXqAZxbGqbsgdqSj1wm87Gc_TnLJHD8',
-  authDomain: 'pruebafrontfinal.firebaseapp.com',
-  projectId: 'pruebafrontfinal',
-  storageBucket: 'pruebafrontfinal.appspot.com',
-  messagingSenderId: '91143744808',
-  appId: '1:91143744808:web:13d3666b00e71b97ea341d',
-  measurementId: 'G-66N6TDZVBF',
-});
-
-const auth = firebase.auth();
 
 function App({ dispatch }) {
   const [user] = useAuthState(auth);
@@ -65,7 +50,7 @@ function App({ dispatch }) {
             component={ConfigurationPage}
           />
           <Route exact path='/CreateKR' component={KRFormPage} />
-          <Redirect to='/' />
+          
         </Switch>
       ) : (
         <Switch>
@@ -80,33 +65,6 @@ function App({ dispatch }) {
         </Switch>
       )}
     </Router>
-  );
-}
-
-export function SignIn() {
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  };
-  return (
-    <button className='button right' onClick={signInWithGoogle}>
-      Sign in with google
-    </button>
-  );
-}
-
-export function SignOut() {
-  return (
-    auth.currentUser && (
-      <ExitToAppIcon
-        onClick={() => {
-          localStorage.removeItem('uid');
-          auth.signOut();
-        }}
-        style={{ color: 'white' }}
-        fontSize='large'
-      />
-    )
   );
 }
 
