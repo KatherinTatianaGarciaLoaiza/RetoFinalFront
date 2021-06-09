@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -13,6 +13,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
 import '../styles/Card.css';
+import { Slider } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles({
 });
 
 const KrCard = ({ keyResult, description, value }) => {
+  const [slider, setSlider] = useState(value);
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -70,6 +72,20 @@ const KrCard = ({ keyResult, description, value }) => {
         <Button size='small' color='primary'>
           <DeleteIcon />
         </Button>
+        <Slider
+          className='slider-input'
+          id='slider_weight'
+          value={slider}
+          aria-labelledby='discrete-slider'
+          valueLabelDisplay='auto'
+          step={5}
+          marks
+          min={value}
+          max={100}
+          onChange={(event, newValue) => {
+            setSlider(newValue);
+          }}
+        />
       </CardActions>
     </Card>
   );
