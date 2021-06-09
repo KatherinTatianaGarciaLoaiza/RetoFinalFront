@@ -9,13 +9,14 @@ import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/picker
 import DateFnsUtils from '@date-io/date-fns';
 
 const KRPage = ({ dispatch, okr }) => {
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, reset } = useForm();
   const history = useHistory();
 
   const onSubmit = (data) => {
     data.startDate = data.startDate.toISOString().slice(0, 10);
     data.endDate = data.endDate.toISOString().slice(0, 10);
     dispatch(createKR(data));
+    reset()
   };
 
   return (
@@ -165,13 +166,22 @@ const KRPage = ({ dispatch, okr }) => {
       </Grid>
       <Grid container spacing={2} style={{ marginTop: 20 }} >
         <Grid item xs={4}>
-          <Button onClick={() => history.push('/CreateOKR')} variant="contained" style={{ fontFamily: 'Lato', marginRight: 10 }}>
+          <Button
+            onClick={() => history.push('/CreateOKR')}
+            variant="contained"
+            style={{ fontFamily: 'Lato', marginRight: 10 }}>
             Volver
           </Button>
+
           <Button type="submit" variant="contained" style={{ fontFamily: 'Lato' }}>
             Añadir KR
           </Button>
-          <Button disabled={!okr.krs.length > 0} variant="contained" style={{ fontFamily: 'Lato', marginLeft: 10 }}>
+          <Button
+            onClick={() => dispatch(postOKR(okr))}
+            disabled={!okr.krs.length > 0}
+            variant="contained"
+            style={{ fontFamily: 'Lato', marginLeft: 10 }}
+          >
             Guardar
           </Button>
         </Grid>
