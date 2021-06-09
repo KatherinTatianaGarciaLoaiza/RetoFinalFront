@@ -32,15 +32,7 @@ export default function okrReducer(state = initialState, action) {
           ...state.OKR,
           krs: [
             ...state.OKR.krs,
-            {
-              keyResult: payload.keyResult,
-              responName: payload.responName,
-              responEmail: payload.responEmail,
-              description: payload.description,
-              startDate: payload.startDate,
-              endDate: payload.endDate,
-              percentageWeight: payload.percentageWeight,
-            },
+            payload
           ],
         },
       };
