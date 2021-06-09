@@ -13,9 +13,11 @@ const MyOKRSPage = ({ dispatch, userId, okrs }) => {
   useEffect(() => {
     dispatch(getOwnOKR(userId));
   }, [dispatch, userId]);
-
+  
   const classes = estilos();
+  
   return (
+    okrs === [] ?
     <div className={classes.root}>
       <NavbarSofKa classes={classes} />
       <Sidebar texto='Crear OKR' ruta='/CreateOKR' />
@@ -30,11 +32,21 @@ const MyOKRSPage = ({ dispatch, userId, okrs }) => {
             </Link>
           </div>
         }
-        {okrs.map((okr) => (
-          <OkrCard key={okr.id} okr={okr} />
-        ))}
       </main>
     </div>
+:
+<div className={classes.root}>
+      <NavbarSofKa classes={classes} />
+      <Sidebar texto='Crear OKR' ruta='/CreateOKR' />
+      <main className={classes.content}>
+        <Toolbar />
+          {okrs.map((okr) => (
+            <OkrCard key={okr.id} okr={okr} />
+            ))}
+      </main>
+    </div>
+
+
   );
 };
 
