@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Scroll from "react-scroll";
-import EditIcon from "@material-ui/icons/Edit";
 import Krs from "./FormKr";
-import test from "../helpers/test.json";
+
 
 let Element = Scroll.Element;
 let scroll = Scroll.animateScroll;

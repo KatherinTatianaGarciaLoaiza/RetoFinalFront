@@ -75,10 +75,10 @@
     fill: var(--color-black);
 }
 
-.dropdown-toggle {
+.button-dropdown {
     background-color: var(--color-orange) !important;
     margin-left: 150px;
-}
+} 
 
 .dropdown-toggle::after{
 margin-left: 30px;
