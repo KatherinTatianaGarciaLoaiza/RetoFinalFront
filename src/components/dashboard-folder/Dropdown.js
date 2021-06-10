@@ -19,7 +19,7 @@ const Example = ({ dispatch, userId, okrs, title, id }) => {
   return (
     <div className="uncontrolledDropdown" id="dropdown-title-okr">
       <UncontrolledDropdown >
-        <DropdownToggle caret >
+        <DropdownToggle  caret className = "button-dropdown">
           {title}
         </DropdownToggle>
         <DropdownMenu>{
