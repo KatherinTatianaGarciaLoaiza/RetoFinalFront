@@ -179,7 +179,7 @@ const OkrFormPage = ({ dispatch, okr }) => {
         <Grid item xs={4}>
           <Button
             disabled={disabledButton}
-            onClick={() => history.push('/CreateKR')}
+            onClick={() => {history.push('/CreateKR')}}
             variant='contained'
             color='primary'
             endIcon={<NavigateNextIcon />}
