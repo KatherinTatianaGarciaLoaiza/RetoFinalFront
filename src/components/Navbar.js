@@ -9,7 +9,7 @@ import { auth } from './Logging';
 import AvatarUser from './Avatar';
 
 export default function NavbarSofKa({ classes }) {
-    const { displayName, photoURL, email } = auth.currentUser || { uid: "", displayName: "", photoURL: "", email: "" }
+    const { displayName, photoURL } = auth.currentUser || { uid: "", displayName: "", photoURL: "", email: "" }
     return (
         <AppBar position="fixed" className={classes.appBar} style={{ background: "#F0950E" }} >
             <div className="col-md">

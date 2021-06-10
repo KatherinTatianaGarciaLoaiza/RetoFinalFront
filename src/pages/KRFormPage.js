@@ -190,14 +190,14 @@ const KRPage = ({ dispatch, okr }) => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={2} style={{ marginTop: 20 }}>
+      <Grid container spacing={2} style={{ margin: 20 }}>
         <Grid item xs={4}>
           <Button
             onClick={() => history.push('/CreateOKR')}
             variant='contained'
             color='primary'
             startIcon={<ArrowBackIcon />}
-            style={{ fontFamily: 'Lato', marginRight: 10 }}>
+            style={{ fontFamily: 'Lato', margin: 10 }}>
             Volver
           </Button>
 
@@ -215,7 +215,7 @@ const KRPage = ({ dispatch, okr }) => {
             variant='contained'
             color='primary'
             endIcon={<SaveIcon />}
-            style={{ fontFamily: 'Lato', marginLeft: 10 }}>
+            style={{ fontFamily: 'Lato', margin: 10 }}>
             Guardar
           </Button>
         </Grid>
