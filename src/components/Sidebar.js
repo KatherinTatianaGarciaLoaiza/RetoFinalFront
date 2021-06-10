@@ -31,8 +31,8 @@ export default function Sidebar({ texto, ruta }) {
         <Toolbar />
         <Divider />
         <List>
-          <Accordion defaultActiveKey="0">
-            <Accordion.Toggle as={Card.Header} variant="link" eventKey="0" style={{ background: "#ffffff", color: "#000" }}>
+          <Accordion >
+            <Accordion.Toggle as={Card.Header} variant="link" eventKey="0" style={{ background: "#ffffff", color: "#000", cursor: "pointer" }}>
               Dashboard
               <ArrowDropDownIcon />
             </Accordion.Toggle>
@@ -44,7 +44,7 @@ export default function Sidebar({ texto, ruta }) {
               <Card.Body><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }} >
                 {nombre(auth.currentUser.displayName)}</Link></Card.Body>
             </Accordion.Collapse>
-            <Accordion.Toggle as={Card.Header} variant="link" eventKey="1" style={{ background: "#ffffff", color: "#000" }}>
+            <Accordion.Toggle as={Card.Header} variant="link" eventKey="1" style={{ background: "#ffffff", color: "#000", cursor: "pointer" }}>
               Administracion
               <ArrowDropDownIcon />
             </Accordion.Toggle>
