@@ -4,6 +4,7 @@ import '../styles/OkrFormCss.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateStateOKR } from '../actions/okrActions';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import {
   Button,
   Divider,
@@ -65,7 +66,7 @@ const OkrFormPage = ({ dispatch, okr }) => {
             )}
             name='title'
             control={control}
-            defaultValue={okr.description}
+            defaultValue={okr.title}
           />
         </Grid>
         <Grid item xs={4}>
@@ -178,8 +179,10 @@ const OkrFormPage = ({ dispatch, okr }) => {
         <Grid item xs={4}>
           <Button
             disabled={disabledButton}
-            onClick={() => history.push('/CreateKR')}
+            onClick={() => {history.push('/CreateKR')}}
             variant='contained'
+            color='primary'
+            endIcon={<NavigateNextIcon />}
             style={{ fontFamily: 'Lato' }}>
             Siguiente
           </Button>

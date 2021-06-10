@@ -6,3 +6,27 @@
 .slider-input {
   margin: 0 15px;
 }
+
+.btn_color {
+  color: #f0950e;
+}
+
+.MuiSlider-rail {
+  color: #f0950e;
+}
+
+.MuiSlider-track {
+  color: #f0950e;
+}
+
+.MuiSlider-thumb {
+  color: #f0950e;
+}
+
+.MuiSlider-mark {
+  color: #f0950e;
+}
+
+.MuiCircularProgress-colorPrimary {
+  color: #f0950e !important;
+}

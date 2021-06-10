@@ -31,8 +31,8 @@ const UserOKRSPage = ({ krs, id, title, progress, objective }) => {
           <div className="col -md-6">
             <h1>Dashboard</h1>
             <nav>
-              <Button variant="outlined">Default</Button>
-              <Button variant="outlined">Default</Button>
+            <Button variant="outlined">En proceso</Button>
+            <Button variant="outlined">Completados</Button>
             </nav>
           </div>
           <div className="col -md-6">
@@ -44,7 +44,7 @@ const UserOKRSPage = ({ krs, id, title, progress, objective }) => {
             <ProgressOkr progress={progress} />
           </div>
           <div className="col-lg-7">
-            <LineChart />
+            <LineChart krs = {krs}/>
           </div>
           <div className="col-lg-4">
             <Dashboard  {...{ krs, id, title, progress, objective }} />
@@ -52,10 +52,10 @@ const UserOKRSPage = ({ krs, id, title, progress, objective }) => {
         </div>
         <div className="row">
           <div className="col-lg-4">
-            <BarChart />
+            <BarChart krs = {krs} />
           </div>
           <div className="col-lg-4" id="pie-chart">
-            <PieChart />
+            <PieChart krs={krs}/>
           </div>
           <div className="col-lg-3">
             <DownloadChart />

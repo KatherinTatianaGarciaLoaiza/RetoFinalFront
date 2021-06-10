@@ -17,6 +17,9 @@ import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import SaveIcon from '@material-ui/icons/Save';
+import AddIcon from '@material-ui/icons/Add';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const KRPage = ({ dispatch, okr }) => {
   const { handleSubmit, control, reset } = useForm();
@@ -73,7 +76,7 @@ const KRPage = ({ dispatch, okr }) => {
                   value={field.value}
                   onChange={field.onChange}
                   InputAdornmentProps={{ position: 'start' }}
-                  label='fecha Inicio'
+                  label='Fecha Inicio'
                   format='yyyy/MM/dd'
                   disablePast={true}
                 />
@@ -97,8 +100,9 @@ const KRPage = ({ dispatch, okr }) => {
                   value={field.value}
                   onChange={field.onChange}
                   InputAdornmentProps={{ position: 'start' }}
-                  label='fecha Inicio'
+                  label='Fecha Fin'
                   format='yyyy/MM/dd'
+                  disablePast={true}
                 />
               )}
               control={control}
@@ -186,18 +190,22 @@ const KRPage = ({ dispatch, okr }) => {
           />
         </Grid>
       </Grid>
-      <Grid container spacing={2} style={{ marginTop: 20 }}>
+      <Grid container spacing={2} style={{ margin: 20 }}>
         <Grid item xs={4}>
           <Button
             onClick={() => history.push('/CreateOKR')}
             variant='contained'
-            style={{ fontFamily: 'Lato', marginRight: 10 }}>
+            color='primary'
+            startIcon={<ArrowBackIcon />}
+            style={{ fontFamily: 'Lato', margin: 10 }}>
             Volver
           </Button>
 
           <Button
             type='submit'
             variant='contained'
+            color='primary'
+            endIcon={<AddIcon />}
             style={{ fontFamily: 'Lato' }}>
             Añadir KR
           </Button>
@@ -205,7 +213,9 @@ const KRPage = ({ dispatch, okr }) => {
             onClick={redirect}
             disabled={!okr.krs.length > 0}
             variant='contained'
-            style={{ fontFamily: 'Lato', marginLeft: 10 }}>
+            color='primary'
+            endIcon={<SaveIcon />}
+            style={{ fontFamily: 'Lato', margin: 10 }}>
             Guardar
           </Button>
         </Grid>
