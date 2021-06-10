@@ -9,7 +9,7 @@ import { SignOut } from '../logging/Logging';
 import { auth } from '../logging/Logging';
 import AvatarUser from './Avatar';
 import { connect } from 'react-redux';
-import { postokr } from '../actions/okrActions';
+import { postokr } from '../../actions/okrActions';
 
 function NavbarSofKa({ dispatch, classes }) {
     const { displayName, photoURL } = auth.currentUser || { uid: "", displayName: "", photoURL: "", email: "" }
