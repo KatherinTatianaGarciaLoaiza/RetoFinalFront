@@ -1,10 +1,12 @@
-import firebase from "./FirebaseInit.js";
+import { Redirect } from "react-router";
 import "firebase/firestore";
 import "firebase/auth";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import botonGoogle from '../images/BotonGoogle.png'
-import { Redirect } from "react-router";
 import swal from 'sweetalert';
+
+import firebase from "./FirebaseInit.js";
+
+import botonGoogle from '../../images/BotonGoogle.png'
 
 export const auth = firebase.auth();
 var IdleTime;
@@ -41,7 +43,7 @@ export function Logout() {
 export function ResetClock() {
   if (auth.currentUser) {
     clearTimeout(IdleTime);
-    IdleTime = setTimeout(Logout, 120000)
+    IdleTime = setTimeout(Logout, 6000000)
   }
 }
 

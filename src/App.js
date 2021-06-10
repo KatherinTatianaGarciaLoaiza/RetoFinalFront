@@ -1,13 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
-
 import { useAuthState } from "react-firebase-hooks/auth";
-import {auth} from './components/Logging';
+
+import { login } from './actions/okrActions';
+import {auth} from './components/logging/Logging';
+import WelcomeMessage from "./components/administration/WelcomeMessage";
 
 import LandingPage from './pages/LandingPage';
 import ConfigurationPage from './pages/ConfigurationPage';
@@ -18,10 +21,6 @@ import UserOKRSPage from "./pages/UserOKRSPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreateOKRPage from "./pages/CreateOKRPage";
 import CreateKRPage from "./pages/CreateKRPage";
-import WelcomeMessage from "./components/WelcomeMessage"
-
-import { login } from './actions/okrActions';
-import { connect } from 'react-redux';
 
 function App({ dispatch }) {
   const [user] = useAuthState(auth);

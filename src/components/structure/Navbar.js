@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AppBar from '@material-ui/core/AppBar';
-import { Link } from 'react-router-dom';
-import { SignOut } from './Logging';
-import { auth } from './Logging';
+
+import { SignOut } from '../logging/Logging';
+import { auth } from '../logging/Logging';
 import AvatarUser from './Avatar';
 
 export default function NavbarSofKa({ classes }) {

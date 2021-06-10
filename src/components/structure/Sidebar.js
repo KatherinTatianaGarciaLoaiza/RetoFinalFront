@@ -1,18 +1,17 @@
-import React from 'react'
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import Drawer from '@material-ui/core/Drawer';
-import Toolbar from '@material-ui/core/Toolbar';
-import { Link } from 'react-router-dom'
-import { estilos } from './DesignNaSi';
-import '../styles/style.css';
-import Button from "react-bootstrap/Button";
-import { Accordion, Card } from 'react-bootstrap'
-import { auth } from './Logging';
-import { nombre } from './Avatar'
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { getMaxProgressOkr } from '../actions/okrActions';
+import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Divider, List, Drawer, Toolbar } from '@material-ui/core';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { Accordion, Card } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+
+import { auth } from '../logging/Logging';
+import { nombre } from './Avatar'
+import { getMaxProgressOkr } from '../../actions/okrActions';
+
+import '../../styles/style.css';
+import { estilos } from './DesignNaSi';
 
 function Sidebar({ dispatch, userId, texto, ruta }) {
 
@@ -29,8 +28,8 @@ function Sidebar({ dispatch, userId, texto, ruta }) {
       <div className={classes.drawerContainer}>
         <List>
           <Link to={ruta} style={{ color: "#ffffff" }} >
-            <div className="btn" style={{ background: "#ffffff" }}>
-              <Button variant="outline-light" size="lg">
+            <div className="centrar" >
+              <Button id="btnAdmin" variant="outline-light" size="lg">
                 {texto}
               </Button>
             </div>
