@@ -1,4 +1,5 @@
 import axios from 'axios';
+import swal from 'sweetalert';
 const URI = 'http://localhost:8080';
 
 export const CREATEKR = 'CREATE_KR';
@@ -41,7 +42,10 @@ export const postOKR = (data) => {
   return async (dispatch) => {
     await axios.post(`${URI}/okr`, data);
     dispatch(postokr());
-    alert('Saved');
+    swal("OKR CREADO EXITOSAMENTE !!!.")
+      .then((value) => {
+        dispatch(getOwnOKR(data.userId))
+      });
   };
 };
 
