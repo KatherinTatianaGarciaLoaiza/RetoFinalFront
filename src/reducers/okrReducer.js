@@ -1,33 +1,29 @@
-import * as actions from '../actions/okrActions';
+import * as actions from "../actions/okrActions";
 
 export const initialState = {
   OKR: {
-    userId: '',
-    title: '',
-    objective: '',
-    responName: '',
-    responEmail: '',
-    vertical: '',
-    description: '',
+    userId: "",
+    title: "",
+    objective: "",
+    responName: "",
+    responEmail: "",
+    vertical: "",
+    description: "",
     krs: [],
   },
   OKRUser: [],
+  ProgressOKR: {},
 };
 
 export default function okrReducer(state = initialState, action) {
   const payload = action.payload;
   switch (action.type) {
-    case actions.CREATEOKR:
+    case actions.UPDATE_STATE_OKR:
       return {
         ...state,
         OKR: {
           ...state.OKR,
-          title: payload.title,
-          objective: payload.objective,
-          responName: payload.respName,
-          responEmail: payload.respEmail,
-          vertical: payload.vertical,
-          description: payload.description,
+          ...payload,
         },
       };
     case actions.CREATEKR:
@@ -35,18 +31,7 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         OKR: {
           ...state.OKR,
-          krs: [
-            ...state.OKR.krs,
-            {
-              keyResult: payload.keyResult,
-              responName: payload.responName,
-              responEmail: payload.responEmail,
-              description: payload.description,
-              startDate: payload.startDate,
-              endDate: payload.endDate,
-              percentageWeight: payload.percentageWeight,
-            },
-          ],
+          krs: [...state.OKR.krs, payload],
         },
       };
     case actions.LOGIN:
@@ -61,6 +46,25 @@ export default function okrReducer(state = initialState, action) {
       return {
         ...state,
         OKRUser: payload,
+      };
+    case actions.POSTOKR:
+      return {
+        ...state,
+        OKR: {
+          ...state.OKR,
+          title: '',
+          objective: '',
+          responName: '',
+          responEmail: '',
+          vertical: '',
+          description: '',
+          krs: [],
+        },
+      }
+    case actions.OKRMAXPROGRESS:
+      return {
+        ...state,
+        ProgressOKR: payload,
       };
     default:
       return state;

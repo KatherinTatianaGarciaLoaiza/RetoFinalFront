@@ -1,0 +1,103 @@
+.dashboard-page{
+    font-family: 'Roboto', sans-serif;
+}
+
+
+:root{
+    --color-black: #000;
+    --color-orange: #F0950E;
+    --color-white: #ffff;
+
+    --color-text: rgb(119, 116, 116);
+}
+
+
+.form-krs {
+    display: flex;
+}
+
+.context-data {
+    width: 300px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border-style: groove;
+    border-radius: 10px;
+}
+
+.title-context {
+    font-family: 'Roboto', sans-serif;
+    justify-content: flex-start;
+    display: flex;
+    background-color: var(--color-orange);
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+
+#center-senction {
+
+    border-top-style: ridge;
+    border-bottom-style: ridge; 
+}
+
+.title-context h4{
+    margin: 0;
+}
+
+.hr-title {
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.icon {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.content-kr{
+    margin: 0 10px 15px;
+    color: var(--color-text);
+}
+
+.CircularProgressbar{
+    margin-top: 70px;
+    width: 120%;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+    stroke:var(--color-black);
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+    fill: var(--color-black);
+}
+
+.button-dropdown {
+    background-color: var(--color-orange) !important;
+    margin-left: 150px;
+} 
+
+.dropdown-toggle::after{
+margin-left: 30px;
+}
+.uncontrolledDropdown {
+    display: flex;
+    justify-content: center;
+}
+
+.line-chart {
+    margin-top: 100px;
+}
+
+.btn-download-chart{
+    margin-top: 180px;
+    justify-content: center;
+    display: flex;
+}
+
+.btn-outline-light:hover {
+    color: var(--color-white);
+}
