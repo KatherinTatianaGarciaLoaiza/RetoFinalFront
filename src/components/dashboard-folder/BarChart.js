@@ -3,7 +3,7 @@ import {Bar} from 'react-chartjs-2';
 import test from "../helpers/test.json";
 
 
-const BarChart = () => {
+const BarChart = (props) => {
 let montArrayEnd = [];
 let montArrayStart = [];
 let montDif = [];
