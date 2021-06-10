@@ -17,6 +17,9 @@ import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import SaveIcon from '@material-ui/icons/Save';
+import AddIcon from '@material-ui/icons/Add';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const KRPage = ({ dispatch, okr }) => {
   const { handleSubmit, control, reset } = useForm();
@@ -192,6 +195,8 @@ const KRPage = ({ dispatch, okr }) => {
           <Button
             onClick={() => history.push('/CreateOKR')}
             variant='contained'
+            color='primary'
+            startIcon={<ArrowBackIcon />}
             style={{ fontFamily: 'Lato', marginRight: 10 }}>
             Volver
           </Button>
@@ -199,6 +204,8 @@ const KRPage = ({ dispatch, okr }) => {
           <Button
             type='submit'
             variant='contained'
+            color='primary'
+            endIcon={<AddIcon />}
             style={{ fontFamily: 'Lato' }}>
             Añadir KR
           </Button>
@@ -206,6 +213,8 @@ const KRPage = ({ dispatch, okr }) => {
             onClick={redirect}
             disabled={!okr.krs.length > 0}
             variant='contained'
+            color='primary'
+            endIcon={<SaveIcon />}
             style={{ fontFamily: 'Lato', marginLeft: 10 }}>
             Guardar
           </Button>

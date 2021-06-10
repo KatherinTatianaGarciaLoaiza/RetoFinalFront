@@ -4,6 +4,7 @@ import '../styles/OkrFormCss.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateStateOKR } from '../actions/okrActions';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import {
   Button,
   Divider,
@@ -180,6 +181,8 @@ const OkrFormPage = ({ dispatch, okr }) => {
             disabled={disabledButton}
             onClick={() => history.push('/CreateKR')}
             variant='contained'
+            color='primary'
+            endIcon={<NavigateNextIcon />}
             style={{ fontFamily: 'Lato' }}>
             Siguiente
           </Button>

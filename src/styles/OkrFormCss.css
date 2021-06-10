@@ -98,3 +98,8 @@ padding: 50px;
   padding: 10px;
   font-size: 20px;
 }
+
+.MuiButton-containedPrimary{
+  color: #FFF !important;
+  background-color: #f0950e !important;
+}

@@ -23,6 +23,10 @@
   color: #f0950e;
 }
 
-.MuiSlider-mark{
+.MuiSlider-mark {
   color: #f0950e;
+}
+
+.MuiCircularProgress-colorPrimary {
+  color: #f0950e !important;
 }
