@@ -31,10 +31,7 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         OKR: {
           ...state.OKR,
-          krs: [
-            ...state.OKR.krs,
-            payload
-          ],
+          krs: [...state.OKR.krs, payload],
         },
       };
     case actions.LOGIN:
@@ -50,6 +47,20 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         OKRUser: payload,
       };
+    case actions.POSTOKR:
+      return {
+        ...state,
+        OKR: {
+          ...state.OKR,
+          title: '',
+          objective: '',
+          responName: '',
+          responEmail: '',
+          vertical: '',
+          description: '',
+          krs: [],
+        },
+      }
     case actions.OKRMAXPROGRESS:
       return {
         ...state,
