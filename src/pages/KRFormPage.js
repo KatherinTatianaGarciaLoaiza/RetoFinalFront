@@ -75,6 +75,7 @@ const KRPage = ({ dispatch, okr }) => {
                   InputAdornmentProps={{ position: 'start' }}
                   label='fecha Inicio'
                   format='yyyy/MM/dd'
+                  disablePast={true}
                 />
               )}
               control={control}
@@ -150,7 +151,6 @@ const KRPage = ({ dispatch, okr }) => {
             render={({ field }) => (
               <TextField
                 {...field}
-                required
                 variant='outlined'
                 rows='3'
                 fullWidth

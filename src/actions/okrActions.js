@@ -5,6 +5,7 @@ export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
 export const UPDATE_STATE_OKR = 'UPDATE_STATE_OKR';
 export const UPDATEOKR = 'UPDATE_OKR';
+export const POSTOKR = 'POSTOKR';
 export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
 
 export const updateStateOKR = (data) => ({
@@ -27,14 +28,19 @@ export const update = (data) => ({
   payload: data,
 });
 
+export const postokr = () => ({
+  type: POSTOKR,
+})
+
 export const progressOkr = (data) => ({
   type: OKRMAXPROGRESS,
   payload: data,
 });
 
 export const postOKR = (data) => {
-  return async () => {
+  return async (dispatch) => {
     await axios.post(`${URI}/okr`, data);
+    dispatch(postokr());
     alert('Saved');
   };
 };
