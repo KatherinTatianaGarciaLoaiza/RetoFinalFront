@@ -20,7 +20,7 @@ export default function Sidebar({ texto, ruta }) {
       <Toolbar />
       <div className={classes.drawerContainer}>
         <List>
-          <Link to={ruta}>
+          <Link to={ruta} style={{ color: "#ffffff" }} >
             <div className="btn" style={{ background: "#ffffff" }}>
               <Button variant="outline-light" size="lg">
                 {texto}
