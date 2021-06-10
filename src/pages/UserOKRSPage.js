@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import NavbarSofKa from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -13,15 +13,12 @@ import BarChart from "../components/dashboard-folder/BarChart";
 import { Button } from "@material-ui/core";
 import PieChart from "../components/dashboard-folder/PieChart";
 import DownloadChart from "../components/dashboard-folder/DownloadChart";
-import { getOwnOKR, getOkrById, getMaxProgressOkr } from '../actions/okrActions';
 import { connect } from 'react-redux';
-import { CheckBoxOutlineBlankRounded } from '@material-ui/icons';
-import { SelectionState } from '@devexpress/dx-react-chart';
 
 
-const UserOKRSPage = ({okrs, dispatch, id, title, progress, userId, progressOkr}) => {
 
-  const [redirect, setRedirect] = useState(false);
+const UserOKRSPage = ({krs, id, title, progress, objective}) => {
+
 
   const classes = estilos();
 
@@ -35,8 +32,8 @@ const UserOKRSPage = ({okrs, dispatch, id, title, progress, userId, progressOkr}
           <div className="col -md-6">
             <h1>Dashboard</h1>
             <nav>
-              <Button variant="contained">Default</Button>
-              <Button variant="contained">Default</Button>
+            <Button variant="outlined">Default</Button>
+            <Button variant="outlined">Default</Button>
             </nav>
           </div>
           <div className="col -md-6">
@@ -51,7 +48,7 @@ const UserOKRSPage = ({okrs, dispatch, id, title, progress, userId, progressOkr}
             <LineChart />
           </div>
           <div className="col-lg-4">
-            <Dashboard />
+            <Dashboard  {...{krs, id, title, progress, objective}} />
           </div>
         </div>
         <div className="row">
@@ -73,7 +70,9 @@ const UserOKRSPage = ({okrs, dispatch, id, title, progress, userId, progressOkr}
 const mapStateToProps = (state) => ({
 title: state.okr.ProgressOKR.title,
 progress: state.okr.ProgressOKR.progressOkr,
-id : state.okr.ProgressOKR.id
+id : state.okr.ProgressOKR.id,
+objective: state.okr.ProgressOKR.objective,
+krs: state.okr.ProgressOKR.krs,
 });
 
 export default connect(mapStateToProps)(UserOKRSPage);

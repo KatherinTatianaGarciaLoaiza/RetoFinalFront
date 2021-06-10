@@ -8,23 +8,17 @@ import test from "../helpers/test.json";
 let Element = Scroll.Element;
 let scroll = Scroll.animateScroll;
 
-const Dashboard = () => {
-  const [okr, setOkr] = useState({});
-
-  useEffect(() => {
-    setOkr(test);
-  }, []);
+const Dashboard = (props) => {
 
 
   return (
     <div className="context-data" id="description-okr">
       <div className="title-context">
-        <h4>{okr.title}</h4>
-        <EditIcon className="icon" />
+        <h4>{props.title}</h4>
       </div>
       <hr className="hr-title" />
       <h4 className="content-kr">
-        Obejtivo: <br /> {okr.objective}
+        Obejtivo: <br /> {props.objective}
       </h4>
       <hr />
       <h4 className="content-kr">Resultados Clave </h4>
@@ -36,7 +30,7 @@ const Dashboard = () => {
         }}
       >
         <Element name="firstInsideContainer">
-          {test.krs.map((el, index) => (
+          {props.krs.map((el, index) => (
             <Krs key={uuidv4()} el={el} lenght={index} />
           ))}
         </Element>

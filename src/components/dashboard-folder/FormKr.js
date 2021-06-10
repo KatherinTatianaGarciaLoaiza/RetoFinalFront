@@ -14,7 +14,7 @@ const Krs = (props) => {
         <h4>
           {count}. {props.el.keyResult}
         </h4>
-        <h4> {props.el.percentageWeight}% </h4>
+        <h4> {props.el.progressKr}% </h4>
       </div>
     </div>
   );
