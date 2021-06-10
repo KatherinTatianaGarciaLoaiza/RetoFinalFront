@@ -65,7 +65,7 @@ const OkrFormPage = ({ dispatch, okr }) => {
             )}
             name='title'
             control={control}
-            defaultValue={okr.description}
+            defaultValue={okr.title}
           />
         </Grid>
         <Grid item xs={4}>
