@@ -17,7 +17,7 @@ export function SignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
   };
-  return <img src={botonGoogle} onClick={signInWithGoogle} style={{ width: "50%", height: "30%" }}>
+  return <img src={botonGoogle} onClick={signInWithGoogle} style={{ width: "50%", height: "30%",cursor: "pointer" }}>
   </img>;
 }
 
@@ -27,7 +27,7 @@ export function SignOut() {
       <ExitToAppIcon onClick={() => {
         localStorage.removeItem("uid");
         auth.signOut();
-      }} style={{ color: 'white' }} fontSize="large" />
+      }} style={{ color: 'white', cursor:"pointer" }} fontSize="large" />
     )
   );
 }

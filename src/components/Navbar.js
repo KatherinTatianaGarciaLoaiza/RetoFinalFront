@@ -20,7 +20,7 @@ export default function NavbarSofKa({ classes }) {
                         <Nav className="mr-auto">
                         </Nav>
                         <Nav>
-                            <NotificationsIcon style={{ color: 'white' }} fontSize="large" />
+                            <NotificationsIcon style={{ color: 'white',cursor:"pointer" }} fontSize="large" />
                             <AvatarUser displayName={displayName} photoURL={photoURL} />
                             <SignOut />
                         </Nav>
