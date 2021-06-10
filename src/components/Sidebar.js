@@ -7,20 +7,16 @@ import { Link } from 'react-router-dom'
 import { estilos } from './DesignNaSi';
 import '../styles/style.css';
 import Button from "react-bootstrap/Button";
-import { Dropdown } from "react-bootstrap"
+import { Accordion, Card } from 'react-bootstrap'
 import { auth } from './Logging';
 import { nombre } from './Avatar'
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 export default function Sidebar({ texto, ruta }) {
   const classes = estilos();
   return (
-    <Drawer
-      className={classes.drawer}
-      variant="permanent"
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
+    <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper }}>
+      <Toolbar />
       <Toolbar />
       <div className={classes.drawerContainer}>
         <List>
@@ -32,29 +28,30 @@ export default function Sidebar({ texto, ruta }) {
             </div>
           </Link>
         </List>
+        <Toolbar />
         <Divider />
         <List>
-          <Dropdown>
-            <Dropdown.Toggle style={{ background: "#ffffff", color: "#000" }}>
+          <Accordion defaultActiveKey="0">
+            <Accordion.Toggle as={Card.Header} variant="link" eventKey="0" style={{ background: "#ffffff", color: "#000" }}>
               Dashboard
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item ><Link to={`/AllOKRS`} className="button" style={{ color: "#000" }}>Todos los OKR</Link></Dropdown.Item>
-              <Dropdown.Item ><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }} >
-                {nombre(auth.currentUser.displayName)}</Link></Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </List>
-        <Divider />
-        <List>
-          <Dropdown>
-            <Dropdown.Toggle style={{ background: "#ffffff", color: "#000" }}>
-              Adiministracion
-          </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item ><Link to={`/ConfigurationNotifications`} className="button" style={{ color: "#000" }}>Configuracion de notificaciones</Link></Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+              <ArrowDropDownIcon />
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body><Link to={`/AllOKRS`} className="button" style={{ color: "#000" }}>Todos los OKR</Link></Card.Body>
+            </Accordion.Collapse>
+            <Divider />
+            <Accordion.Collapse eventKey="0">
+              <Card.Body><Link to={`/UserOKRS`} className="button" style={{ color: "#000" }} >
+                {nombre(auth.currentUser.displayName)}</Link></Card.Body>
+            </Accordion.Collapse>
+            <Accordion.Toggle as={Card.Header} variant="link" eventKey="1" style={{ background: "#ffffff", color: "#000" }}>
+              Administracion
+              <ArrowDropDownIcon />
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="1">
+              <Card.Body><Link to={`/ConfigurationNotifications`} className="button" style={{ color: "#000" }}>Configuracion de notificaciones</Link></Card.Body>
+            </Accordion.Collapse>
+          </Accordion>
         </List>
       </div>
     </Drawer>
