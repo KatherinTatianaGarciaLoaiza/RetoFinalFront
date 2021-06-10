@@ -67,10 +67,10 @@ const KrCard = ({ keyResult, description, value }) => {
       </CardActionArea>
       <CardActions>
         <Button size='small' color='primary'>
-          <EditIcon />
+          <EditIcon className='btn_color'/>
         </Button>
         <Button size='small' color='primary'>
-          <DeleteIcon />
+          <DeleteIcon className='btn_color'/>
         </Button>
         <Slider
           className='slider-input'

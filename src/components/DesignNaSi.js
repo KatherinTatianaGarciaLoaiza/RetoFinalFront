@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { AutorenewTwoTone } from '@material-ui/icons';
 
 const drawerWidth = 240;
 const drawerHeight = "100%";

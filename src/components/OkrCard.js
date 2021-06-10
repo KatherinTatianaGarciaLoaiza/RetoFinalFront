@@ -11,10 +11,10 @@ const OkrCard = ({ okr }) => {
       <div className='container_display_title'>
         <h2>{okr.title}</h2>
         <IconButton aria-label='editar' color='primary'>
-          <EditIcon />
+          <EditIcon className='btn_color' />
         </IconButton>
         <IconButton aria-label='eliminar' color='primary'>
-          <DeleteIcon />
+          <DeleteIcon className='btn_color' />
         </IconButton>
       </div>
       <div className='container_cards'>
