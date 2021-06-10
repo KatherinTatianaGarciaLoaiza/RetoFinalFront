@@ -8,3 +8,7 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.btn_color {
+  color: #f0950e;
+}

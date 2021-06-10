@@ -73,7 +73,7 @@ const KRPage = ({ dispatch, okr }) => {
                   value={field.value}
                   onChange={field.onChange}
                   InputAdornmentProps={{ position: 'start' }}
-                  label='fecha Inicio'
+                  label='Fecha Inicio'
                   format='yyyy/MM/dd'
                   disablePast={true}
                 />
@@ -97,8 +97,9 @@ const KRPage = ({ dispatch, okr }) => {
                   value={field.value}
                   onChange={field.onChange}
                   InputAdornmentProps={{ position: 'start' }}
-                  label='fecha Inicio'
+                  label='Fecha Fin'
                   format='yyyy/MM/dd'
+                  disablePast={true}
                 />
               )}
               control={control}
