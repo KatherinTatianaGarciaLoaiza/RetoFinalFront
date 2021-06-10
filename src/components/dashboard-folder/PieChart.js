@@ -1,8 +1,12 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
-import test from "../helpers/test.json";
 
-const PieChart = () => {
+const PieChart = ({ krs }) => {
+  
+  let formula = (el) => {
+    return Math.round((el.percentageWeight / 100) * el.progressKr * 100) / 100;
+  };
+
   const dataPorcentage = [];
   const nameKr = [];
   const colors = [];
@@ -12,25 +16,24 @@ const PieChart = () => {
   const generateColor = () => {
     return Math.floor(Math.random() * 16777215).toString(16);
   };
-  
+
   function calcularPorcentajeKr() {
-    test.krs.map((el) => {
-        dataPorcentage.push(Math.round((el.percentageWeight / test.krs.length)*100)/100)
-        nameKr.push(el.keyResult + " " + (Math.round((el.percentageWeight / test.krs.length)*100)/100)+"%")
-        colors.push("#" + generateColor())
-        });
+    krs.map((el) => {
+      dataPorcentage.push(formula(el));
+      nameKr.push(el.keyResult + " " + formula(el) + "%");
+      colors.push("#" + generateColor());
+    });
   }
 
   function calcularPorcentaje() {
-    test.krs.forEach((el) => (percentage += el.percentageWeight));
-    return percentage = Math.round((percentage / test.krs.length)*100)/100;
+    krs.forEach((el) => (percentage += formula(el)));
   }
 
-  calcularPorcentaje()
-  calcularPorcentajeKr()
-  dataPorcentage.push(total - percentage)
-  nameKr.push("Por Completar")
-  colors.push("#" + generateColor())
+  calcularPorcentaje();
+  calcularPorcentajeKr();
+  dataPorcentage.push(total - percentage);
+  nameKr.push(`Por completar  ${total - percentage}%`);
+  colors.push("#" + generateColor());
 
   const data = {
     datasets: [
@@ -48,8 +51,8 @@ const PieChart = () => {
   const options = {
     plugins: {
       title: {
-          display: true,
-          text: 'Progreso'
+        display: true,
+        text: "Progreso",
       },
       legend: {
         display: true,
@@ -59,8 +62,7 @@ const PieChart = () => {
         position: "bottom",
         align: "start",
       },
-  },
-    
+    },
   };
 
   return <Pie data={data} options={options} />;

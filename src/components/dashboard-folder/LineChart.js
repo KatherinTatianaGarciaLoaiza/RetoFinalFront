@@ -1,23 +1,22 @@
 import React from 'react';
 import {Line} from 'react-chartjs-2';
-import test from "../helpers/test.json";
 
 
-const LineChart = () => {
+const LineChart = ({krs}) => {
 let montArrayEnd = [];
 let montArrayStart = [];
 let montDif = [];
 let porcentDif = [];
 let basicPorcentage = [];
-    test.krs.map((el) => {
+      krs.map((el) => {
         let  parcialDate = el.startDate;
         montArrayStart.push(new Date(parcialDate));
       }) 
 
-      test.krs.map((el) => {
+      krs.map((el) => {
           let  parcialDate = el.endDate;
-          let parcialPorcentage = el.percentageWeight
-          basicPorcentage.push(parcialPorcentage);
+          
+          basicPorcentage.push("100.0");
           montArrayEnd.push(new Date(parcialDate));
         }) 
 
@@ -45,7 +44,7 @@ for(var i = 0; i <= dif; i++){
             labels: montDif,
             datasets: [
               {
-                label: "# of Votes",
+                label: "% Progreso Ideal ",
                 data: porcentDif,
                 fill: false,
                 backgroundColor: "rgb(255, 99, 132)",
@@ -53,12 +52,12 @@ for(var i = 0; i <= dif; i++){
                 yAxisID: "y-axis-1",
               },
               {
-                label: "# of No Votes",
+                label: "% Progreso",
                 data: basicPorcentage,
                 fill: false,
                 backgroundColor: "rgb(54, 162, 235)",
                 borderColor: "rgba(54, 162, 235, 0.2)",
-                yAxisID: "y-axis-2",
+                yAxisID: "y-axis-1",
               },
             ],
           }}
