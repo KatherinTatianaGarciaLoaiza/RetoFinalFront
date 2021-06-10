@@ -4,14 +4,10 @@ import { getOwnOKR, getOkrById } from '../../actions/okrActions';
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux';
-const Example = ({ dispatch, userId, okrs, title, id }) => {
-  
+const Example = ({ dispatch, userId, okrs, title, id }) => {  
   const okrById = (id) =>{
     dispatch(getOkrById(id))
   }
-
-  console.log(okrs)
-
   useEffect(() => {
     dispatch(getOwnOKR(userId));
   }, []);
