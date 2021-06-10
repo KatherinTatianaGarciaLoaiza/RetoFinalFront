@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { AutorenewTwoTone } from '@material-ui/icons';
 
 const drawerWidth = 240;
+const drawerHeight = "100%";
 
 export const estilos = makeStyles((theme) => ({
     root: {
@@ -12,12 +14,14 @@ export const estilos = makeStyles((theme) => ({
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
+        height: "80%"
       },
       drawerPaper: {
         width: drawerWidth,
       },
       drawerContainer: {
         overflow: 'auto',
+        height: drawerHeight,
       },
       content: {
         flexGrow: 1,
