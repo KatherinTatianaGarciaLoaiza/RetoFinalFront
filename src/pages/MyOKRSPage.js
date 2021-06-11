@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import NavbarSofKa from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
-import Toolbar from '@material-ui/core/Toolbar';
-import { estilos } from '../components/DesignNaSi';
 import { connect } from 'react-redux';
+import Toolbar from '@material-ui/core/Toolbar';
+
+import NavbarSofKa from '../components/structure/Navbar';
+import Sidebar from '../components/structure/Sidebar';
 import { getOwnOKR } from '../actions/okrActions';
 import OkrCard from '../components/OkrCard';
-import '../styles/OkrFormCss.css';
 
+import { estilos } from '../components/structure/DesignNaSi';
+import '../styles/OkrFormCss.css';
 
 const MyOKRSPage = ({ dispatch, userId, okrs }) => {
 

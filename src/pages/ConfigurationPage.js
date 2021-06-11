@@ -1,7 +1,9 @@
 import React from 'react'
-import NavbarSofKa from '../components/Navbar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { estilos } from '../components/DesignNaSi';
+
+import NavbarSofKa from '../components/structure/Navbar';
+
+import { estilos } from '../components/structure/DesignNaSi';
 
 const ConfigurationPage = () => {
     const classes = estilos();

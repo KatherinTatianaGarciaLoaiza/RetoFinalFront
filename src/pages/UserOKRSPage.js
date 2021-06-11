@@ -1,24 +1,23 @@
 import React from 'react';
-import NavbarSofKa from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import Toolbar from "@material-ui/core/Toolbar";
-import ProgressOkr from "../components/dashboard-folder/ProgressOkr";
-import { estilos } from "../components/DesignNaSi";
+import { connect } from 'react-redux';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/dashboardStyles.css";
+import Toolbar from '@material-ui/core/Toolbar';
+import { Button } from "@material-ui/core";
+
+import NavbarSofKa from '../components/structure/Navbar';
+import Sidebar from '../components/structure/Sidebar';
 import Dropdown from "../components/dashboard-folder/Dropdown";
 import Dashboard from "../components/dashboard-folder/FormOkr";
 import LineChart from "../components/dashboard-folder/LineChart";
 import BarChart from "../components/dashboard-folder/BarChart";
-import { Button } from "@material-ui/core";
 import PieChart from "../components/dashboard-folder/PieChart";
 import DownloadChart from "../components/dashboard-folder/DownloadChart";
-import { connect } from 'react-redux';
+import ProgressOkr from "../components/dashboard-folder/ProgressOkr";
 
+import "../styles/dashboardStyles.css";
+import { estilos } from '../components/structure/DesignNaSi';
 
-
-const UserOKRSPage = ({krs, id, title, progress, objective}) => {
-
+const UserOKRSPage = ({ krs, id, title, progress, objective }) => {
 
   const classes = estilos();
 
@@ -37,7 +36,7 @@ const UserOKRSPage = ({krs, id, title, progress, objective}) => {
             </nav>
           </div>
           <div className="col -md-6">
-            <Dropdown title={title} id={id}/>
+            <Dropdown title={title} id={id} />
           </div>
         </div>
         <div id="center-senction" className="row">
@@ -48,7 +47,7 @@ const UserOKRSPage = ({krs, id, title, progress, objective}) => {
             <LineChart krs = {krs}/>
           </div>
           <div className="col-lg-4">
-            <Dashboard  {...{krs, id, title, progress, objective}} />
+            <Dashboard  {...{ krs, id, title, progress, objective }} />
           </div>
         </div>
         <div className="row">
@@ -68,11 +67,11 @@ const UserOKRSPage = ({krs, id, title, progress, objective}) => {
 };
 
 const mapStateToProps = (state) => ({
-title: state.okr.ProgressOKR.title,
-progress: state.okr.ProgressOKR.progressOkr,
-id : state.okr.ProgressOKR.id,
-objective: state.okr.ProgressOKR.objective,
-krs: state.okr.ProgressOKR.krs,
+  title: state.okr.ProgressOKR.title,
+  progress: state.okr.ProgressOKR.progressOkr,
+  id: state.okr.ProgressOKR.id,
+  objective: state.okr.ProgressOKR.objective,
+  krs: state.okr.ProgressOKR.krs,
 });
 
 export default connect(mapStateToProps)(UserOKRSPage);

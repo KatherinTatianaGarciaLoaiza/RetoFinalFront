@@ -1,8 +1,10 @@
 import React from 'react'
-import NavbarSofKa from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { estilos } from '../components/DesignNaSi';
+
+import NavbarSofKa from '../components/structure/Navbar';
+import Sidebar from '../components/structure/Sidebar';
+
+import { estilos } from '../components/structure/DesignNaSi';
 
 const HomePage = (state) => {
     const classes = estilos();    
