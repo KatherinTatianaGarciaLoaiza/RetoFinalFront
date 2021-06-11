@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import Button from '@material-ui/core/Button';
-import { Divider, Toolbar } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
 import swal from 'sweetalert';
-import { Container, Form, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import SettingsIcon from '@material-ui/icons/Settings';
 import LibraryAddCheckIcon from '@material-ui/icons/LibraryAddCheck';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
@@ -34,7 +34,6 @@ export default function ConfNotifications() {
     };
 
     // const getConfigNotification = () => {
-
     // 	if (user) {
     // 		fetch("http://localhost:8080/notifications/consultConfig/" + user.email, {
     // 			method: "GET",
@@ -48,7 +47,6 @@ export default function ConfNotifications() {
     // 				console.log(response) 
     // 			});
     // 	}
-
     // };
     const Swal = () => {
         return (
@@ -64,18 +62,19 @@ export default function ConfNotifications() {
     //FOKR = Finish OKR
     //LKR = Late KR
     //EOKR = Edit OKR
+
     return (
         <>
-            <Container >
+            <Container style={{boxShadow: "0px 0px 15px 0 #F0950E "}}>
+			<br/>
                 <Row className="justify-content-md-center">
                     <strong>
                         <h1 className="title" style={{ color: "#000" }}>Configuración de Notificaciones</h1>
                     </strong>
                     <SettingsIcon style={{ color: "#F0950E" }} fontSize="large" />
                 </Row>
-                <Toolbar />
                 <Divider />
-                <Toolbar />
+                <br />
                 <Row>
                     <Col xs={9}></Col>
                     <Col ><AirplayIcon fontSize="large" /></Col>
@@ -119,8 +118,8 @@ export default function ConfNotifications() {
                         </span>
                     </div>
                 </Row>
+				<br/>
             </Container>
-
         </>
     )
 }
