@@ -8,6 +8,7 @@ export const UPDATE_STATE_OKR = 'UPDATE_STATE_OKR';
 export const UPDATEOKR = 'UPDATE_OKR';
 export const POSTOKR = 'POSTOKR';
 export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
+export const UPDATE_STATUS_BUTTON_OKR = "UPDATE_STATUS_BUTTON_OKR";
 
 export const updateStateOKR = (data) => ({
   type: UPDATE_STATE_OKR,
@@ -42,7 +43,7 @@ export const postOKR = (data) => {
   return async (dispatch) => {
     await axios.post(`${URI}/okr`, data);
     dispatch(postokr());
-    swal("OKR CREADO EXITOSAMENTE !!!.")
+    swal("Perfecto !", "OKR Creado exitosamente", "success")
       .then((value) => {
         dispatch(getOwnOKR(data.userId))
       });
@@ -70,5 +71,10 @@ export function getMaxProgressOkr(userId) {
     dispatch(progressOkr(data));
   };
 }
+
+export const updateStatusButton = (data) => ({
+  type: UPDATE_STATUS_BUTTON_OKR,
+  payload: data
+})
 
 //TODO -> Hacer el deslogueo

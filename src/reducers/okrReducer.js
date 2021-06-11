@@ -1,6 +1,7 @@
 import * as actions from "../actions/okrActions";
 
 export const initialState = {
+  disabledButtonOKRForm: true,
   OKR: {
     userId: "",
     title: "",
@@ -66,6 +67,11 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         ProgressOKR: payload,
       };
+    case actions.UPDATE_STATUS_BUTTON_OKR:
+      return {
+        ...state,
+        ...payload
+      }
     default:
       return state;
   }
