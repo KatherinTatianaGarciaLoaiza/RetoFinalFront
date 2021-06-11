@@ -1,20 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+
 import AppBar from '@material-ui/core/AppBar';
-import { Link } from 'react-router-dom';
-import { SignOut } from './Logging';
-import { auth } from './Logging';
+
+import { SignOut } from '../logging/Logging';
+import { auth } from '../logging/Logging';
 import AvatarUser from './Avatar';
 import { connect } from 'react-redux';
-import { postokr } from '../actions/okrActions';
+import { postokr } from '../../actions/okrActions';
+import ModalBell from '../notifications/ModalBell';
 
 function NavbarSofKa({ dispatch, classes }) {
     const { displayName, photoURL } = auth.currentUser || { uid: "", displayName: "", photoURL: "", email: "" }
     const onclick = () =>{
         dispatch(postokr())
     }
+
     return (
         <AppBar position="fixed" className={classes.appBar} style={{ background: "#F0950E" }} >
             <div className="col-md">
@@ -25,7 +28,7 @@ function NavbarSofKa({ dispatch, classes }) {
                         <Nav className="mr-auto">
                         </Nav>
                         <Nav>
-                            <NotificationsIcon style={{ color: 'white',cursor:"pointer" }} fontSize="large" />
+                            <ModalBell/>
                             <AvatarUser displayName={displayName} photoURL={photoURL} />
                             <SignOut />
                         </Nav>

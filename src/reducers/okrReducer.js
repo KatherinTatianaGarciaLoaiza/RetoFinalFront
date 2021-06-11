@@ -1,14 +1,15 @@
-import * as actions from "../actions/okrActions";
+import * as actions from '../actions/okrActions';
 
 export const initialState = {
+  disabledButtonOKRForm: true,
   OKR: {
-    userId: "",
-    title: "",
-    objective: "",
-    responName: "",
-    responEmail: "",
-    vertical: "",
-    description: "",
+    userId: '',
+    title: '',
+    objective: '',
+    responName: '',
+    responEmail: '',
+    vertical: '',
+    description: '',
     krs: [],
   },
   OKRUser: [],
@@ -61,7 +62,8 @@ export default function okrReducer(state = initialState, action) {
           description: '',
           krs: [],
         },
-      }
+        disabledButtonOKRForm: true,
+      };
     case actions.OKRMAXPROGRESS:
       return {
         ...state,
@@ -72,6 +74,11 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         EditOkr: payload,
       }
+    case actions.UPDATE_STATUS_BUTTON_OKR:
+      return {
+        ...state,
+        ...payload,
+      };
     default:
       return state;
   }

@@ -1,8 +1,10 @@
 import React from 'react';
-import NavbarSofKa from '../components/Navbar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { estilos } from '../components/DesignNaSi';
+
+import NavbarSofKa from '../components/structure/Navbar';
 import OkrFormPage from './OKRFormPage';
+
+import { estilos } from '../components/structure/DesignNaSi';
 
 const CreateOKRPage = () => {
   const classes = estilos();

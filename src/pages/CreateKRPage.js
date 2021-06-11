@@ -1,8 +1,10 @@
 import React from 'react'
-import NavbarSofKa from '../components/Navbar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { estilos } from '../components/DesignNaSi';
-import KRPage from './KRFormPage'
+
+import NavbarSofKa from '../components/structure/Navbar';
+import KRPage from './KRFormPage';
+
+import { estilos } from '../components/structure/DesignNaSi';
 
 const CreateKRPage = () => {
     const classes = estilos();

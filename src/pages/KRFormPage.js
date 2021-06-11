@@ -11,7 +11,7 @@ import {
 import '../styles/KRPage.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createKR, postOKR } from '../actions/okrActions';
+import { createKR, postOKR, updateStatusButton } from '../actions/okrActions';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -20,10 +20,35 @@ import DateFnsUtils from '@date-io/date-fns';
 import SaveIcon from '@material-ui/icons/Save';
 import AddIcon from '@material-ui/icons/Add';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 200,
+    maxWidth: 200,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  h6: {
+    margin: '20px 0',
+  },
+});
 
 const KRPage = ({ dispatch, okr }) => {
   const { handleSubmit, control, reset } = useForm();
   const history = useHistory();
+  const classes = useStyles();
 
   const redirect = () => {
     dispatch(postOKR(okr));
@@ -39,6 +64,11 @@ const KRPage = ({ dispatch, okr }) => {
       endDate: new Date(),
       percentageWeight: 50,
     });
+  };
+
+  const redirectOKRForm = () => {
+    dispatch(updateStatusButton({ disabledButtonOKRForm: false }));
+    history.push('/CreateOKR');
   };
 
   return (
@@ -190,10 +220,42 @@ const KRPage = ({ dispatch, okr }) => {
           />
         </Grid>
       </Grid>
+      <h6 className={classes.h6}> KR AÑADIDOS</h6>
+      <Grid container spacing={3}>
+        {okr.krs.length !== 0 ? (
+          okr.krs.map((kr) => (
+            <Grid item xs={2}>
+              <Card className={classes.root}>
+                <CardContent>
+                  <Typography className={classes.title} gutterBottom>
+                    KR: {kr.keyResult}
+                  </Typography>
+                  <Typography className={classes.title} gutterBottom>
+                    Responsable: {kr.responName}
+                  </Typography>
+                  <Typography className={classes.title}>
+                    Peso asignado: {kr.percentageWeight}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))
+        ) : (
+          <Grid item xs={2}>
+            <Card className={classes.root}>
+              <CardContent>
+                <Typography component='h5' color='textSecondary'>
+                  Aún no tiene
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        )}
+      </Grid>
       <Grid container spacing={2} style={{ margin: 20 }}>
         <Grid item xs={4}>
           <Button
-            onClick={() => history.push('/CreateOKR')}
+            onClick={redirectOKRForm}
             variant='contained'
             color='primary'
             startIcon={<ArrowBackIcon />}

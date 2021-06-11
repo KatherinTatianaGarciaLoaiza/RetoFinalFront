@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
-import { SignIn } from '../components/Logging'
+
+import { SignIn } from '../components/logging/Logging';
+
 import LandingImage from '../images/ImagenLanding.PNG';
 import Logo from '../images/Logo.png';
 
@@ -9,7 +11,7 @@ export default function LandingPage() {
     <div>
       <Container>
         <Row style={{background:"#F0950E",color:"#ffffff"}} >
-          <div className="title2">
+          <div className="title2 centrar">
             <h1 >SOFKA OKR</h1>
           </div>
         </Row>
