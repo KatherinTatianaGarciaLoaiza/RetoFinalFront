@@ -23,9 +23,10 @@ export default function ConfNotifications() {
     const [config, setConfig] = useState({});
 
     const [state, setState] = React.useState({
-        checkedA: true,
-        checkedB: true,
-        checkedC: true,
+        FOKR: true,
+        FKR: true,
+        LKR: true,
+		EOKR: true,
     });
 
     const handleChange = (event) => {
