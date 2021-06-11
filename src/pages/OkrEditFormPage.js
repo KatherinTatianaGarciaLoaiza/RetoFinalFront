@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import '../styles/OkrFormCss.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateStateOKR } from '../actions/okrActions';
+import { getOkrById, update, updateStateOKR } from '../actions/okrActions';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SaveIcon from '@material-ui/icons/Save';
 
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const OkrFormPage = ({ dispatch, okr }) => {
+const OkrFormPage = ({ dispatch, okrEdit }) => {
     const inputLabel = useRef(null);
     const [labelWidth, setLabelWidth] = useState(0);
     const [disabledButton, setDisabledButton] = useState(true);
@@ -38,6 +38,12 @@ const OkrFormPage = ({ dispatch, okr }) => {
         setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
 
+
+    // const redirect = () => {
+    //     // dispatch(); //pendiente de cambiar segun el back
+    //     history.push('/MyOKRS');
+    // };
+    console.log(okrEdit)
     const onChange = (data) => {
         const objectWithFields = control.fieldsRef.current;
         const listFieldBlank = Object.keys(objectWithFields).filter(
@@ -45,7 +51,7 @@ const OkrFormPage = ({ dispatch, okr }) => {
         );
         setDisabledButton(listFieldBlank.length > 0);
         if (!disabledButton) {
-            dispatch(updateStateOKR(data));
+            dispatch(update(data));
         }
     };
 
@@ -68,7 +74,10 @@ const OkrFormPage = ({ dispatch, okr }) => {
                         )}
                         name='title'
                         control={control}
-                        defaultValue={okr.title}
+                        
+                        defaultValue={okrEdit.title}
+                        // defaultValue=''
+
                     />
                 </Grid>
                 <Grid item xs={4}>
@@ -85,7 +94,9 @@ const OkrFormPage = ({ dispatch, okr }) => {
                         )}
                         name='objective'
                         control={control}
-                        defaultValue={okr.objective}
+                        defaultValue={okrEdit.objective}
+                        // defaultValue=''
+
                     />
                 </Grid>
                 <Grid item xs={4}>
@@ -116,7 +127,9 @@ const OkrFormPage = ({ dispatch, okr }) => {
                         )}
                         name='vertical'
                         control={control}
-                        defaultValue={okr.vertical}
+                        defaultValue={okrEdit.vertical}
+                        // defaultValue=''
+
                     />
                 </Grid>
             </Grid>
@@ -136,7 +149,9 @@ const OkrFormPage = ({ dispatch, okr }) => {
                         )}
                         name='responName'
                         control={control}
-                        defaultValue={okr.responName}
+                        defaultValue={okrEdit.responName}
+                        // defaultValue=''
+
                     />
                 </Grid>
                 <Grid item xs={5}>
@@ -153,7 +168,9 @@ const OkrFormPage = ({ dispatch, okr }) => {
                         )}
                         name='responEmail'
                         control={control}
-                        defaultValue={okr.responEmail}
+                        defaultValue={okrEdit.responEmail}
+                        // defaultValue=''
+
                     />
                 </Grid>
             </Grid>
@@ -173,7 +190,8 @@ const OkrFormPage = ({ dispatch, okr }) => {
                         )}
                         name='description'
                         control={control}
-                        defaultValue={okr.description}
+                        defaultValue={okrEdit.description}
+                        // defaultValue=''
                     />
                 </Grid>
             </Grid>
@@ -189,10 +207,10 @@ const OkrFormPage = ({ dispatch, okr }) => {
                     </Button>
                     <Button
                         disabled={disabledButton}
-                        onClick={() => { history.push('/MyOKRS') }}
+                        // onClick={redirect}
                         variant='contained'
                         color='primary'
-                        // endIcon={<SaveIcon />}
+                        endIcon={<SaveIcon />}
                         style={{ fontFamily: 'Lato', margin: 10 }}>
                         Actualizar
                     </Button>
@@ -203,7 +221,8 @@ const OkrFormPage = ({ dispatch, okr }) => {
 };
 
 const mapStateToProps = (state) => ({
-    okr: state.okr.OKR,
+    okrEdit: state.okr.EditOkr,
+
 });
 
 export default connect(mapStateToProps)(OkrFormPage);

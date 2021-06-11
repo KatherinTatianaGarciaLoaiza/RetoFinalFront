@@ -13,6 +13,7 @@ export const initialState = {
   },
   OKRUser: [],
   ProgressOKR: {},
+  EditOkr: {},
 };
 
 export default function okrReducer(state = initialState, action) {
@@ -66,6 +67,11 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         ProgressOKR: payload,
       };
+    case actions.EDITOKR:
+      return {
+        ...state,
+        EditOkr: payload,
+      }
     default:
       return state;
   }
