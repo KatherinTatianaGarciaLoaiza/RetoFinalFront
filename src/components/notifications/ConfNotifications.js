@@ -10,10 +10,12 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import EditIcon from '@material-ui/icons/Edit';
+import AirplayIcon from '@material-ui/icons/Airplay';
 
 import { auth } from '../logging/Logging';
 
 import '../../styles/style.css'
+import '../../styles/style2.css'
 import { PurpleSwitch } from '../structure/DesignNaSi'
 
 export default function ConfNotifications() {
@@ -65,56 +67,48 @@ export default function ConfNotifications() {
 		<>
 			<Container >
 				<Row className="justify-content-md-center">
-					<h3>Configuración de Notificaciones</h3>
+                    <strong>
+					    <h1 className="title" style={{color:"#000"}}>Configuración de Notificaciones</h1>
+                    </strong>
 					<SettingsIcon style={{ color: "#F0950E" }} fontSize="large" />
 				</Row>
 				<Toolbar />
 				<Divider />
 				<Toolbar />
+                <Row>
+                    <Col xs={9}></Col>
+                    <Col ><AirplayIcon fontSize="large" /></Col>
+                </Row>
 				<Row>
-					<Col xs={3}><CheckBoxIcon fontSize="large" /></Col>
-					<Col xs={6}><p>Generar notificaciones cuando se cumple el OKR</p></Col>
-					<Col xs={3}>
+					<Col ><CheckBoxIcon fontSize="large" /></Col>
+					<Col xs={6}><p className="body">Generar notificaciones cuando se cumple el OKR</p></Col>
+					<Col >
 						<FormControlLabel
 							control={<PurpleSwitch checked={state.FOKR} onChange={handleChange} name="FOKR" />} />
 					</Col>
-					{/* <Col>
-						<FormControlLabel
-							control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />} />
-					</Col> */}
 				</Row>
 				<Row className="justify-content-md-center">
-					<Col xs={3}><LibraryAddCheckIcon fontSize="large" /></Col>
-					<Col xs={6}><p>Generar notificaciones cuando se cumple el KR</p></Col>
-					<Col xs={3}>
+					<Col ><LibraryAddCheckIcon fontSize="large" /></Col>
+					<Col xs={6}><p className="body">Generar notificaciones cuando se cumple el KR</p></Col>
+					<Col >
 						<FormControlLabel
 							control={<PurpleSwitch checked={state.FKR} onChange={handleChange} name="FKR" />} />
 					</Col>
-					{/* <Col>
-						<FormControlLabel
-							control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />} />
-					</Col> */}
 				</Row>
 				<Row>
-					<Col xs={3}><WatchLaterIcon fontSize="large" /></Col>
-					<Col xs={6}><p>Generar notificaciones cuando un KR esta atrasado</p></Col>
-					<Col xs={3}>
+					<Col ><WatchLaterIcon fontSize="large" /></Col>
+					<Col xs={6}><p className="body">Generar notificaciones cuando un KR esta atrasado</p></Col>
+					<Col >
 						<FormControlLabel
 							control={<PurpleSwitch checked={state.LKR} onChange={handleChange} name="LKR" />} />
 					</Col>
-					{/* <Col><FormControlLabel
-						control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />} />
-					</Col> */}
 				</Row>
 				<Row>
-					<Col xs={3}><EditIcon fontSize="large" /></Col>
-					<Col xs={6}><p>Generar notificaciones cada vez que se edita el OKR</p></Col>
-					<Col xs={3}><FormControlLabel
+					<Col ><EditIcon fontSize="large" /></Col>
+					<Col xs={6}><p className="body">Generar notificaciones cada vez que se edita el OKR</p></Col>
+					<Col ><FormControlLabel
 						control={<PurpleSwitch checked={state.EOKR} onChange={handleChange} name="EOKR" />} />
 					</Col>
-					{/* <Col><FormControlLabel
-						control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />} />
-						</Col> */}
 				</Row>
 				<Row className="justify-content-md-center">
 					<div className="titleNoti">
