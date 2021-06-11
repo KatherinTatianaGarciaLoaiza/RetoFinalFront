@@ -1,6 +1,6 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-const URI = 'http://localhost:8080';
+const URI = 'https://api-okr.herokuapp.com';
 
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';

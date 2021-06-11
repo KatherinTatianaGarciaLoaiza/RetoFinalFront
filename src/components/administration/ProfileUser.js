@@ -1,9 +1,12 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap';
-import Avatar from '@material-ui/core/Avatar';
-import { auth } from './Logging';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+
+import { auth } from '../logging/Logging';
+
+
 
 export default function ProfileUser() {
     const { displayName, photoURL, email } = auth.currentUser || { uid: "", displayName: "", photoURL: "", email: "" }

@@ -1,9 +1,11 @@
-import React from 'react'
-import NavbarSofKa from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
+import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
-import { estilos } from '../components/DesignNaSi';
-import ProfileUser from '../components/ProfileUser';
+
+import NavbarSofKa from '../components/structure/Navbar';
+import Sidebar from '../components/structure/Sidebar';
+import ProfileUser from '../components/administration/ProfileUser';
+
+import { estilos } from '../components/structure/DesignNaSi';
 
 const ProfilePage = () => {
     const classes = estilos();
