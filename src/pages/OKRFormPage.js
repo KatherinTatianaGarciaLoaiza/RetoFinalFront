@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OkrFormPage = ({ dispatch, okr }) => {
+const OkrFormPage = ({ dispatch, okr, statusButton }) => {
   const inputLabel = useRef(null);
   const [labelWidth, setLabelWidth] = useState(0);
-  const [disabledButton, setDisabledButton] = useState(true);
+  const [disabledButton, setDisabledButton] = useState(statusButton);
   const classes = useStyles();
   const { handleSubmit, control } = useForm();
   const history = useHistory();
@@ -179,7 +179,7 @@ const OkrFormPage = ({ dispatch, okr }) => {
         <Grid item xs={4}>
           <Button
             disabled={disabledButton}
-            onClick={() => {history.push('/CreateKR')}}
+            onClick={() => { history.push('/CreateKR') }}
             variant='contained'
             color='primary'
             endIcon={<NavigateNextIcon />}
@@ -194,6 +194,7 @@ const OkrFormPage = ({ dispatch, okr }) => {
 
 const mapStateToProps = (state) => ({
   okr: state.okr.OKR,
+  statusButton: state.okr.disabledButtonOKRForm
 });
 
 export default connect(mapStateToProps)(OkrFormPage);

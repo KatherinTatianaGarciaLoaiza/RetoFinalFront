@@ -22,6 +22,7 @@ import WelcomeMessage from "./components/WelcomeMessage"
 
 import { login } from './actions/okrActions';
 import { connect } from 'react-redux';
+import OkrEditFormPage from './pages/OkrEditFormPage';
 
 function App({ dispatch }) {
   const [user] = useAuthState(auth);
@@ -49,8 +50,9 @@ function App({ dispatch }) {
             exact
             path='/ConfigurationNotifications'
             component={ConfigurationPage}
-          />
+            />
           <Route exact path='/CreateKR' component={CreateKRPage} />
+          <Route exact path='/OkrEditForm' component={OkrEditFormPage}/>
           
         </Switch>
       ) : (
