@@ -26,8 +26,8 @@ const useStyles = makeStyles({
   },
 });
 
-const KrCard = ({ keyResult, description, value }) => {
-  const [slider, setSlider] = useState(value);
+const KrCard = ({ kr }) => {
+  const [slider, setSlider] = useState(kr.progressKr);
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -37,7 +37,7 @@ const KrCard = ({ keyResult, description, value }) => {
             <CircularProgress
               variant='determinate'
               color='primary'
-              value={value}
+              value={kr.progressKr}
               size={60}
             />
             <Box
@@ -52,16 +52,16 @@ const KrCard = ({ keyResult, description, value }) => {
               <Typography
                 variant='caption'
                 component='div'
-                color='textSecondary'>{`${value}%`}</Typography>
+                color='textSecondary'>{`${kr.progressKr}%`}</Typography>
             </Box>
           </Box>
         </CardMedia>
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
-            {keyResult}
+            {kr.keyResult}
           </Typography>
           <Typography variant='body2' color='textSecondary' component='p'>
-            {description}
+            {kr.description}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -80,11 +80,12 @@ const KrCard = ({ keyResult, description, value }) => {
           valueLabelDisplay='auto'
           step={5}
           marks
-          min={value}
+          min={kr.progressKr}
           max={100}
           onChange={(event, newValue) => {
             setSlider(newValue);
           }}
+          onMouseUp={(e)=>console.log(slider)}
         />
       </CardActions>
     </Card>

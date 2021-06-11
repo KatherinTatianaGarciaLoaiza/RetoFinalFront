@@ -21,9 +21,7 @@ const OkrCard = ({ okr }) => {
         {okr.krs.map((kr) => (
           <KrCard
             key={kr.krId}
-            keyResult={kr.keyResult}
-            description={kr.description}
-            value={kr.progressKr}
+            kr={kr}
           />
         ))}
       </div>
