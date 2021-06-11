@@ -11,7 +11,7 @@ import {
 import '../styles/KRPage.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createKR, postOKR } from '../actions/okrActions';
+import { createKR, postOKR, updateStatusButton } from '../actions/okrActions';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -40,6 +40,11 @@ const KRPage = ({ dispatch, okr }) => {
       percentageWeight: 50,
     });
   };
+
+  const redirectOKRForm = () => {
+    dispatch(updateStatusButton({ disabledButtonOKRForm: false }))
+    history.push('/CreateOKR')
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -193,7 +198,7 @@ const KRPage = ({ dispatch, okr }) => {
       <Grid container spacing={2} style={{ margin: 20 }}>
         <Grid item xs={4}>
           <Button
-            onClick={() => history.push('/CreateOKR')}
+            onClick={redirectOKRForm}
             variant='contained'
             color='primary'
             startIcon={<ArrowBackIcon />}
