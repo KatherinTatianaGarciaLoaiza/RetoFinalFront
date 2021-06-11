@@ -49,7 +49,7 @@ export const estilosAvatar = makeStyles((theme) => ({
 }));
 
 
-export const PurpleSwitch = withStyles({
+export const OrangeSwitch = withStyles({
   switchBase: {
     color: "#F0950E",
     '&$checked': {
