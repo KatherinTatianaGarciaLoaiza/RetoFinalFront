@@ -2,18 +2,27 @@ import React, { useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import Button from '@material-ui/core/Button';
 import swal from 'sweetalert';
-import {Container, Row, Col} from 'react-bootstrap';
+import { Container, Form, Row, Col } from 'react-bootstrap';
 import SettingsIcon from '@material-ui/icons/Settings';
-
-import {auth} from '../logging/Logging';
+import { PurpleSwitch } from '../structure/DesignNaSi'
+import { auth } from '../logging/Logging';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import '../../styles/style.css'
 
-export default function ConfNotifications(){    
-    const [user] = useAuthState(auth);
-    const [config, setConfig] = useState({});
+export default function ConfNotifications() {
+	const [user] = useAuthState(auth);
+	const [config, setConfig] = useState({});
 
+	const [state, setState] = React.useState({
+		checkedA: true,
+		checkedB: true,
+		checkedC: true,
+	});
 
+	const handleChange = (event) => {
+		setState({ ...state, [event.target.name]: event.target.checked });
+	};
 
 	// const getConfigNotification = () => {
 
@@ -41,88 +50,72 @@ export default function ConfNotifications(){
 	// 	getConfigNotification();
 	// 	// eslint-disable-next-line
 	// }, [])
+
+	//FKR = Finish KR
+	//FOKR = Finish OKR
+	//LKR = Late KR
+	//EOKR = Edit OKR
 	return (
 		<>
-        <Container style={{background:"#e5c5be"}}>
-            <Row className="justify-content-md-center">
-                <h3>Configuración de Notificaciones</h3>
-                <SettingsIcon style={{ color: "#F0950E" }} fontSize="large"/>
-            </Row>
-            <Row>
-                <Row>
-                    <p>Generar notificaciones cuando se cumple el KR</p>
-                </Row>
-                <Row>
-                    <p>Generar notificaciones cuando se cumple el OKR</p>
-                </Row>
-                <Row>
-                    <p>Generar notificaciones cuando un KR esta atrasado</p>
-                </Row>
-                <Row>
-                    <p>Generar notificaciones cada vez que se edita el OKR</p>
-                </Row>
-            </Row>
-        </Container>
-
-		<div className="containerConfigNotification">
-			<div className="optionsNotifications">
-				<div className="option-icons-mail-notification">
-
-					<div className="email">
-						<span ><i style={{ fontSize: "40px" }} className="far fa-envelope"></i></span>
+			<Container >
+				<Row className="justify-content-md-center">
+					<h3>Configuración de Notificaciones</h3>
+					<SettingsIcon style={{ color: "#F0950E" }} fontSize="large" />
+				</Row>
+				<Row>
+					<Col></Col>
+					<Col><p>Generar notificaciones cuando se cumple el KR</p></Col>
+					<Col>
+						<FormControlLabel
+							control={<PurpleSwitch checked={state.FKR} onChange={handleChange} name="FKR" />} />
+					</Col>
+					{/* <Col>
+						<FormControlLabel
+							control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />} />
+					</Col> */}
+				</Row>
+				<Row>
+					<Col></Col>
+					<Col><p>Generar notificaciones cuando se cumple el OKR</p></Col>
+					<Col>
+						<FormControlLabel
+							control={<PurpleSwitch checked={state.FOKR} onChange={handleChange} name="FOKR" />} />
+					</Col>
+					{/* <Col>
+						<FormControlLabel
+							control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />} />
+					</Col> */}
+				</Row>
+				<Row>
+					<Col></Col>
+					<Col><p>Generar notificaciones cuando un KR esta atrasado</p></Col>
+					<Col>
+						<FormControlLabel
+							control={<PurpleSwitch checked={state.LKR} onChange={handleChange} name="LKR" />} />
+					</Col>
+					{/* <Col><FormControlLabel
+						control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />} />
+					</Col> */}
+				</Row>
+				<Row>
+					<Col></Col>
+					<Col><p>Generar notificaciones cada vez que se edita el OKR</p></Col>
+					<Col><FormControlLabel
+						control={<PurpleSwitch checked={state.EOKR} onChange={handleChange} name="EOKR" />} />
+					</Col>
+					{/* <Col><FormControlLabel
+						control={<PurpleSwitch checked={state.checkedA} onChange={handleChange} name="checkedA" />} />
+						</Col> */}
+				</Row>
+				<Row className="justify-content-md-center">
+					<div className="titleNoti">
+						<span>
+							<Button size="medium" variant="contained" color="primary" onClick={Swal} >Confirmar</Button>
+						</span>
 					</div>
-					<div className="int">
-						<span><i style={{ fontSize: "40px" }} className="fas fa-desktop"></i></span>
-					</div>
+				</Row>
+			</Container>
 
-				</div>
-				<div className="option-item">
-					<span>
-						<i className="fas fa-trophy"></i>
-					</span>
-
-					<p>Generar notificaciones cuando se cumple el OKR</p>
-
-					<div className="active-options">
-						<div className="email">
-							<label className="switch">
-								<input type="checkbox" id="mailFullOkr" onClick={() => { setConfig({ ...config, mailCompletedOkr: !config.mailCompletedOkr }) }} checked={config.mailCompletedOkr} />
-								<span className="slider round"></span>
-							</label>
-						</div>
-						<label className="switch">
-							<input type="checkbox" id="notiFullOkr" onClick={() => { setConfig({ ...config, notificationCompletedOkr: !config.notificationCompletedOkr }) }} checked={config.notificationCompletedOkr} />
-							<span className="slider round"></span>
-						</label>
-					</div>
-				</div>
-				<div className="option-item">
-					<span>
-						<i className="far fa-edit"></i>
-					</span>
-
-					<p >Generar notificaciones cada vez que se cumpla un KR</p>
-
-					<div className="active-options">
-						<div className="email">
-							<label className="switch">
-								<input type="checkbox" id="mailFullKr" onClick={() => { setConfig({ ...config, mailCompletedKr: !config.mailCompletedKr }) }} checked={config.mailCompletedKr} />
-								<span className="slider round"></span>
-							</label>
-						</div>
-						<label className="switch">
-							<input type="checkbox" id="notiFullKr" onClick={() => { setConfig({ ...config, notificationCompletedKr: !config.notificationCompletedKr }) }} checked={config.notificationCompletedKr} />
-							<span className="slider round"></span>
-						</label>
-					</div>
-				</div>
-			</div>
-			<div className="titleNoti">
-				<span>
-					<Button size="medium" variant="contained" color="primary" onClick={Swal} >Confirmar</Button>
-				</span>
-			</div>
-		</div>
 		</>
 	)
-    }
+}
