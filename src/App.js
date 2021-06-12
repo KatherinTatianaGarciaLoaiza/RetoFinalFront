@@ -21,6 +21,7 @@ import UserOKRSPage from "./pages/UserOKRSPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreateOKRPage from "./pages/CreateOKRPage";
 import CreateKRPage from "./pages/CreateKRPage";
+import OkrEditFormPage from './pages/OkrEditFormPage';
 
 function App({ dispatch }) {
   const [user] = useAuthState(auth);
@@ -48,8 +49,9 @@ function App({ dispatch }) {
             exact
             path='/ConfigurationNotifications'
             component={ConfigurationPage}
-          />
+            />
           <Route exact path='/CreateKR' component={CreateKRPage} />
+          <Route exact path='/OkrEditForm' component={OkrEditFormPage}/>
           
         </Switch>
       ) : (
