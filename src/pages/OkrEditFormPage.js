@@ -44,9 +44,9 @@ const OkrFormPage = ({ dispatch, okrEdit }) => {
             (field) => objectWithFields[field]._f.value === ''
         );
         setDisabledButton(listFieldBlank.length > 0);
-        if (!disabledButton) {
-            dispatch(update(data));
-        }
+        // if (!disabledButton) {
+        //     dispatch(updateStateOKR(data));
+        // }
     };
 
     return (
