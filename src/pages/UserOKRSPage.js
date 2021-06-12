@@ -52,7 +52,7 @@ const UserOKRSPage = ({ krs, id, title, progress, objective }) => {
         </div>
         <div className="row">
           <div className="col-lg-4">
-            <BarChart krs = {krs} />
+            <BarChart krs = {krs} okrId = {id}/>
           </div>
           <div className="col-lg-4" id="pie-chart">
             <PieChart krs={krs}/>

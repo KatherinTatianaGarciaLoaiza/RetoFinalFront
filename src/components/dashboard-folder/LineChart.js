@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
 import { getDataChart } from "../../actions/okrActions";
@@ -9,7 +9,6 @@ const LineChart = ({ krs, dispatch, progressData, okrId }) => {
   let montDif = [];
   let porcentDif = [];
   let basicPorcentage = [];
-  let c = 0;
   useEffect(() => {
     dispatch(getDataChart(okrId));
   }, []);
@@ -66,14 +65,14 @@ const LineChart = ({ krs, dispatch, progressData, okrId }) => {
               data: porcentDif,
               backgroundColor: "rgb(255, 99, 132)",
               borderColor: "rgba(255, 99, 132, 0.2)",
-              yAxisID: "y-axis-1",
+              yAxisID: "y",
             },
             {
               label: "% Progreso",
               data: basicPorcentage,
               backgroundColor: "rgb(54, 162, 235)",
               borderColor: "rgba(54, 162, 235, 0.2)",
-              yAxisID: "y-axis-1",
+              yAxisID: "y",
             },
           ],
         }}
@@ -86,6 +85,14 @@ const LineChart = ({ krs, dispatch, progressData, okrId }) => {
               fontSize: 25,
             },
           },
+          scales: {
+            y:
+            {
+              suggestedMin: 0,
+              suggestedMax: 100
+            }
+
+          }
         }}
       />
     </div>
