@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import KrCard from './Card';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -6,22 +6,30 @@ import { IconButton } from '@material-ui/core';
 import '../styles/OkrCard.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { editOkr } from '../actions/okrActions';
+import { cleanRedirect, editOkr } from '../actions/okrActions';
 
-const OkrCard = ({ okr, dispatch }) => {
+const OkrCard = ({ okr, dispatch, redirect }) => {
   const history = useHistory();
 
-  const handleEdit =(id) => {
+  useEffect(() => {
+    if (redirect) {
+      history.push(redirect)
+    }
+    return () => {
+      dispatch(cleanRedirect())
+    }
+  }, [redirect])
+
+  const handleEdit = (id) => {
     dispatch(editOkr(id))
-    history.push('/OkrEditForm')
   }
 
   return (
     <div>
       <div className='container_display_title'>
         <h2>{okr.title}</h2>
-        <IconButton aria-label='editar' color='primary' onClick={() => handleEdit(okr.id)}>
-          <EditIcon className='btn_color'  />
+        <IconButton aria-label='editar' color='primary' onClick={() => { handleEdit(okr.id) }}>
+          <EditIcon className='btn_color' />
         </IconButton>
         <IconButton aria-label='eliminar' color='primary'>
           <DeleteIcon className='btn_color' />
@@ -42,5 +50,9 @@ const OkrCard = ({ okr, dispatch }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  redirect: state.okr.redirect
+})
 
-export default connect()(OkrCard);
+
+export default connect(mapStateToProps)(OkrCard);

@@ -38,12 +38,6 @@ const OkrFormPage = ({ dispatch, okrEdit }) => {
         setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
 
-
-    // const redirect = () => {
-    //     // dispatch(); //pendiente de cambiar segun el back
-    //     history.push('/MyOKRS');
-    // };
-    console.log(okrEdit)
     const onChange = (data) => {
         const objectWithFields = control.fieldsRef.current;
         const listFieldBlank = Object.keys(objectWithFields).filter(
@@ -74,9 +68,9 @@ const OkrFormPage = ({ dispatch, okrEdit }) => {
                         )}
                         name='title'
                         control={control}
-                        
+
                         defaultValue={okrEdit.title}
-                        // defaultValue=''
+                    // defaultValue=''
 
                     />
                 </Grid>
@@ -95,7 +89,7 @@ const OkrFormPage = ({ dispatch, okrEdit }) => {
                         name='objective'
                         control={control}
                         defaultValue={okrEdit.objective}
-                        // defaultValue=''
+                    // defaultValue=''
 
                     />
                 </Grid>
@@ -128,7 +122,7 @@ const OkrFormPage = ({ dispatch, okrEdit }) => {
                         name='vertical'
                         control={control}
                         defaultValue={okrEdit.vertical}
-                        // defaultValue=''
+                    // defaultValue=''
 
                     />
                 </Grid>
@@ -150,7 +144,7 @@ const OkrFormPage = ({ dispatch, okrEdit }) => {
                         name='responName'
                         control={control}
                         defaultValue={okrEdit.responName}
-                        // defaultValue=''
+                    // defaultValue=''
 
                     />
                 </Grid>
@@ -169,7 +163,7 @@ const OkrFormPage = ({ dispatch, okrEdit }) => {
                         name='responEmail'
                         control={control}
                         defaultValue={okrEdit.responEmail}
-                        // defaultValue=''
+                    // defaultValue=''
 
                     />
                 </Grid>
@@ -191,7 +185,7 @@ const OkrFormPage = ({ dispatch, okrEdit }) => {
                         name='description'
                         control={control}
                         defaultValue={okrEdit.description}
-                        // defaultValue=''
+                    // defaultValue=''
                     />
                 </Grid>
             </Grid>
