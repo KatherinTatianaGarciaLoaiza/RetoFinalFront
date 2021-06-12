@@ -15,6 +15,9 @@ export const initialState = {
   },
   OKRUser: [],
   ProgressOKR: {},
+  DataProgressChart: {
+    actualPercentage: [0],
+  },
   EditOkr: {},
 };
 
@@ -55,12 +58,12 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         OKR: {
           ...state.OKR,
-          title: '',
-          objective: '',
-          responName: '',
-          responEmail: '',
-          vertical: '',
-          description: '',
+          title: "",
+          objective: "",
+          responName: "",
+          responEmail: "",
+          vertical: "",
+          description: "",
           krs: [],
         },
         disabledButtonOKRForm: true,
@@ -69,6 +72,11 @@ export default function okrReducer(state = initialState, action) {
       return {
         ...state,
         ProgressOKR: payload,
+      };
+    case actions.DATACHARTOKR:
+      return {
+        ...state,
+        DataProgressChart: payload,
       };
     case actions.EDITOKR:
       return {

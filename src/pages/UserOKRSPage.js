@@ -44,7 +44,7 @@ const UserOKRSPage = ({ krs, id, title, progress, objective }) => {
             <ProgressOkr progress={progress} />
           </div>
           <div className="col-lg-7">
-            <LineChart krs = {krs}/>
+            <LineChart krs = {krs} okrId = {id}/>
           </div>
           <div className="col-lg-4">
             <Dashboard  {...{ krs, id, title, progress, objective }} />
@@ -52,7 +52,7 @@ const UserOKRSPage = ({ krs, id, title, progress, objective }) => {
         </div>
         <div className="row">
           <div className="col-lg-4">
-            <BarChart krs = {krs} />
+            <BarChart krs = {krs} okrId = {id}/>
           </div>
           <div className="col-lg-4" id="pie-chart">
             <PieChart krs={krs}/>
