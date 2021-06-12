@@ -14,6 +14,7 @@ export const initialState = {
   },
   OKRUser: [],
   ProgressOKR: {},
+  DataProgressChart:{},
 };
 
 export default function okrReducer(state = initialState, action) {
@@ -67,6 +68,11 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         ProgressOKR: payload,
       };
+      case actions.DATACHARTOKR:
+        return {
+          ...state,
+          DataProgressChart : payload,
+        };
     case actions.UPDATE_STATUS_BUTTON_OKR:
       return {
         ...state,

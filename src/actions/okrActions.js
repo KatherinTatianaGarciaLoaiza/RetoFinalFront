@@ -1,6 +1,8 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-const URI = 'https://api-okr.herokuapp.com';
+const URI = 'http://localhost:8080'
+
+//'https://api-okr.herokuapp.com';
 
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
@@ -9,6 +11,8 @@ export const UPDATEOKR = 'UPDATE_OKR';
 export const POSTOKR = 'POSTOKR';
 export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
 export const UPDATE_STATUS_BUTTON_OKR = "UPDATE_STATUS_BUTTON_OKR";
+export const DATACHARTOKR = "DATACHARTOKR";
+
 
 export const updateStateOKR = (data) => ({
   type: UPDATE_STATE_OKR,
@@ -38,6 +42,12 @@ export const progressOkr = (data) => ({
   type: OKRMAXPROGRESS,
   payload: data,
 });
+
+export const DataProgressChart = (data) => ({
+  type: DATACHARTOKR,
+  payload: data,
+});
+
 
 export const postOKR = (data) => {
   return async (dispatch) => {
@@ -71,6 +81,14 @@ export function getMaxProgressOkr(userId) {
     dispatch(progressOkr(data));
   };
 }
+
+export function getDataChart(okrId) {
+  return async (dispatch) => {
+    const { data } = await axios.get(`${URI}/data-chart/${okrId}`);
+    dispatch(DataProgressChart(data));
+  };
+}
+
 
 export const updateStatusButton = (data) => ({
   type: UPDATE_STATUS_BUTTON_OKR,
