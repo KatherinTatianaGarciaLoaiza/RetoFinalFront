@@ -8,10 +8,10 @@ export const LOGIN = 'LOGIN';
 export const UPDATE_STATE_OKR = 'UPDATE_STATE_OKR';
 export const UPDATEOKR = 'UPDATE_OKR';
 export const POSTOKR = 'POSTOKR';
-export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
-export const EDITOKR = "EDITOKR";
-export const UPDATE_STATUS_BUTTON_OKR = "UPDATE_STATUS_BUTTON_OKR";
-export const CLEAN_REDIRECT = "CLEAN_REDIRECT"
+export const OKRMAXPROGRESS = 'OKRMAXPROGRESS';
+export const EDITOKR = 'EDITOKR';
+export const UPDATE_STATUS_BUTTON_OKR = 'UPDATE_STATUS_BUTTON_OKR';
+export const CLEAN_REDIRECT = 'CLEAN_REDIRECT';
 
 export const updateStateOKR = (data) => ({
   type: UPDATE_STATE_OKR,
@@ -34,20 +34,25 @@ export const update = (data) => ({
 });
 
 export const cleanRedirect = () => ({
-  type: CLEAN_REDIRECT
-})
+  type: CLEAN_REDIRECT,
+});
 
 export const postokr = () => ({
   type: POSTOKR,
-})
+});
 
 export const editokr = (data) => ({
   type: EDITOKR,
   payload: { EditOkr: data, redirect: '/OkrEditForm' },
-})
+});
 
 export const progressOkr = (data) => ({
   type: OKRMAXPROGRESS,
+  payload: data,
+});
+
+export const updateStatusButton = (data) => ({
+  type: UPDATE_STATUS_BUTTON_OKR,
   payload: data,
 });
 
@@ -55,10 +60,9 @@ export const postOKR = (data) => {
   return async (dispatch) => {
     await axios.post(`${URI}/okr`, data);
     dispatch(postokr());
-    swal("Perfecto !", "OKR Creado exitosamente", "success")
-      .then((value) => {
-        dispatch(getOwnOKR(data.userId))
-      });
+    swal('Perfecto !', 'OKR Creado exitosamente', 'success').then((value) => {
+      dispatch(getOwnOKR(data.userId));
+    });
   };
 };
 
@@ -73,7 +77,7 @@ export function editOkr(id) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/okr/${id}`);
     dispatch(editokr(data));
-  }
+  };
 }
 
 export function getOkrById(id) {
@@ -90,9 +94,29 @@ export function getMaxProgressOkr(userId) {
   };
 }
 
-export const updateStatusButton = (data) => ({
-  type: UPDATE_STATUS_BUTTON_OKR,
-  payload: data
-})
+export const updateKR = (kr, userId) => {
+  return async (dispatch) => {
+    swal({
+      title: '¿Esta seguro de actualizar?',
+      text: 'Una vez actualice, se guardaran los cambios',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then(async(willDelete) => {
+      if (willDelete) {
+        await axios.put(`${URI}/kr`, kr);
+        swal(
+          'Perfecto !',
+          'Se ha actualizado el progreso del KR',
+          'success'
+        ).then(() => {
+          dispatch(getOwnOKR(userId));
+        });
+      } else {
+        swal('No se ha actualizado nada');
+      }
+    });
+  };
+};
 
 //TODO -> Hacer el deslogueo
