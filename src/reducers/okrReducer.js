@@ -15,13 +15,10 @@ export const initialState = {
   },
   OKRUser: [],
   ProgressOKR: {},
-<<<<<<< HEAD
   DataProgressChart: {
     actualPercentage: [0],
   },
-=======
   EditOkr: {},
->>>>>>> c6f0ee05c2a866b36578553eb642ef7ebb432a86
 };
 
 export default function okrReducer(state = initialState, action) {
@@ -70,42 +67,33 @@ export default function okrReducer(state = initialState, action) {
           description: "",
           krs: [],
         },
-<<<<<<< HEAD
-=======
         disabledButtonOKRForm: true,
->>>>>>> c6f0ee05c2a866b36578553eb642ef7ebb432a86
       };
     case actions.OKRMAXPROGRESS:
       return {
         ...state,
         ProgressOKR: payload,
       };
-<<<<<<< HEAD
     case actions.DATACHARTOKR:
       return {
         ...state,
         DataProgressChart: payload,
       };
-=======
     case actions.EDITOKR:
       return {
         ...state,
         ...payload,
       }
->>>>>>> c6f0ee05c2a866b36578553eb642ef7ebb432a86
     case actions.UPDATE_STATUS_BUTTON_OKR:
       return {
         ...state,
         ...payload,
       };
-<<<<<<< HEAD
-=======
     case actions.CLEAN_REDIRECT:
       return {
         ...state,
         redirect: null
       }
->>>>>>> c6f0ee05c2a866b36578553eb642ef7ebb432a86
     default:
       return state;
   }

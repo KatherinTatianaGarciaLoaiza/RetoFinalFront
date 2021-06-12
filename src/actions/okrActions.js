@@ -1,13 +1,8 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-<<<<<<< HEAD
 const URI = 'http://localhost:8080'
 
 //'https://api-okr.herokuapp.com';
-=======
-// const URI = 'https://api-okr.herokuapp.com';
-const URI = 'http://localhost:8080';
->>>>>>> c6f0ee05c2a866b36578553eb642ef7ebb432a86
 
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
@@ -17,12 +12,9 @@ export const POSTOKR = 'POSTOKR';
 export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
 export const EDITOKR = "EDITOKR";
 export const UPDATE_STATUS_BUTTON_OKR = "UPDATE_STATUS_BUTTON_OKR";
-<<<<<<< HEAD
 export const DATACHARTOKR = "DATACHARTOKR";
 
-=======
 export const CLEAN_REDIRECT = "CLEAN_REDIRECT"
->>>>>>> c6f0ee05c2a866b36578553eb642ef7ebb432a86
 
 export const updateStateOKR = (data) => ({
   type: UPDATE_STATE_OKR,
