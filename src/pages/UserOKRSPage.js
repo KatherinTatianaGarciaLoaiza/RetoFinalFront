@@ -17,8 +17,9 @@ import ProgressOkr from "../components/dashboard-folder/ProgressOkr";
 import "../styles/dashboardStyles.css";
 import { estilos } from '../components/structure/DesignNaSi';
 
-const UserOKRSPage = ({ krs, id, title, progress, objective }) => {
+const UserOKRSPage = ({ krs, id, title, progress, objective, data }) => {
 
+  console.log(data)
   const classes = estilos();
 
   return (
@@ -58,7 +59,7 @@ const UserOKRSPage = ({ krs, id, title, progress, objective }) => {
             <PieChart krs={krs}/>
           </div>
           <div className="col-lg-3">
-            <DownloadChart />
+            <DownloadChart data={data}/>
           </div>
         </div>
       </main>
@@ -72,6 +73,7 @@ const mapStateToProps = (state) => ({
   id: state.okr.ProgressOKR.id,
   objective: state.okr.ProgressOKR.objective,
   krs: state.okr.ProgressOKR.krs,
+  data: state.okr.ProgressOKR,
 });
 
 export default connect(mapStateToProps)(UserOKRSPage);
