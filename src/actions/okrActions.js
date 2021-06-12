@@ -134,10 +134,4 @@ export function getDataChart(okrId) {
   };
 }
 
-
-export const updateStatusButton = (data) => ({
-  type: UPDATE_STATUS_BUTTON_OKR,
-  payload: data
-})
-
 //TODO -> Hacer el deslogueo
