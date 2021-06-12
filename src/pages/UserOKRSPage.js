@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,11 +13,16 @@ import BarChart from "../components/dashboard-folder/BarChart";
 import PieChart from "../components/dashboard-folder/PieChart";
 import DownloadChart from "../components/dashboard-folder/DownloadChart";
 import ProgressOkr from "../components/dashboard-folder/ProgressOkr";
+import { getDataChart } from "../actions/okrActions";
 
 import "../styles/dashboardStyles.css";
 import { estilos } from '../components/structure/DesignNaSi';
 
-const UserOKRSPage = ({ krs, id, title, progress, objective, data }) => {
+const UserOKRSPage = ({ krs, id, title, progress, objective, data,dispatch,progressData }) => {
+
+  useEffect(() => {
+    dispatch(getDataChart(id));
+  }, []);
 
   console.log(data)
   const classes = estilos();
@@ -45,7 +50,7 @@ const UserOKRSPage = ({ krs, id, title, progress, objective, data }) => {
             <ProgressOkr progress={progress} />
           </div>
           <div className="col-lg-7">
-            <LineChart krs = {krs} okrId = {id}/>
+            <LineChart krs = {krs}  progressData = {progressData}/>
           </div>
           <div className="col-lg-4">
             <Dashboard  {...{ krs, id, title, progress, objective }} />
@@ -53,7 +58,7 @@ const UserOKRSPage = ({ krs, id, title, progress, objective, data }) => {
         </div>
         <div className="row">
           <div className="col-lg-4">
-            <BarChart krs = {krs} okrId = {id}/>
+            <BarChart krs = {krs} okrId = {id} progressData = {progressData}/>
           </div>
           <div className="col-lg-4" id="pie-chart">
             <PieChart krs={krs}/>
@@ -74,6 +79,7 @@ const mapStateToProps = (state) => ({
   objective: state.okr.ProgressOKR.objective,
   krs: state.okr.ProgressOKR.krs,
   data: state.okr.ProgressOKR,
+  progressData: state.okr.DataProgressChart,
 });
 
 export default connect(mapStateToProps)(UserOKRSPage);

@@ -2,11 +2,13 @@ import React, { useEffect }  from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { getOwnOKR, getOkrById } from '../../actions/okrActions';
 import { Link } from 'react-router-dom'
+import { getDataChart } from "../../actions/okrActions";
 
 import { connect } from 'react-redux';
 const Example = ({ dispatch, userId, okrs, title, id }) => {  
   const okrById = (id) =>{
     dispatch(getOkrById(id))
+    dispatch(getDataChart(id));
   }
   useEffect(() => {
     dispatch(getOwnOKR(userId));
@@ -33,7 +35,9 @@ const Example = ({ dispatch, userId, okrs, title, id }) => {
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
   okrs: state.okr.OKRUser,
-  id: state.okr.ProgressOKR.id
+  id: state.okr.ProgressOKR.id,
+  progressData: state.okr.DataProgressChart,
+
 });
 
 export default connect(mapStateToProps)(Example);
