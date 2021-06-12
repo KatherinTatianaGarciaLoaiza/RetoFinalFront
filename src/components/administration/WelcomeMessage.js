@@ -24,7 +24,7 @@ function WelcomeMessage() {
           <Modal.Header closeButton style={{ border: '2px solid #F0950E' }}>
             <Modal.Title>
               <div className="centrar">
-                <img src={Logo} style={{ width: "80%", height: "30%" }}></img>
+                <img src={Logo} alt='' style={{ width: "80%", height: "30%" }}></img>
               </div>
             </Modal.Title>
           </Modal.Header>

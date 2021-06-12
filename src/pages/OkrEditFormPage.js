@@ -3,8 +3,6 @@ import { useForm, Controller } from 'react-hook-form';
 import '../styles/OkrFormCss.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getOkrById, update, updateStateOKR } from '../actions/okrActions';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SaveIcon from '@material-ui/icons/Save';
 
 import {

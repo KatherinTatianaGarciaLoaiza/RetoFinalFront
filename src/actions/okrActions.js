@@ -79,7 +79,6 @@ export function editOkr(id) {
 export function getOkrById(id) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/okr/${id}`);
-    console.log(data)
     dispatch(progressOkr(data));
   };
 }
