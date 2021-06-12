@@ -2,6 +2,7 @@ import * as actions from '../actions/okrActions';
 
 export const initialState = {
   disabledButtonOKRForm: true,
+  redirect: null,
   OKR: {
     userId: '',
     title: '',
@@ -47,6 +48,7 @@ export default function okrReducer(state = initialState, action) {
     case actions.UPDATEOKR:
       return {
         ...state,
+        redirect: null,
         OKRUser: payload,
       };
     case actions.POSTOKR:
@@ -72,13 +74,18 @@ export default function okrReducer(state = initialState, action) {
     case actions.EDITOKR:
       return {
         ...state,
-        EditOkr: payload,
+        ...payload,
       }
     case actions.UPDATE_STATUS_BUTTON_OKR:
       return {
         ...state,
         ...payload,
       };
+    case actions.CLEAN_REDIRECT:
+      return {
+        ...state,
+        redirect: null
+      }
     default:
       return state;
   }
