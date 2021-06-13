@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/OkrCard.css";
 import { connect } from "react-redux";
-
+import { Link } from 'react-router-dom'
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Box from "@material-ui/core/Box";
 import "../../styles/Card.css";
+import { getOkrById,getDataChart } from '../../actions/okrActions';
 
 const useStyles = makeStyles({
   root: {
@@ -25,54 +26,61 @@ const useStyles = makeStyles({
   },
 });
 
-const AllOkrCard = ({ okr}) => {
-  const classes = useStyles();
 
+const AllOkrCard = ({ okr, dispatch }) => {
+  const classes = useStyles();
+  const okrById = (id) => {
+    dispatch(getOkrById(id));
+    dispatch(getDataChart(id));
+  }
   return (
-    <div>
+    <div >
       <div className="container_display_title"></div>
       <div className="container_cards">
-        <Card className={classes.root}>
-          <CardActionArea>
-            <div className="card-title">
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h4"
-                  align="center"
-                  component="h4"
-                >
-                  {okr.title}
-                </Typography>
-              </CardContent>
-            </div>
-            <CardMedia className="progressbar">
-              <Box bottom={10} position="relative" display="inline-flex">
-                <CircularProgress
-                  variant="determinate"
-                  color="inherit"
-                  value={okr.progressOkr}
-                  size={90}
-                />
-                <Box
-                  top={0}
-                  left={0}
-                  bottom={0}
-                  right={0}
-                  position="absolute"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
+        <Card className={classes.root} onClick={() => { okrById(okr.id) }} >
+          <Link to={`/UserOKRS`} className="button" style={{ color: "#000" }}  >
+
+            <CardActionArea>
+              <div className="card-title">
+                <CardContent>
                   <Typography
-                    variant="caption"
-                    component="div"
-                    color="textPrimary"
-                  >{`${okr.progressOkr}%`}</Typography>
+                    gutterBottom
+                    variant="h4"
+                    align="center"
+                    component="h4"
+                  >
+                    {okr.title}
+                  </Typography>
+                </CardContent>
+              </div>
+              <CardMedia className="progressbar">
+                <Box bottom={10} position="relative" display="inline-flex">
+                  <CircularProgress
+                    variant="determinate"
+                    color="inherit"
+                    value={okr.progressOkr}
+                    size={90}
+                  />
+                  <Box
+                    top={0}
+                    left={0}
+                    bottom={0}
+                    right={0}
+                    position="absolute"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Typography
+                      variant="caption"
+                      component="div"
+                      color="textPrimary"
+                    >{`${okr.progressOkr}%`}</Typography>
+                  </Box>
                 </Box>
-              </Box>
-            </CardMedia>
-          </CardActionArea>
+              </CardMedia>
+            </CardActionArea>
+          </Link>
         </Card>
       </div>
       <hr />
@@ -83,6 +91,9 @@ const AllOkrCard = ({ okr}) => {
 const mapStateToProps = (state) => ({
   redirect: state.okr.redirect,
   userId: state.okr.OKR.userId,
+  okrs: state.okr.OKRUser,
+  id: state.okr.ProgressOKR.id,
+  progressData: state.okr.DataProgressChart,
 });
 
 export default connect(mapStateToProps)(AllOkrCard);

@@ -53,7 +53,7 @@ const UserOKRSPage = ({ krs, id, title, progress, objective, data, dispatch, pro
           </div>
           <div className="col-lg-7" ref={useRefLineChart}>
             <LineChart krs={krs} progressData={progressData} />
-          </div>
+          </div>          
           <div className="col-lg-4">
             <Dashboard  {...{ krs, id, title, progress, objective }} />
           </div>
