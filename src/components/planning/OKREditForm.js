@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import '../styles/OkrFormCss.css';
+import '../../styles/OkrFormCss.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getOkrById, update, updateStateOKR } from '../actions/okrActions';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SaveIcon from '@material-ui/icons/Save';
 
 import {
@@ -44,9 +42,9 @@ const OkrFormPage = ({ dispatch, okrEdit }) => {
             (field) => objectWithFields[field]._f.value === ''
         );
         setDisabledButton(listFieldBlank.length > 0);
-        if (!disabledButton) {
-            dispatch(update(data));
-        }
+        // if (!disabledButton) {
+        //     dispatch(updateStateOKR(data));
+        // }
     };
 
     return (

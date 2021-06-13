@@ -8,10 +8,10 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import '../styles/KRPage.css';
+import '../../styles/KRPage.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createKR, postOKR, updateStatusButton } from '../actions/okrActions';
+import { createKR, postOKR, updateStatusButton } from '../../actions/okrActions';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -45,7 +45,7 @@ const useStyles = makeStyles({
   },
 });
 
-const KRPage = ({ dispatch, okr }) => {
+const KRForm = ({ dispatch, okr }) => {
   const { handleSubmit, control, reset } = useForm();
   const history = useHistory();
   const classes = useStyles();
@@ -290,4 +290,4 @@ const mapStateToProps = (state) => ({
   okr: state.okr.OKR,
 });
 
-export default connect(mapStateToProps)(KRPage);
+export default connect(mapStateToProps)(KRForm);

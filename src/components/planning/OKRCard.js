@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import KrCard from './Card';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IconButton } from '@material-ui/core';
-import '../styles/OkrCard.css';
+import '../../styles/OkrCard.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { cleanRedirect, editOkr } from '../actions/okrActions';
+import { cleanRedirect, editOkr } from '../../actions/okrActions';
+import KRCard from './KRCard';
 
 const OkrCard = ({ okr, dispatch, redirect }) => {
   const history = useHistory();
@@ -37,11 +37,9 @@ const OkrCard = ({ okr, dispatch, redirect }) => {
       </div>
       <div className='container_cards'>
         {okr.krs.map((kr) => (
-          <KrCard
+          <KRCard
             key={kr.krId}
-            keyResult={kr.keyResult}
-            description={kr.description}
-            value={kr.progressKr}
+            kr={kr}
           />
         ))}
       </div>

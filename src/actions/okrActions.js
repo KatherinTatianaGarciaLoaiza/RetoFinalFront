@@ -37,20 +37,25 @@ export const update = (data) => ({
 });
 
 export const cleanRedirect = () => ({
-  type: CLEAN_REDIRECT
-})
+  type: CLEAN_REDIRECT,
+});
 
 export const postokr = () => ({
   type: POSTOKR,
-})
+});
 
 export const editokr = (data) => ({
   type: EDITOKR,
   payload: { EditOkr: data, redirect: '/OkrEditForm' },
-})
+});
 
 export const progressOkr = (data) => ({
   type: OKRMAXPROGRESS,
+  payload: data,
+});
+
+export const updateStatusButton = (data) => ({
+  type: UPDATE_STATUS_BUTTON_OKR,
   payload: data,
 });
 
@@ -64,10 +69,9 @@ export const postOKR = (data) => {
   return async (dispatch) => {
     await axios.post(`${URI}/okr`, data);
     dispatch(postokr());
-    swal("Perfecto !", "OKR Creado exitosamente", "success")
-      .then((value) => {
-        dispatch(getOwnOKR(data.userId))
-      });
+    swal('Perfecto !', 'OKR Creado exitosamente', 'success').then((value) => {
+      dispatch(getOwnOKR(data.userId));
+    });
   };
 };
 
@@ -82,13 +86,12 @@ export function editOkr(id) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/okr/${id}`);
     dispatch(editokr(data));
-  }
+  };
 }
 
 export function getOkrById(id) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/okr/${id}`);
-    console.log(data)
     dispatch(progressOkr(data));
   };
 }
@@ -100,17 +103,35 @@ export function getMaxProgressOkr(userId) {
   };
 }
 
+export const updateKR = (kr, userId) => {
+  return async (dispatch) => {
+    swal({
+      title: '¿Esta seguro de actualizar?',
+      text: 'Una vez actualice, se guardaran los cambios',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        await axios.put(`${URI}/kr`, kr);
+        swal(
+          'Perfecto !',
+          'Se ha actualizado el progreso del KR',
+          'success'
+        ).then(() => {
+          dispatch(getOwnOKR(userId));
+        });
+      } else {
+        swal('No se ha actualizado nada');
+      }
+    });
+  };
+};
 export function getDataChart(okrId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/data-chart/${okrId}`);
     dispatch(DataProgressChart(data));
   };
 }
-
-
-export const updateStatusButton = (data) => ({
-  type: UPDATE_STATUS_BUTTON_OKR,
-  payload: data
-})
 
 //TODO -> Hacer el deslogueo
