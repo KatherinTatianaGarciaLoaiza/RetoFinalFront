@@ -15,6 +15,7 @@ import ProgressOkr from "../components/dashboard-folder/ProgressOkr";
 import { getDataChart } from "../actions/okrActions";
 import "../styles/dashboardStyles.css";
 import { estilos } from '../components/structure/DesignNaSi';
+import { Link } from 'react-router-dom';
 
 const UserOKRSPage = ({ krs, id, title, progress, objective, data, dispatch, progressData }) => {
 
@@ -38,8 +39,8 @@ const UserOKRSPage = ({ krs, id, title, progress, objective, data, dispatch, pro
           <div className="col -md-6">
             <h1>Dashboard</h1>
             <nav>
-              <Button variant="outlined">En proceso</Button>
-              <Button variant="outlined">Completados</Button>
+              <Link to={`/ProgressOkr`} className="button" krs ={krs} ><Button variant="outlined"> Progreso </Button></Link>
+              <Link to={`/Complete`} className="button" krs ={krs} ><Button variant="outlined"> Completos </Button></Link>
             </nav>
           </div>
           <div className="col -md-6">

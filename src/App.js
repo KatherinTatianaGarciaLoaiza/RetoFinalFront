@@ -22,6 +22,8 @@ import ProfilePage from "./pages/ProfilePage";
 import CreateOKRPage from "./pages/CreateOKRPage";
 import CreateKRPage from "./pages/CreateKRPage";
 import EditOKRPage from './pages/EditOKRPage'
+import OkrForProgress from './pages/OkrForProgress';
+import OkrsComplete from './pages/OkrsComplete';
 
 function App({ dispatch }) {
   const [user] = useAuthState(auth);
@@ -52,6 +54,8 @@ function App({ dispatch }) {
           />
           <Route exact path='/CreateKR' component={CreateKRPage} />
           <Route exact path='/OkrEditForm' component={EditOKRPage} />
+          <Route exact path='/ProgressOkr' component={OkrForProgress} />
+          <Route exact path='/Complete' component={OkrsComplete} />
 
         </Switch>
       ) : (
