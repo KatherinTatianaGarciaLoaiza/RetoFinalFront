@@ -1,16 +1,13 @@
-.dashboard-page{
+.dashboard-page {
     font-family: 'Roboto', sans-serif;
 }
 
-
-:root{
+:root {
     --color-black: #000;
     --color-orange: #F0950E;
     --color-white: #ffff;
-
     --color-text: rgb(119, 116, 116);
 }
-
 
 .form-krs {
     display: flex;
@@ -36,14 +33,12 @@
     border-radius: 10px 10px 0 0;
 }
 
-
 #center-senction {
-
     border-top-style: ridge;
-    border-bottom-style: ridge; 
+    border-bottom-style: ridge;
 }
 
-.title-context h4{
+.title-context h4 {
     margin: 0;
 }
 
@@ -57,18 +52,18 @@
     cursor: pointer;
 }
 
-.content-kr{
+.content-kr {
     margin: 0 10px 15px;
     color: var(--color-text);
 }
 
-.CircularProgressbar{
+.CircularProgressbar {
     margin-top: 70px;
     width: 120%;
 }
 
 .CircularProgressbar .CircularProgressbar-path {
-    stroke:var(--color-black);
+    stroke: var(--color-black);
 }
 
 .CircularProgressbar .CircularProgressbar-text {
@@ -78,11 +73,12 @@
 .button-dropdown {
     background-color: var(--color-orange) !important;
     margin-left: 150px;
-} 
-
-.dropdown-toggle::after{
-margin-left: 30px;
 }
+
+.dropdown-toggle::after {
+    margin-left: 30px;
+}
+
 .uncontrolledDropdown {
     display: flex;
     justify-content: center;
@@ -92,7 +88,7 @@ margin-left: 30px;
     margin-top: 100px;
 }
 
-.btn-download-chart{
+.btn-download-chart {
     margin-top: 180px;
     justify-content: center;
     display: flex;
@@ -100,4 +96,10 @@ margin-left: 30px;
 
 .btn-outline-light:hover {
     color: var(--color-white);
+}
+
+.csvButton {
+    background-color: white!important ;
+    border: none!important;
+    margin-left: 8px;
 }

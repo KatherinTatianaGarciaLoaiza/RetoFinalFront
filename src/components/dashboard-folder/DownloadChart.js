@@ -6,19 +6,18 @@ import {
   DropdownItem,
 } from "reactstrap";
 import CsvDownloader from "react-csv-downloader";
+import { exportComponentAsJPEG } from 'react-component-export-image';
 
-const DownloadChart = ({ data }) => {
+const DownloadChart = ({ data, burnDownChart, barChart, pieChart }) => {
 
   let csvString = [];
-
   csvString = [
-    ["Peso Kr ","Responsable Kr ", "Fecha Inicio ", "Fecha Fin"],
+    ["Peso Kr ", "Responsable Kr ", "Fecha Inicio ", "Fecha Fin"],
     ...data.krs.map((item) => [
       item.percentageWeight,
       item.responName,
       item.startDate,
       item.endDate,
-      
     ]),
   ]
     .map((e) => e.join(","))
@@ -62,7 +61,7 @@ const DownloadChart = ({ data }) => {
       progressOkr: data.progressOkr,
     },
   ];
-  
+
   return (
     <div id="btn-download" className="btn-download-chart">
       <UncontrolledDropdown>
@@ -76,10 +75,12 @@ const DownloadChart = ({ data }) => {
             separator=";"
             wrapColumnChar="'"
             columns={columns}
-            datas={datas}
-            text="DOWNLOAD"
-          /> 
-          <DropdownItem>Formato .jpg</DropdownItem>
+            datas={datas}          >
+            <DropdownItem className="csvButton">Reporte csv</DropdownItem>
+          </CsvDownloader>
+          <DropdownItem onClick={() => exportComponentAsJPEG(burnDownChart)}>Grafico de quemado</DropdownItem>
+          <DropdownItem onClick={() => exportComponentAsJPEG(barChart)}>Grafico de barras</DropdownItem>
+          <DropdownItem onClick={() => exportComponentAsJPEG(pieChart)}>Grafico de tortas</DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     </div>
