@@ -19,6 +19,7 @@ export const initialState = {
     actualPercentage: [0],
   },
   EditOkr: {},
+  EditKr: {},
 };
 
 export default function okrReducer(state = initialState, action) {
@@ -82,7 +83,12 @@ export default function okrReducer(state = initialState, action) {
       return {
         ...state,
         ...payload,
-      }
+      };
+    case actions.EDITKR:
+      return {
+        ...state,
+        ...payload,
+      };
     case actions.UPDATE_STATUS_BUTTON_OKR:
       return {
         ...state,

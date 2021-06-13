@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -14,8 +14,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
 import '../../styles/Card.css';
 import { Slider } from '@material-ui/core';
-import { updateKR } from '../../actions/okrActions';
+import { cleanRedirect, editKr, updateKR } from '../../actions/okrActions';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -30,9 +31,24 @@ const useStyles = makeStyles({
   },
 });
 
-const KRCard = ({ dispatch, kr, userId }) => {
+const KRCard = ({ dispatch, kr, userId, redirect  }) => {
   const [slider, setSlider] = useState(kr.progressKr);
   const classes = useStyles();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (redirect) {
+      history.push(redirect)
+    }
+    return () => {
+      dispatch(cleanRedirect())
+    }
+  }, [redirect])
+
+  const handleEdit = (krId) => {
+    dispatch(editKr(krId))
+  }
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -71,7 +87,7 @@ const KRCard = ({ dispatch, kr, userId }) => {
       </CardActionArea>
       <CardActions>
         <Button size='small' color='primary'>
-          <EditIcon className='btn_color' />
+          <EditIcon className='btn_color' onClick={() => { handleEdit(kr.krId) }} />
         </Button>
         <Button size='small' color='primary'>
           <DeleteIcon className='btn_color' />
