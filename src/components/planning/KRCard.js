@@ -12,13 +12,15 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
-import '../styles/Card.css';
+import '../../styles/Card.css';
 import { Slider } from '@material-ui/core';
-import { updateKR } from '../actions/okrActions';
+import { updateKR } from '../../actions/okrActions';
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
+    border: '1px solid #E5DFDA',
+    background: '#F9F9F5',
     maxWidth: 300,
     minWidth: 300,
     margin: '25px',
@@ -28,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-const KrCard = ({ dispatch, kr, userId }) => {
+const KRCard = ({ dispatch, kr, userId }) => {
   const [slider, setSlider] = useState(kr.progressKr);
   const classes = useStyles();
   return (
@@ -101,4 +103,4 @@ const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
 });
 
-export default connect(mapStateToProps)(KrCard);
+export default connect(mapStateToProps)(KRCard);
