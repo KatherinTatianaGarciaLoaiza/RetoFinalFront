@@ -13,6 +13,7 @@ export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
 export const EDITOKR = "EDITOKR";
 export const UPDATE_STATUS_BUTTON_OKR = "UPDATE_STATUS_BUTTON_OKR";
 export const DATACHARTOKR = "DATACHARTOKR";
+export const ALLOKRS = "ALLOKRS";
 
 export const CLEAN_REDIRECT = "CLEAN_REDIRECT"
 
@@ -61,6 +62,11 @@ export const updateStatusButton = (data) => ({
 
 export const DataProgressChart = (data) => ({
   type: DATACHARTOKR,
+  payload: data,
+});
+
+export const getAllOkrs = (data) => ({
+  type: ALLOKRS,
   payload: data,
 });
 
@@ -131,6 +137,14 @@ export function getDataChart(okrId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/data-chart/${okrId}`);
     dispatch(DataProgressChart(data));
+  };
+}
+
+export function getAllOkr() {
+  return async (dispatch) => {
+    const { data } = await axios.get(`${URI}/all-okrs`);
+    console.log(data)
+    dispatch(getAllOkrs(data));
   };
 }
 

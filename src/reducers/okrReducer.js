@@ -1,16 +1,16 @@
-import * as actions from '../actions/okrActions';
+import * as actions from "../actions/okrActions";
 
 export const initialState = {
   disabledButtonOKRForm: true,
   redirect: null,
   OKR: {
-    userId: '',
-    title: '',
-    objective: '',
-    responName: '',
-    responEmail: '',
-    vertical: '',
-    description: '',
+    userId: "",
+    title: "",
+    objective: "",
+    responName: "",
+    responEmail: "",
+    vertical: "",
+    description: "",
     krs: [],
   },
   OKRUser: [],
@@ -19,6 +19,7 @@ export const initialState = {
     actualPercentage: [0],
   },
   EditOkr: {},
+  AllOkrs: [],
 };
 
 export default function okrReducer(state = initialState, action) {
@@ -78,6 +79,11 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         DataProgressChart: payload,
       };
+    case actions.ALLOKRS:
+      return {
+        ...state,
+        AllOkrs: payload,
+      };
     case actions.EDITOKR:
       return {
         ...state,
@@ -87,11 +93,11 @@ export default function okrReducer(state = initialState, action) {
       return {
         ...state,
         ...payload,
-      };
+      }
     case actions.CLEAN_REDIRECT:
       return {
         ...state,
-        redirect: null
+        redirect: null,
       }
     default:
       return state;
