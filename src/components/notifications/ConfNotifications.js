@@ -34,7 +34,7 @@ export default function ConfNotifications() {
 
 	 const getConfigNotification = () => {
 	 	if (user) {
-	 		fetch("http://localhost:8080/GetConfigNotifications/" + "060120", {
+	 		fetch("http://localhost:8080/GetConfigNotifications/" + user.email, {
 	 			method: "GET",
 	 			headers: {
 	 				"Content-Type": "application/json",
