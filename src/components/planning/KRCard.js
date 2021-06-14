@@ -12,11 +12,15 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
-import '../styles/Card.css';
+import '../../styles/Card.css';
 import { Slider } from '@material-ui/core';
+import { updateKR } from '../../actions/okrActions';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
+    border: '1px solid #E5DFDA',
+    background: '#F9F9F5',
     maxWidth: 300,
     minWidth: 300,
     margin: '25px',
@@ -26,8 +30,8 @@ const useStyles = makeStyles({
   },
 });
 
-const KrCard = ({ keyResult, description, value }) => {
-  const [slider, setSlider] = useState(value);
+const KRCard = ({ dispatch, kr, userId }) => {
+  const [slider, setSlider] = useState(kr.progressKr);
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -37,7 +41,7 @@ const KrCard = ({ keyResult, description, value }) => {
             <CircularProgress
               variant='determinate'
               color='primary'
-              value={value}
+              value={kr.progressKr}
               size={60}
             />
             <Box
@@ -52,25 +56,25 @@ const KrCard = ({ keyResult, description, value }) => {
               <Typography
                 variant='caption'
                 component='div'
-                color='textSecondary'>{`${value}%`}</Typography>
+                color='textSecondary'>{`${kr.progressKr}%`}</Typography>
             </Box>
           </Box>
         </CardMedia>
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
-            {keyResult}
+            {kr.keyResult}
           </Typography>
           <Typography variant='body2' color='textSecondary' component='p'>
-            {description}
+            {kr.description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size='small' color='primary'>
-          <EditIcon className='btn_color'/>
+          <EditIcon className='btn_color' />
         </Button>
         <Button size='small' color='primary'>
-          <DeleteIcon className='btn_color'/>
+          <DeleteIcon className='btn_color' />
         </Button>
         <Slider
           className='slider-input'
@@ -80,10 +84,14 @@ const KrCard = ({ keyResult, description, value }) => {
           valueLabelDisplay='auto'
           step={5}
           marks
-          min={value}
+          min={kr.progressKr}
           max={100}
           onChange={(event, newValue) => {
             setSlider(newValue);
+          }}
+          onMouseUp={() => {
+            // console.log({ ...kr, progressKr: slider });
+            dispatch(updateKR({ ...kr, progressKr: slider }, userId));
           }}
         />
       </CardActions>
@@ -91,4 +99,8 @@ const KrCard = ({ keyResult, description, value }) => {
   );
 };
 
-export default KrCard;
+const mapStateToProps = (state) => ({
+  userId: state.okr.OKR.userId,
+});
+
+export default connect(mapStateToProps)(KRCard);

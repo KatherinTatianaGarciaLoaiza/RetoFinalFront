@@ -1,26 +1,41 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { getOwnOKR, progressOkr } from "../actions/okrActions";
 import Toolbar from "@material-ui/core/Toolbar";
+
 import NavbarSofKa from "../components/structure/Navbar";
 import Sidebar from "../components/structure/Sidebar";
-import AllOkrCard from "../components/dashboard-folder/AllOkrCard";
-import { getAllOkr, getOwnOKR } from "../actions/okrActions";
-import { connect } from "react-redux";
 import { estilos } from "../components/structure/DesignNaSi";
+import AllOkrCard from "../components/dashboard-folder/AllOkrCard";
 
-const AllOKRSPage = ({ dispatch, allOkrs }) => {
+const OkrComplete = ({ dispatch, userId, okrs, state }) => {
+
+  let okrsProgress = [];
+ 
+
   useEffect(() => {
-    dispatch(getAllOkr());
+    dispatch(getOwnOKR(userId));
   }, []);
-
   const classes = estilos();
+
+  okrsProgress = okrs.filter(function (okr) {
+    if (okr.progressOkr < 100) {
+      return okr;
+    }
+  });
+
+
   return (
     <div className={classes.root}>
       <NavbarSofKa classes={classes} />
       <Sidebar texto="Mis OKR" ruta="/MyOKRS" />
+      {(state = false)}
       <main className={classes.content}>
         <Toolbar />
+        <h1>Historial</h1>
         <div className="row row-cols-1 row-cols-md-3 g-4">
-          {allOkrs.map((okr) => (
+          {okrsProgress.map((okr) => (
               <div className="col">
             <AllOkrCard key={okr.id} okr={okr} />
             </div>
@@ -30,8 +45,10 @@ const AllOKRSPage = ({ dispatch, allOkrs }) => {
     </div>
   );
 };
+
 const mapStateToProps = (state) => ({
-  allOkrs: state.okr.AllOkrs,
+  userId: state.okr.OKR.userId,
+  okrs: state.okr.OKRUser,
 });
 
-export default connect(mapStateToProps)(AllOKRSPage);
+export default connect(mapStateToProps)(OkrComplete);
