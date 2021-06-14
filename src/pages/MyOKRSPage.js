@@ -5,10 +5,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import NavbarSofKa from '../components/structure/Navbar';
 import Sidebar from '../components/structure/Sidebar';
 import { getOwnOKR } from '../actions/okrActions';
-import OkrCard from '../components/OkrCard';
 
 import { estilos } from '../components/structure/DesignNaSi';
 import '../styles/OkrFormCss.css';
+import OKRCard from '../components/planning/OKRCard';
 
 const MyOKRSPage = ({ dispatch, userId, okrs }) => {
 
@@ -37,7 +37,7 @@ const MyOKRSPage = ({ dispatch, userId, okrs }) => {
       <main className={classes.content}>
         <Toolbar />
         {okrs.map((okr) => (
-          <OkrCard key={okr.id} okr={okr} />
+          <OKRCard key={okr.id} okr={okr} />
         ))}
       </main>
     </div>

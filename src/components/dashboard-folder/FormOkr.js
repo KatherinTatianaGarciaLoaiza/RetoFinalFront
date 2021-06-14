@@ -17,7 +17,7 @@ const Dashboard = (props) => {
       </div>
       <hr className="hr-title" />
       <h4 className="content-kr">
-        Obejtivo: <br /> {props.objective}
+        Objetivo: <br /> {props.objective}
       </h4>
       <hr />
       <h4 className="content-kr">Resultados Clave </h4>

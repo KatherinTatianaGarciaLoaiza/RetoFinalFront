@@ -1,20 +1,20 @@
-import React from 'react'
+import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import NavbarSofKa from '../components/structure/Navbar';
 import { estilos } from '../components/structure/DesignNaSi';
-import KRForm from '../components/planning/KRForm';
+import KREditForm from '../components/planning/KREditForm';
 
-const CreateKRPage = () => {
+const EditKRPage = () => {
     const classes = estilos();
     return (
-        <div className={classes.root}  >
+        <div className={classes.root}>
             <NavbarSofKa classes={classes} />
             <main className={classes.content}>
                 <Toolbar />
-                <KRForm />
+                <KREditForm />
             </main>
         </div>
-    )
+    );
 }
 
-export default CreateKRPage
+export default EditKRPage;

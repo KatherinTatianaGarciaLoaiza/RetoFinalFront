@@ -19,7 +19,6 @@ function Sidebar({ dispatch, userId, texto, ruta }) {
     dispatch(getMaxProgressOkr(userId))
   }
 
-  console.log(userId)
   const classes = estilos();
   return (
     <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper }}>

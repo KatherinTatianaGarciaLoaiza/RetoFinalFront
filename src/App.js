@@ -9,7 +9,7 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { login } from './actions/okrActions';
-import {auth} from './components/logging/Logging';
+import { auth } from './components/logging/Logging';
 import WelcomeMessage from "./components/administration/WelcomeMessage";
 
 import LandingPage from './pages/LandingPage';
@@ -21,6 +21,10 @@ import UserOKRSPage from "./pages/UserOKRSPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreateOKRPage from "./pages/CreateOKRPage";
 import CreateKRPage from "./pages/CreateKRPage";
+import EditOKRPage from './pages/EditOKRPage'
+import KREditPage from './pages/EditKRPage';
+import OkrForProgress from './pages/OkrForProgress';
+import OkrsComplete from './pages/OkrsComplete';
 
 function App({ dispatch }) {
   const [user] = useAuthState(auth);
@@ -29,13 +33,13 @@ function App({ dispatch }) {
   }
   return (
     <Router>
-      {user ? (        
+      {user ? (
         <Switch>
           <Route
             exact
             path='/'
             component={() => {
-              return <WelcomeMessage/>    
+              return <WelcomeMessage />
             }}
           />          
           <Route exact path='/AllOKRS' component={AllOKRSPage} />
@@ -50,7 +54,11 @@ function App({ dispatch }) {
             component={ConfigurationPage}
           />
           <Route exact path='/CreateKR' component={CreateKRPage} />
-          
+          <Route exact path='/OkrEditForm' component={EditOKRPage} />
+          <Route exact path='/KREditForm' component={KREditPage} />
+          <Route exact path='/ProgressOkr' component={OkrForProgress} />
+          <Route exact path='/Complete' component={OkrsComplete} />
+
         </Switch>
       ) : (
         <Switch>

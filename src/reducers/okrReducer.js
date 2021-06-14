@@ -2,6 +2,7 @@ import * as actions from "../actions/okrActions";
 
 export const initialState = {
   disabledButtonOKRForm: true,
+  redirect: null,
   OKR: {
     userId: "",
     title: "",
@@ -14,6 +15,12 @@ export const initialState = {
   },
   OKRUser: [],
   ProgressOKR: {},
+  DataProgressChart: {
+    actualPercentage: [0],
+  },
+  EditOkr: {},
+  EditKr: {},
+  AllOkrs: [],
 };
 
 export default function okrReducer(state = initialState, action) {
@@ -53,24 +60,50 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         OKR: {
           ...state.OKR,
-          title: '',
-          objective: '',
-          responName: '',
-          responEmail: '',
-          vertical: '',
-          description: '',
+          title: "",
+          objective: "",
+          responName: "",
+          responEmail: "",
+          vertical: "",
+          description: "",
           krs: [],
         },
-      }
+        disabledButtonOKRForm: true,
+      };
     case actions.OKRMAXPROGRESS:
       return {
         ...state,
         ProgressOKR: payload,
       };
+    case actions.DATACHARTOKR:
+      return {
+        ...state,
+        DataProgressChart: payload,
+      };
+    case actions.ALLOKRS:
+      return {
+        ...state,
+        AllOkrs: payload,
+      };
+    case actions.EDITOKR:
+      return {
+        ...state,
+        ...payload,
+      };
+    case actions.EDITKR:
+      return {
+        ...state,
+        ...payload,
+      };
     case actions.UPDATE_STATUS_BUTTON_OKR:
       return {
         ...state,
-        ...payload
+        ...payload,
+      }
+    case actions.CLEAN_REDIRECT:
+      return {
+        ...state,
+        redirect: null,
       }
     default:
       return state;

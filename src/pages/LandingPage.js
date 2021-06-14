@@ -22,7 +22,7 @@ export default function LandingPage() {
               (Filosofía de mejora continua, compromiso y disciplina).</p>
             <p className="body">Somos una compañía que desde sus inicios viene desarrollando 
               el talento tanto técnico como humano, para estar a la vanguardia
-               de la industria tecnológica generando soluciones de alto impacto
+              de la industria tecnológica generando soluciones de alto impacto
                 para nuestros clientes con los que siempre trabajamos en equipo.</p>
             <img src={Logo} alt='' style={{width:"80%",height:"30%"}}></img>
             <SignIn />
