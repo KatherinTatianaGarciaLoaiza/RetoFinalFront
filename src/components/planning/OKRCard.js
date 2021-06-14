@@ -14,8 +14,6 @@ const OkrCard = ({ okr, dispatch, redirect }) => {
   useEffect(() => {
     if (redirect) {
       history.push(redirect)
-    }
-    return () => {
       dispatch(cleanRedirect())
     }
   }, [redirect])

@@ -57,6 +57,8 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
             render={({ field }) => (
               <TextField
                 {...field}
+                autoFocus={true}
+                autoComplete='off'
                 required
                 variant='outlined'
                 fullWidth
@@ -75,6 +77,7 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
               <TextField
                 {...field}
                 required
+                autoComplete='off'
                 variant='outlined'
                 fullWidth
                 id='input_objective_okr'
@@ -126,6 +129,7 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
               <TextField
                 {...field}
                 required
+                autoComplete='off'
                 variant='outlined'
                 fullWidth
                 id='input_respon_okr'
@@ -142,6 +146,7 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
             render={({ field }) => (
               <TextField
                 {...field}
+                autoComplete='off'
                 required
                 variant='outlined'
                 fullWidth
@@ -161,6 +166,7 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
             render={({ field }) => (
               <TextField
                 {...field}
+                autoComplete='off'
                 id='input_description_okr'
                 label='Descripcion'
                 multiline
