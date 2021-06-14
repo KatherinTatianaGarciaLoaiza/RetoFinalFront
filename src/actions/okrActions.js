@@ -11,6 +11,7 @@ export const UPDATEOKR = 'UPDATE_OKR';
 export const POSTOKR = 'POSTOKR';
 export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
 export const EDITOKR = "EDITOKR";
+export const EDITKR = 'EDITKR';
 export const UPDATE_STATUS_BUTTON_OKR = "UPDATE_STATUS_BUTTON_OKR";
 export const DATACHARTOKR = "DATACHARTOKR";
 export const ALLOKRS = "ALLOKRS";
@@ -48,6 +49,11 @@ export const postokr = () => ({
 export const editokr = (data) => ({
   type: EDITOKR,
   payload: { EditOkr: data, redirect: '/OkrEditForm' },
+});
+
+export const editkr = (data) => ({
+  type: EDITKR,
+  payload: { EditKr: data, redirect: '/KrEditForm' },
 });
 
 export const progressOkr = (data) => ({
@@ -93,6 +99,13 @@ export function editOkr(id) {
     const { data } = await axios.get(`${URI}/okr/${id}`);
     dispatch(editokr(data));
   };
+}
+
+export function editKr(krId) {
+  return async(dispatch) => {
+    const {data} =await axios.get(`${URI}/kr/${krId}`);
+    dispatch(editkr(data));
+  }
 }
 
 export function getOkrById(id) {
