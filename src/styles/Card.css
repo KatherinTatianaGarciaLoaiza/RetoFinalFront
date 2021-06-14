@@ -30,3 +30,8 @@
 .MuiCircularProgress-colorPrimary {
   color: #f0950e !important;
 }
+
+.card-title{
+  background-color: #F0950E;
+  color: #fff;
+}
