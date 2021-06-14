@@ -65,7 +65,7 @@ export default function ConfNotifications() {
 
     return (
         <>
-            <Container style={{boxShadow: "0px 0px 15px 0 #F0950E "}}>
+            <Container style={{boxShadow: "0px 0px 15px 0  #000"}}>
 			<br/>
                 <Row className="justify-content-md-center">
                     <strong>
