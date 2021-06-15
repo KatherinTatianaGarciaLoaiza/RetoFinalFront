@@ -53,6 +53,7 @@ export default function okrReducer(state = initialState, action) {
     case actions.UPDATEOKR:
       return {
         ...state,
+        redirect: '/MyOKRS',
         OKRUser: payload,
       };
     case actions.POSTOKR:

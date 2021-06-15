@@ -87,6 +87,21 @@ export const postOKR = (data) => {
   };
 };
 
+export const putKR = (data, userId) => {
+  return async (dispatch) => {
+    await axios.put(`${URI}/kr`, data);
+    dispatch(getOwnOKR(userId));
+  }
+}
+
+export const putOKR = (data) => {
+  return async (dispatch) => {
+    await axios.put(`${URI}/okr`, data);
+    dispatch(getOwnOKR(data.userId));
+  }
+}
+
+
 export function getOwnOKR(userId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/all-okr/${userId}`);
@@ -102,8 +117,8 @@ export function editOkr(id) {
 }
 
 export function editKr(krId) {
-  return async(dispatch) => {
-    const {data} =await axios.get(`${URI}/kr/${krId}`);
+  return async (dispatch) => {
+    const { data } = await axios.get(`${URI}/kr/${krId}`);
     dispatch(editkr(data));
   }
 }

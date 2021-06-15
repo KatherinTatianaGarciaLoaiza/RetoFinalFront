@@ -82,6 +82,8 @@ const KRForm = ({ dispatch, okr }) => {
               <TextField
                 {...field}
                 required
+                autoFocus={true}
+                autoComplete='off'
                 variant='outlined'
                 fullWidth
                 id='input_keyresult_kr'
@@ -152,6 +154,7 @@ const KRForm = ({ dispatch, okr }) => {
                 required
                 variant='outlined'
                 fullWidth
+                autoComplete='off'
                 id='input_responname_kr'
                 label='Nombre'
               />
@@ -169,6 +172,7 @@ const KRForm = ({ dispatch, okr }) => {
                 required
                 variant='outlined'
                 fullWidth
+                autoComplete='off'
                 id='input_responemail_kr'
                 label='Email'
               />
@@ -188,6 +192,7 @@ const KRForm = ({ dispatch, okr }) => {
                 variant='outlined'
                 rows='3'
                 fullWidth
+                autoComplete='off'
                 id='input_description_okr'
                 label='Descripcion'
               />
