@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import '../../styles/OkrFormCss.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateStateOKR } from '../../actions/okrActions';
+import { cleanRedirect, updateStateOKR } from '../../actions/okrActions';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import {
   Button,
@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 const OkrFormPage = ({ dispatch, okr, statusButton }) => {
   const inputLabel = useRef(null);
   const [labelWidth, setLabelWidth] = useState(0);
@@ -35,6 +37,10 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
   useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
+
+  useEffect(() => {
+    dispatch(cleanRedirect())
+  }, [])
 
   const onChange = (data) => {
     const objectWithFields = control.fieldsRef.current;

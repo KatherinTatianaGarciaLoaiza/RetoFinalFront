@@ -5,7 +5,7 @@ import { IconButton } from '@material-ui/core';
 import '../../styles/OkrCard.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { cleanRedirect, editOkr,deleteOkr } from '../../actions/okrActions';
+import { cleanRedirect, editOkr, deleteOkr } from '../../actions/okrActions';
 import KRCard from './KRCard';
 
 const OkrCard = ({ okr, dispatch, redirect, userId }) => {
@@ -23,7 +23,7 @@ const OkrCard = ({ okr, dispatch, redirect, userId }) => {
   }
 
   const handleDelete = (okrId, userId) => {
-    dispatch(deleteOkr(okrId,userId))
+    dispatch(deleteOkr(okrId, userId))
   }
 
   return (
@@ -33,7 +33,7 @@ const OkrCard = ({ okr, dispatch, redirect, userId }) => {
         <IconButton aria-label='editar' color='primary' onClick={() => { handleEdit(okr.id) }}>
           <EditIcon className='btn_color' />
         </IconButton>
-        <IconButton aria-label='eliminar' color='primary'onClick={() => { handleDelete(okr.id , userId) }}>
+        <IconButton aria-label='eliminar' color='primary' onClick={() => { handleDelete(okr.id, userId) }}>
           <DeleteIcon className='btn_color' />
         </IconButton>
       </div>

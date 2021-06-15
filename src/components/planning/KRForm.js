@@ -99,7 +99,6 @@ const KRForm = ({ dispatch, okr, redirect }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2>Crear KR</h2>
-      {console.log("render")}
       <Divider style={{ marginBottom: 20 }} />
       <Grid container spacing={2} style={{ marginBottom: 20 }}>
         <Grid item xs={5}>
