@@ -31,23 +31,23 @@ const useStyles = makeStyles({
   },
 });
 
-const KRCard = ({ dispatch, kr, userId, redirect  }) => {
+const KRCard = ({ dispatch, kr, userId, redirect }) => {
   const [slider, setSlider] = useState(kr.progressKr);
   const classes = useStyles();
   const history = useHistory();
 
   useEffect(() => {
     if (redirect) {
-      history.push(redirect)
+      history.push(redirect);
     }
     return () => {
-      dispatch(cleanRedirect())
-    }
-  }, [redirect])
+      dispatch(cleanRedirect());
+    };
+  }, [redirect]);
 
   const handleEdit = (krId) => {
-    dispatch(editKr(krId))
-  }
+    dispatch(editKr(krId));
+  };
 
   return (
     <Card className={classes.root}>
@@ -87,7 +87,12 @@ const KRCard = ({ dispatch, kr, userId, redirect  }) => {
       </CardActionArea>
       <CardActions>
         <Button size='small' color='primary'>
-          <EditIcon className='btn_color' onClick={() => { handleEdit(kr.krId) }} />
+          <EditIcon
+            className='btn_color'
+            onClick={() => {
+              handleEdit(kr.krId);
+            }}
+          />
         </Button>
         <Button size='small' color='primary'>
           <DeleteIcon className='btn_color' />
@@ -102,6 +107,7 @@ const KRCard = ({ dispatch, kr, userId, redirect  }) => {
           marks
           min={kr.progressKr}
           max={100}
+          disabled={kr.progressKr < 100 ? false : true}
           onChange={(event, newValue) => {
             setSlider(newValue);
           }}
