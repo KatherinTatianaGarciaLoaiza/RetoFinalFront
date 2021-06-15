@@ -89,15 +89,51 @@ export const postOKR = (data) => {
 
 export const putKR = (data, userId) => {
   return async (dispatch) => {
-    await axios.put(`${URI}/kr`, data);
-    dispatch(getOwnOKR(userId));
+    swal({
+      title: '¿Esta seguro que desea actualizar?',
+      text: 'Una vez actualice, se guardaran los cambios',
+      icon: 'warning',
+      buttons: ["Cancelar","Actualizar"],
+      dangerMode: true,
+    }).then(async (willUpdate) => {
+      if (willUpdate) {
+        await axios.put(`${URI}/kr`, data);
+        swal(
+          'Perfecto !',
+          'Se ha actualizado el KR',
+          'success'
+        ).then(() => {
+          dispatch(getOwnOKR(userId));
+        });
+      } else {
+        swal('No se ha actualizado nada');
+      }
+    });
   }
 }
 
 export const putOKR = (data) => {
   return async (dispatch) => {
-    await axios.put(`${URI}/okr`, data);
-    dispatch(getOwnOKR(data.userId));
+    swal({
+      title: '¿Esta seguro que desea actualizar?',
+      text: 'Una vez actualice, se guardaran los cambios',
+      icon: 'warning',
+      buttons: ["Cancelar","Actualizar"],
+      dangerMode: true,
+    }).then(async (willUpdate) => {
+      if (willUpdate) {
+        await axios.put(`${URI}/okr`, data);
+        swal(
+          'Perfecto !',
+          'Se ha actualizado el OKR',
+          'success'
+        ).then(() => {
+          dispatch(getOwnOKR(data.userId));
+        });
+      } else {
+        swal('No se ha actualizado nada');
+      }
+    });
   }
 }
 

@@ -43,7 +43,7 @@ export function Logout() {
 export function ResetClock() {
   if (auth.currentUser) {
     clearTimeout(IdleTime);
-    IdleTime = setTimeout(Logout, 6000000)
+    IdleTime = setTimeout(Logout, 120000)
   }
 }
 

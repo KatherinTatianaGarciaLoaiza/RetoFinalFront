@@ -2,6 +2,7 @@ import React from 'react'
 import Toolbar from '@material-ui/core/Toolbar';
 
 import NavbarSofKa from '../components/structure/Navbar';
+import ConfNotifications from '../components/notifications/ConfNotifications';
 
 import { estilos } from '../components/structure/DesignNaSi';
 
@@ -12,9 +13,7 @@ const ConfigurationPage = () => {
             <NavbarSofKa classes={classes} />
             <main className={classes.content}>
                 <Toolbar />
-                {
-                    <h1>Aca trabajan ustedes</h1>
-                }
+                <ConfNotifications/>
             </main>
         </div>
     )

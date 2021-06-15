@@ -1,3 +1,6 @@
+import { withStyles } from '@material-ui/core/styles';
+import Switch from '@material-ui/core/Switch';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -46,3 +49,16 @@ export const estilosAvatar = makeStyles((theme) => ({
 }));
 
 
+export const OrangeSwitch = withStyles({
+  switchBase: {
+    color: "#F0950E",
+    '&$checked': {
+      color: "#F0950E",
+    },
+    '&$checked + $track': {
+      backgroundColor: "#F0950E",
+    },
+  },
+  checked: {},
+  track: {},
+})(Switch);

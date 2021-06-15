@@ -41,7 +41,7 @@ function App({ dispatch }) {
             component={() => {
               return <WelcomeMessage />
             }}
-          />
+          />          
           <Route exact path='/AllOKRS' component={AllOKRSPage} />
           <Route exact path='/MyOKRS' component={MyOKRSPage} />
           <Route exact path='/Home' component={HomePage} />
