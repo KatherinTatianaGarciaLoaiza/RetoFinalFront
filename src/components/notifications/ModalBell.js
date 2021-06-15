@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 function ModalBell() {
 
@@ -22,7 +23,7 @@ function ModalBell() {
 
     return (
         <div className="App" id="App">
-            <NotificationsIcon style={{ color: 'white', cursor: "pointer" }} fontSize="large" onClick={() => open_close_Modal()} />
+            <NotificationsIcon style={{ color: 'white', cursor: "pointer" }} fontSize="large" onClick={() => open_close_Modal()} ><FiberManualRecordIcon/></NotificationsIcon>
             <Modal open={modal} onClose={open_close_Modal}>
                 {body}
             </Modal>
