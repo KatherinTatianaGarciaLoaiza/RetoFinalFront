@@ -15,10 +15,6 @@ import { estilos } from './DesignNaSi';
 
 function Sidebar({ dispatch, userId, texto, ruta }) {
 
-  const progressOkrMax = (userId) => {
-    dispatch(getMaxProgressOkr(userId))
-  }
-
   const classes = estilos();
   return (
     <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper }}>
@@ -47,7 +43,7 @@ function Sidebar({ dispatch, userId, texto, ruta }) {
             </Accordion.Collapse>
             <Divider />
             <Accordion.Collapse eventKey="0">
-              <Card.Body><Link to={`/UserOKRS`} onClick={progressOkrMax(userId)} className="button" style={{ color: "#000" }} >
+              <Card.Body><Link to={`/ShowMaxProgressOkr`}  className="button" style={{ color: "#000" }} >
                 {nombre(auth.currentUser.displayName)}</Link></Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle as={Card.Header} variant="link" eventKey="1" style={{ background: "#ffffff", color: "#000", cursor: "pointer" }}>
@@ -64,9 +60,9 @@ function Sidebar({ dispatch, userId, texto, ruta }) {
   )
 }
 
+
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
 });
-
 
 export default connect(mapStateToProps)(Sidebar);
