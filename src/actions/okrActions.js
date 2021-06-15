@@ -126,6 +126,7 @@ export const postOKR = (data) => {
 
 export const putKR = (data, userId) => {
   return async (dispatch) => {
+    console.log("entro")
     swal({
       title: '¿Esta seguro que desea actualizar?',
       text: 'Una vez actualice, se guardaran los cambios',
@@ -212,6 +213,7 @@ export function getMaxProgressOkr(userId) {
 
 export const updateKR = (kr, userId) => {
   return async (dispatch) => {
+    console.log("entroperro")
     swal({
       title: '¿Esta seguro de actualizar?',
       text: 'Una vez actualice, se guardaran los cambios',
@@ -220,6 +222,7 @@ export const updateKR = (kr, userId) => {
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
+        //mandar notificacion edicion kr
         await axios.put(`${URI}/kr`, kr);
         swal(
           'Perfecto !',
