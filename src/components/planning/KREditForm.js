@@ -190,7 +190,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
             color='primary'
             endIcon={<SaveIcon />}
             style={{ fontFamily: 'Lato', margin: 10 }}>
-            Guardar
+            Actualizar
           </Button>
         </Grid>
       </Grid>
