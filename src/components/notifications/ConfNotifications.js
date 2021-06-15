@@ -23,6 +23,7 @@ export default function ConfNotifications() {
 	const [user] = useAuthState(auth);
 
 	const [state, setState] = useState({
+        id: "",
 		userId: user.email,
 		oKRFinishScreen: true,
 		kRFinishScreen: true,
@@ -36,11 +37,9 @@ export default function ConfNotifications() {
 
 
 
-	const getConfigNotification = () => {
-		if (user) {
+	const getOrPostConfigNotification = () => {
 			axios.get("http://localhost:8080/GetConfigNotifications/" + user.email)
 				.then(res => {if(res.data==""){
-					console.log(state)
 					axios.post("http://localhost:8080/createConfigNotifications",{"userId":user.email,
 					"oKRFinishScreen":true,
 					"kRFinishScreen":true,
@@ -49,24 +48,24 @@ export default function ConfNotifications() {
 				}else{
 					setState(res.data)
 				}})
-		}
 	};
 
-	const postConfigNotification = () => {
-		if (user) {
-			axios.put("http://localhost:8080/createConfigNotifications",{state})
-				.then(res => setState(res.data))
-		}else{
-			axios.post("http://localhost:8080/createConfigNotifications",{state})
-				.then(res => setState(res.data))
-		}
+	const putConfigNotification = () => {
+			axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
+            "userId":user.email,
+            "oKRFinishScreen":state.oKRFinishScreen,
+            "kRFinishScreen":state.kRFinishScreen,
+            "kRLateScreen":state.kRLateScreen,
+            "oKREditScreen":state.oKREditScreen})
+				console.log(state);
 	};
 
 	const Swal = () => {
 		swal("Correcto", "La configuración ha sido guardada", "success");
+        putConfigNotification();
 	};
 	useEffect(() => {
-		getConfigNotification();
+		getOrPostConfigNotification();
 		// eslint-disable-next-line
 	}, [])
 
