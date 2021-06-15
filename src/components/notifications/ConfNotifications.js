@@ -13,6 +13,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import AirplayIcon from '@material-ui/icons/Airplay';
 
 import { auth } from '../logging/Logging';
+import { URI } from '../../actions/okrActions';
 
 import '../../styles/style.css'
 import '../../styles/style2.css'
@@ -38,25 +39,39 @@ export default function ConfNotifications() {
 
 
 	const getOrPostConfigNotification = () => {
-			axios.get("http://localhost:8080/GetConfigNotifications/" + user.email)
+			//axios.get("http://localhost:8080/GetConfigNotifications/" + user.email)
+			axios.get(`${URI}/GetConfigNotifications/${user.email}`)
 				.then(res => {if(res.data==""){
-					axios.post("http://localhost:8080/createConfigNotifications",{"userId":user.email,
+					// axios.post("http://localhost:8080/createConfigNotifications",{"userId":user.email,
+					// "oKRFinishScreen":true,
+					// "kRFinishScreen":true,
+					// "kRLateScreen":true,
+					// "oKREditScreen":true})
+					axios.post(`${URI}/createConfigNotifications`,{"userId":user.email,
 					"oKRFinishScreen":true,
 					"kRFinishScreen":true,
 					"kRLateScreen":true,
 					"oKREditScreen":true})
+					axios.get(`${URI}/GetConfigNotifications/${user.email}`)
+					.then(res => setState(res.data))
 				}else{
 					setState(res.data)
 				}})
 	};
 
 	const putConfigNotification = () => {
-			axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
-            "userId":user.email,
-            "oKRFinishScreen":state.oKRFinishScreen,
-            "kRFinishScreen":state.kRFinishScreen,
-            "kRLateScreen":state.kRLateScreen,
-            "oKREditScreen":state.oKREditScreen})
+		axios.put(`${URI}/UpdateConfigNotifications`,{"id":state.id,
+		"userId":user.email,
+		"oKRFinishScreen":state.oKRFinishScreen,
+		"kRFinishScreen":state.kRFinishScreen,
+		"kRLateScreen":state.kRLateScreen,
+		"oKREditScreen":state.oKREditScreen})
+			// axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
+            // "userId":user.email,
+            // "oKRFinishScreen":state.oKRFinishScreen,
+            // "kRFinishScreen":state.kRFinishScreen,
+            // "kRLateScreen":state.kRLateScreen,
+            // "oKREditScreen":state.oKREditScreen})
 				console.log(state);
 	};
 
@@ -66,13 +81,7 @@ export default function ConfNotifications() {
 	};
 	useEffect(() => {
 		getOrPostConfigNotification();
-		// eslint-disable-next-line
 	}, [])
-
-	//FKR = Finish KR
-	//FOKR = Finish OKR
-	//LKR = Late KR
-	//EOKR = Edit OKR
 
 	return (
 		<>

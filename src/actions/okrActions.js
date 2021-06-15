@@ -1,8 +1,7 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-const URI = 'http://localhost:8080'
-
-//'https://api-okr.herokuapp.com';
+export const URI = 'https://api-okr.herokuapp.com' 
+//export const URI = 'http://localhost:8080'
 
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
@@ -127,6 +126,7 @@ export const postOKR = (data) => {
 
 export const putKR = (data, userId) => {
   return async (dispatch) => {
+    console.log("entro")
     swal({
       title: '¿Esta seguro que desea actualizar?',
       text: 'Una vez actualice, se guardaran los cambios',
@@ -213,6 +213,7 @@ export function getMaxProgressOkr(userId) {
 
 export const updateKR = (kr, userId) => {
   return async (dispatch) => {
+    console.log("entroperro")
     swal({
       title: '¿Esta seguro de actualizar?',
       text: 'Una vez actualice, se guardaran los cambios',
@@ -221,6 +222,8 @@ export const updateKR = (kr, userId) => {
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
+        //if(kr.progressK == 100)
+        //mandar notificacion edicion kr
         await axios.put(`${URI}/kr`, kr);
         swal(
           'Perfecto !',
