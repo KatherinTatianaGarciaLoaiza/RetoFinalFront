@@ -18,6 +18,7 @@ export const ALLOKRS = "ALLOKRS";
 
 export const CLEAN_REDIRECT = "CLEAN_REDIRECT"
 
+
 export const updateStateOKR = (data) => ({
   type: UPDATE_STATE_OKR,
   payload: data,
@@ -77,13 +78,50 @@ export const getAllOkrs = (data) => ({
 });
 
 
+
+export const deleteOkr = (okrId, userId) => {
+  return async (dispatch) => {
+    swal({
+      title: '¿Esta seguro de eliminar?',
+      text: 'Una vez eliminado, se borrarán los OKR con sus KR',
+      icon: 'warning',
+      buttons:["Cancelar","Aceptar"],
+      dangerMode: true,
+      
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        await axios.delete(`${URI}/delete/${okrId}`);
+        swal('Perfecto !', 'OKR Eliminado exitosamente', 'success').then((value) => {
+          dispatch(getOwnOKR(userId));
+        });
+      } else {
+        swal({
+          title: 'No se eliminó',
+          icon: 'info',   
+          button:"Aceptar"
+        });
+      }
+    });
+  };
+};
+
 export const postOKR = (data) => {
   return async (dispatch) => {
-    await axios.post(`${URI}/okr`, data);
-    dispatch(postokr());
-    swal('Perfecto !', 'OKR Creado exitosamente', 'success').then((value) => {
-      dispatch(getOwnOKR(data.userId));
-    });
+    try{
+      await axios.post(`${URI}/okr`, data);
+      dispatch(postokr());
+      swal('Perfecto !', 'OKR Creado exitosamente', 'success').then((value) => {
+        dispatch(getOwnOKR(data.userId));
+      });
+
+    }catch(err) {
+      swal({
+        title: 'El peso de los KR debe ser igual a 100%',
+        icon: 'error',   
+        button:"Aceptar"
+      })
+    }
+    
   };
 };
 

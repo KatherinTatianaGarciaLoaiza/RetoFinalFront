@@ -5,10 +5,10 @@ import { IconButton } from '@material-ui/core';
 import '../../styles/OkrCard.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { cleanRedirect, editOkr } from '../../actions/okrActions';
+import { cleanRedirect, editOkr,deleteOkr } from '../../actions/okrActions';
 import KRCard from './KRCard';
 
-const OkrCard = ({ okr, dispatch, redirect }) => {
+const OkrCard = ({ okr, dispatch, redirect, userId }) => {
   const history = useHistory();
 
   useEffect(() => {
@@ -22,6 +22,10 @@ const OkrCard = ({ okr, dispatch, redirect }) => {
     dispatch(editOkr(id))
   }
 
+  const handleDelete = (okrId, userId) => {
+    dispatch(deleteOkr(okrId,userId))
+  }
+
   return (
     <div>
       <div className='container_display_title'>
@@ -29,7 +33,7 @@ const OkrCard = ({ okr, dispatch, redirect }) => {
         <IconButton aria-label='editar' color='primary' onClick={() => { handleEdit(okr.id) }}>
           <EditIcon className='btn_color' />
         </IconButton>
-        <IconButton aria-label='eliminar' color='primary'>
+        <IconButton aria-label='eliminar' color='primary'onClick={() => { handleDelete(okr.id , userId) }}>
           <DeleteIcon className='btn_color' />
         </IconButton>
       </div>
@@ -47,7 +51,9 @@ const OkrCard = ({ okr, dispatch, redirect }) => {
 };
 
 const mapStateToProps = (state) => ({
-  redirect: state.okr.redirect
+  redirect: state.okr.redirect,
+  userId: state.okr.OKR.userId
+
 })
 
 

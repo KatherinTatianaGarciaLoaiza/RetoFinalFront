@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
   Button,
@@ -11,7 +11,7 @@ import {
 import '../../styles/KRPage.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createKR, postOKR, updateStatusButton } from '../../actions/okrActions';
+import { createKR, postOKR, updateStatusButton, cleanRedirect } from '../../actions/okrActions';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -45,15 +45,33 @@ const useStyles = makeStyles({
   },
 });
 
-const KRForm = ({ dispatch, okr }) => {
+const KRForm = ({ dispatch, okr, redirect }) => {
   const { handleSubmit, control, reset } = useForm();
   const history = useHistory();
   const classes = useStyles();
+  const [sumWeightKrs, setSumWeightKrs] = useState(0);
+  const [disabledFields, setDisabledFields] = useState(false)
 
-  const redirect = () => {
+  const save = () => {
     dispatch(postOKR(okr));
-    history.push('/MyOKRS');
+
   };
+  useEffect(() => {
+    if (okr.krs) {
+      const sumKrs = okr.krs.reduce((acc, curr) => acc + curr.percentageWeight,0)
+       setSumWeightKrs(100 -sumKrs)
+      if(sumKrs>=100){
+        setDisabledFields(true)
+      }
+    }
+  }, [okr.krs])
+
+  useEffect(() => {
+    if (redirect) {
+      history.push(redirect);
+      dispatch(cleanRedirect())
+    }
+  }, [redirect])
 
   const onSubmit = (data) => {
     data.startDate = data.startDate.toISOString().slice(0, 10);
@@ -62,7 +80,7 @@ const KRForm = ({ dispatch, okr }) => {
     reset({
       startDate: new Date(),
       endDate: new Date(),
-      percentageWeight: 50,
+      percentageWeight:sumWeightKrs,
     });
   };
 
@@ -208,20 +226,23 @@ const KRForm = ({ dispatch, okr }) => {
             required
             name='percentageWeight'
             control={control}
-            defaultValue={50}
             render={({ field }) => (
               <Slider
+                required
                 {...field}
                 onChange={(_, value) => {
                   field.onChange(value);
                 }}
                 valueLabelDisplay='auto'
+
                 min={0}
-                max={100}
+                max={sumWeightKrs}
                 step={5}
-                defaultValue={50}
+                defaultValue={sumWeightKrs}
+                disabled={disabledFields}
               />
             )}
+            defaultValue={0}
           />
         </Grid>
       </Grid>
@@ -269,6 +290,7 @@ const KRForm = ({ dispatch, okr }) => {
           </Button>
 
           <Button
+            disabled={disabledFields}
             type='submit'
             variant='contained'
             color='primary'
@@ -277,7 +299,7 @@ const KRForm = ({ dispatch, okr }) => {
             Añadir KR
           </Button>
           <Button
-            onClick={redirect}
+            onClick={save}
             disabled={!okr.krs.length > 0}
             variant='contained'
             color='primary'
@@ -293,6 +315,7 @@ const KRForm = ({ dispatch, okr }) => {
 
 const mapStateToProps = (state) => ({
   okr: state.okr.OKR,
+  redirect: state.okr.redirect
 });
 
 export default connect(mapStateToProps)(KRForm);

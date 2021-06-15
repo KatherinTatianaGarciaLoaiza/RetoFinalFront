@@ -87,7 +87,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
               )}
               control={control}
               name='startDate'
-              defaultValue={new Date(krEdit.startDate.replaceAll("-", ","))}
+              defaultValue={new Date(krEdit.startDate)}
             />
           </MuiPickersUtilsProvider>
         </Grid>
@@ -98,6 +98,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
                 <KeyboardDatePicker
                   required
                   disableToolbar
+                  disablePast={true}
                   autoOk
                   variant='inline'
                   inputVariant='outlined'
@@ -110,7 +111,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
               )}
               control={control}
               name='endDate'
-              defaultValue={new Date(krEdit.endDate.replaceAll("-", ","))}
+              defaultValue={new Date(krEdit.endDate)}
             />
           </MuiPickersUtilsProvider>
         </Grid>
