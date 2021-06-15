@@ -47,6 +47,8 @@ export default function ConfNotifications() {
 					"kRFinishScreen":true,
 					"kRLateScreen":true,
 					"oKREditScreen":true})
+					axios.get(`${URI}/GetConfigNotifications/${user.email}`)
+					.then(res => setState(res.data))
 					// axios.post("http://localhost:8080/createConfigNotifications",{"userId":user.email,
 					// "oKRFinishScreen":true,
 					// "kRFinishScreen":true,
