@@ -39,39 +39,39 @@ export default function ConfNotifications() {
 
 
 	const getOrPostConfigNotification = () => {
-			//axios.get("http://localhost:8080/GetConfigNotifications/" + user.email)
-			axios.get(`${URI}/GetConfigNotifications/${user.email}`)
+			axios.get("http://localhost:8080/GetConfigNotifications/" + user.email)
+			//axios.get(`${URI}/GetConfigNotifications/${user.email}`)
 				.then(res => {if(res.data==""){
-					axios.post(`${URI}/createConfigNotifications`,{"userId":user.email,
+					axios.post("http://localhost:8080/createConfigNotifications",{"userId":user.email,
 					"oKRFinishScreen":true,
 					"kRFinishScreen":true,
 					"kRLateScreen":true,
 					"oKREditScreen":true})
-					axios.get(`${URI}/GetConfigNotifications/${user.email}`)
-					.then(res => setState(res.data))
-					// axios.post("http://localhost:8080/createConfigNotifications",{"userId":user.email,
+					// axios.post(`${URI}/createConfigNotifications`,{"userId":user.email,
 					// "oKRFinishScreen":true,
 					// "kRFinishScreen":true,
 					// "kRLateScreen":true,
 					// "oKREditScreen":true})
+					axios.get(`${URI}/GetConfigNotifications/${user.email}`)
+					.then(res => setState(res.data))
 				}else{
 					setState(res.data)
 				}})
 	};
 
 	const putConfigNotification = () => {
-		axios.put(`${URI}/UpdateConfigNotifications`,{"id":state.id,
-		"userId":user.email,
-		"oKRFinishScreen":state.oKRFinishScreen,
-		"kRFinishScreen":state.kRFinishScreen,
-		"kRLateScreen":state.kRLateScreen,
-		"oKREditScreen":state.oKREditScreen})
-			// axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
-            // "userId":user.email,
-            // "oKRFinishScreen":state.oKRFinishScreen,
-            // "kRFinishScreen":state.kRFinishScreen,
-            // "kRLateScreen":state.kRLateScreen,
-            // "oKREditScreen":state.oKREditScreen})
+		// axios.put(`${URI}/UpdateConfigNotifications`,{"id":state.id,
+		// "userId":user.email,
+		// "oKRFinishScreen":state.oKRFinishScreen,
+		// "kRFinishScreen":state.kRFinishScreen,
+		// "kRLateScreen":state.kRLateScreen,
+		// "oKREditScreen":state.oKREditScreen})
+			axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
+            "userId":user.email,
+            "oKRFinishScreen":state.oKRFinishScreen,
+            "kRFinishScreen":state.kRFinishScreen,
+            "kRLateScreen":state.kRLateScreen,
+            "oKREditScreen":state.oKREditScreen})
 				console.log(state);
 	};
 
