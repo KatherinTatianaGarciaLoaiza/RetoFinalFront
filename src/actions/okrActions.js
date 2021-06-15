@@ -1,7 +1,7 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-//export const URI = 'https://api-okr.herokuapp.com' 
-export const URI = 'http://localhost:8080'
+export const URI = 'https://api-okr.herokuapp.com' 
+//export const URI = 'http://localhost:8080'
 
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
@@ -222,6 +222,7 @@ export const updateKR = (kr, userId) => {
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
+        //if(kr.progressK == 100)
         //mandar notificacion edicion kr
         await axios.put(`${URI}/kr`, kr);
         swal(
