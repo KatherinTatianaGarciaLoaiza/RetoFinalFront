@@ -94,6 +94,14 @@ export const putKR = (data, userId) => {
   }
 }
 
+export const putOKR = (data) => {
+  return async (dispatch) => {
+    await axios.put(`${URI}/okr`, data);
+    dispatch(getOwnOKR(data.userId));
+  }
+}
+
+
 export function getOwnOKR(userId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/all-okr/${userId}`);
