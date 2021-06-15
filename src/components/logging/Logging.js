@@ -19,7 +19,7 @@ export function SignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
   };
-  return <img src={botonGoogle} alt='' onClick={signInWithGoogle} style={{ width: "50%", height: "30%",cursor: "pointer" }}>
+  return <img src={botonGoogle} alt='' onClick={signInWithGoogle} style={{ width: "50%", height: "30%", cursor: "pointer" }}>
   </img>;
 }
 
@@ -29,13 +29,13 @@ export function SignOut() {
       <ExitToAppIcon onClick={() => {
         localStorage.removeItem("uid");
         auth.signOut();
-      }} style={{ color: 'white', cursor:"pointer" }} fontSize="large" />
+      }} style={{ color: 'white', cursor: "pointer" }} fontSize="large" />
     )
   );
 }
 
 export function Logout() {
-  swal("¡¡¡Atencion!!!","Por exceder el tiempo de inactividad se ha cerrado la sesion","warning");
+  swal("¡¡¡Atencion!!!", "Por exceder el tiempo de inactividad se ha cerrado la sesion", "warning");
   auth.signOut();
   <Redirect to="/" />;
 }

@@ -40,6 +40,13 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
     dispatch(putKR(data, userId))
   };
 
+  function transformDate(dateReceived) {
+    let year = dateReceived.substring(0, 4);
+    let month = dateReceived.substring(5, 7);
+    let day = dateReceived.substring(8, 10);
+    return new Date(`${month}-${day}-${year}`).toLocaleDateString();
+  }
+
   const redirectOKRForm = () => {
     history.push('/MyOKRS');
   };
@@ -77,7 +84,6 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
                   autoOk
                   variant='inline'
                   inputVariant='outlined'
-                  value={field.value}
                   onChange={field.onChange}
                   disabled={true}
                   InputAdornmentProps={{ position: 'start' }}
@@ -87,7 +93,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
               )}
               control={control}
               name='startDate'
-              defaultValue={new Date(krEdit.startDate)}
+              defaultValue={new Date(transformDate(krEdit.startDate))}
             />
           </MuiPickersUtilsProvider>
         </Grid>
@@ -111,7 +117,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
               )}
               control={control}
               name='endDate'
-              defaultValue={new Date(krEdit.endDate)}
+              defaultValue={new Date(transformDate(krEdit.endDate))}
             />
           </MuiPickersUtilsProvider>
         </Grid>

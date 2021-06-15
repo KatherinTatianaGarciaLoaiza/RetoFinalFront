@@ -86,12 +86,11 @@ const KRCard = ({ dispatch, kr, userId, redirect }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size='small' color='primary'>
+        <Button onClick={() => {
+          handleEdit(kr.krId);
+        }} size='small' color='primary'>
           <EditIcon
             className='btn_color'
-            onClick={() => {
-              handleEdit(kr.krId);
-            }}
           />
         </Button>
         <Button size='small' color='primary'>
@@ -112,7 +111,6 @@ const KRCard = ({ dispatch, kr, userId, redirect }) => {
             setSlider(newValue);
           }}
           onMouseUp={() => {
-            // console.log({ ...kr, progressKr: slider });
             dispatch(updateKR({ ...kr, progressKr: slider }, userId));
           }}
         />
