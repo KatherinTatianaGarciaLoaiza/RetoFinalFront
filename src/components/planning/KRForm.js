@@ -23,6 +23,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
+import swal from 'sweetalert';
 
 const useStyles = makeStyles({
   root: {
@@ -57,12 +58,10 @@ const KRForm = ({ dispatch, okr, redirect }) => {
 
   };
   useEffect(() => {
-    if (okr.krs) {
-      const sumKrs = okr.krs.reduce((acc, curr) => acc + curr.percentageWeight,0)
-       setSumWeightKrs(100 -sumKrs)
-      if(sumKrs>=100){
-        setDisabledFields(true)
-      }
+    const sumKrs = okr.krs.reduce((acc, curr) => acc + curr.percentageWeight, 0)
+    setSumWeightKrs(100 - sumKrs)
+    if (sumKrs >= 100) {
+      setDisabledFields(true)
     }
   }, [okr.krs])
 
@@ -74,14 +73,22 @@ const KRForm = ({ dispatch, okr, redirect }) => {
   }, [redirect])
 
   const onSubmit = (data) => {
-    data.startDate = data.startDate.toISOString().slice(0, 10);
-    data.endDate = data.endDate.toISOString().slice(0, 10);
-    dispatch(createKR(data));
-    reset({
-      startDate: new Date(),
-      endDate: new Date(),
-      percentageWeight:sumWeightKrs,
-    });
+    if (data.percentageWeight === 0) {
+      swal({
+        title: 'El peso del KR debe ser superior a 0%',
+        icon: 'error',
+        button: "Aceptar"
+      })
+    } else {
+      data.startDate = data.startDate.toISOString().slice(0, 10);
+      data.endDate = data.endDate.toISOString().slice(0, 10);
+      dispatch(createKR(data));
+      reset({
+        startDate: new Date(),
+        endDate: new Date(),
+        percentageWeight: 0,
+      });
+    }
   };
 
   const redirectOKRForm = () => {
@@ -92,6 +99,7 @@ const KRForm = ({ dispatch, okr, redirect }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2>Crear KR</h2>
+      {console.log("render")}
       <Divider style={{ marginBottom: 20 }} />
       <Grid container spacing={2} style={{ marginBottom: 20 }}>
         <Grid item xs={5}>
@@ -226,6 +234,7 @@ const KRForm = ({ dispatch, okr, redirect }) => {
             required
             name='percentageWeight'
             control={control}
+            defaultValue={0}
             render={({ field }) => (
               <Slider
                 required
@@ -238,11 +247,10 @@ const KRForm = ({ dispatch, okr, redirect }) => {
                 min={0}
                 max={sumWeightKrs}
                 step={5}
-                defaultValue={sumWeightKrs}
+                defaultValue={0}
                 disabled={disabledFields}
               />
             )}
-            defaultValue={0}
           />
         </Grid>
       </Grid>
