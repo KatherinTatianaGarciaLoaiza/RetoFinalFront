@@ -17,11 +17,13 @@ import { auth } from '../logging/Logging';
 import '../../styles/style.css'
 import '../../styles/style2.css'
 import { OrangeSwitch } from '../structure/DesignNaSi'
+import axios from 'axios';
 
 export default function ConfNotifications() {
 	const [user] = useAuthState(auth);
 
-	const [state, setState] = React.useState({
+	const [state, setState] = useState({
+		userId: user.email,
 		oKRFinishScreen: true,
 		kRFinishScreen: true,
 		kRLateScreen: true,
@@ -32,30 +34,41 @@ export default function ConfNotifications() {
 		setState({ ...state, [event.target.name]: event.target.checked });
 	};
 
-	 const getConfigNotification = () => {
-	 	if (user) {
-	 		fetch("http://localhost:8080/GetConfigNotifications/" + user.email, {
-	 			method: "GET",
-	 			headers: {
-	 				"Content-Type": "application/json",
-	 			},
-	 		})
-	 			.then((response) => response.json())
-	 			.then((response) => {
-					setState(response);
-	 				console.log(response) 
-	 			});
-	 	}
-	 };
-	const Swal = () => {
-		return (
-			swal("Correcto", "La configuración ha sido guardada", "success")
-		)
+
+
+	const getConfigNotification = () => {
+		if (user) {
+			axios.get("http://localhost:8080/GetConfigNotifications/" + user.email)
+				.then(res => {if(res.data==""){
+					console.log(state)
+					axios.post("http://localhost:8080/createConfigNotifications",{"userId":user.email,
+					"oKRFinishScreen":true,
+					"kRFinishScreen":true,
+					"kRLateScreen":true,
+					"oKREditScreen":true})
+				}else{
+					setState(res.data)
+				}})
+		}
 	};
-	 useEffect(() => {
-	 	getConfigNotification();
-	 	// eslint-disable-next-line
-	 }, [])
+
+	const postConfigNotification = () => {
+		if (user) {
+			axios.put("http://localhost:8080/createConfigNotifications",{state})
+				.then(res => setState(res.data))
+		}else{
+			axios.post("http://localhost:8080/createConfigNotifications",{state})
+				.then(res => setState(res.data))
+		}
+	};
+
+	const Swal = () => {
+		swal("Correcto", "La configuración ha sido guardada", "success");
+	};
+	useEffect(() => {
+		getConfigNotification();
+		// eslint-disable-next-line
+	}, [])
 
 	//FKR = Finish KR
 	//FOKR = Finish OKR
