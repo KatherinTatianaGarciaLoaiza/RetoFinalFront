@@ -9,7 +9,6 @@ import CsvDownloader from "react-csv-downloader";
 import { exportComponentAsJPEG } from 'react-component-export-image';
 
 const DownloadChart = ({ data, burnDownChart, barChart, pieChart }) => {
-
   let csvString = [];
   csvString = [
     ["Peso Kr ", "Responsable Kr ", "Fecha Inicio ", "Fecha Fin"],

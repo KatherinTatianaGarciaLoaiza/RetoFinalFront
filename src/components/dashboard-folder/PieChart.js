@@ -2,7 +2,7 @@ import React from "react";
 import { Pie } from "react-chartjs-2";
 
 const PieChart = ({ krs }) => {
-  
+
   let formula = (el) => {
     return Math.round((el.percentageWeight / 100) * el.progressKr * 100) / 100;
   };

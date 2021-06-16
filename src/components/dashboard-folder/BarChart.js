@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { connect } from "react-redux";
 
-const BarChart = ({ krs,  progressData, }) => {
+const BarChart = ({ krs, progressData, }) => {
   let montArrayEnd = [];
   let montArrayStart = [];
   let montDif = [];
   let porcentDif = [];
-
-  
   const progressSort = progressData.actualPercentage.sort();
-
 
   krs.map((el) => {
     let parcialDate = el.startDate;
