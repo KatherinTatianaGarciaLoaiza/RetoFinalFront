@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import { Modal } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { Card, Button, Container, Row } from 'react-bootstrap';
+import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 
 import { URI } from '../../actions/okrActions';
 import { auth } from '../logging/Logging';
@@ -24,14 +24,19 @@ function ModalBell() {
                 </header>
                 <body>
                     {estado.map(res =>
-                        < div >
-                            <Card className="text-center">
-                                <Card.Body>
-                                    <Card.Title>{res.message}</Card.Title>
-                                    <Button variant="primary">Eliminar Notificacion</Button>
-                                </Card.Body>
-                            </Card>
-                        </div>
+                        <>
+                            <br />
+                            < Row className="justify-content-md-center">
+                                <Col xs="11">
+                                    <Card className="text-center">
+                                        <Card.Body>
+                                            <Card.Title>{res.message}</Card.Title>
+                                            <Button variant="primary">Eliminar Notificacion</Button>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            </Row>
+                        </>
                     )}
                 </body>
             </div>
@@ -50,7 +55,7 @@ function ModalBell() {
                 open_close_Modal()
             }
             } />
-            {modal && <Modal open={modal} onClose={open_close_Modal} style={{overflow:'scroll'}}>{body}</Modal>}
+            {modal && <Modal open={modal} onClose={open_close_Modal} style={{ overflow: 'scroll' }}>{body}</Modal>}
         </div>
     )
 }
