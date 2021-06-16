@@ -1,7 +1,48 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-export const URI = 'https://api-okr.herokuapp.com' 
-//export const URI = 'http://localhost:8080'
+
+import { auth } from '../components/logging/Logging';
+
+const saveNotification = (messagge, type) => {
+  axios.post(`${URI}/createNotifications`,
+    {
+      "userId": auth.currentUser.email,
+      "message": messagge,
+      "type": type
+    })
+}
+
+const verificacion = (messagge, type) => {
+  axios.get(`http://localhost:8080/GetConfigNotifications/${auth.currentUser.email}`).then(res => {
+    switch (type) {
+      case 'OKRFINISHSCREEN':
+        if (res.data.oKRFinishScreen) {
+          saveNotification(messagge, type);
+        }
+        break;
+      case 'KRFINISHSCREEN':
+        if (res.data.kRFinishScreen) {
+          saveNotification(messagge, type);
+        }
+        break;
+      case 'KRLATESCREEN':
+        if (res.data.kRLateScreen) {
+          saveNotification(messagge, type);
+        }
+        break;
+      case 'OKREDITSCREEN':
+        if (res.data.oKREditScreen) {
+          saveNotification(messagge, type);
+        }
+        break;
+      default:
+        console.log("pao pao");
+        break;
+    }
+  })
+}
+/* export const URI = 'https://api-okr.herokuapp.com'  */
+export const URI = 'http://localhost:8080'
 
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
@@ -15,8 +56,7 @@ export const UPDATE_STATUS_BUTTON_OKR = "UPDATE_STATUS_BUTTON_OKR";
 export const DATACHARTOKR = "DATACHARTOKR";
 export const ALLOKRS = "ALLOKRS";
 
-export const CLEAN_REDIRECT = "CLEAN_REDIRECT"
-
+export const CLEAN_REDIRECT = "CLEAN_REDIRECT";
 
 export const updateStateOKR = (data) => ({
   type: UPDATE_STATE_OKR,
@@ -84,9 +124,9 @@ export const deleteOkr = (okrId, userId) => {
       title: '¿Esta seguro de eliminar?',
       text: 'Una vez eliminado, se borrarán los OKR con sus KR',
       icon: 'warning',
-      buttons:["Cancelar","Aceptar"],
+      buttons: ["Cancelar", "Aceptar"],
       dangerMode: true,
-      
+
     }).then(async (willDelete) => {
       if (willDelete) {
         await axios.delete(`${URI}/delete/${okrId}`);
@@ -96,8 +136,8 @@ export const deleteOkr = (okrId, userId) => {
       } else {
         swal({
           title: 'No se eliminó',
-          icon: 'info',   
-          button:"Aceptar"
+          icon: 'info',
+          button: "Aceptar"
         });
       }
     });
@@ -106,35 +146,36 @@ export const deleteOkr = (okrId, userId) => {
 
 export const postOKR = (data) => {
   return async (dispatch) => {
-    try{
+    try {
       await axios.post(`${URI}/okr`, data);
       dispatch(postokr());
       swal('Perfecto !', 'OKR Creado exitosamente', 'success').then((value) => {
         dispatch(getOwnOKR(data.userId));
       });
 
-    }catch(err) {
+    } catch (err) {
       swal({
         title: 'El peso de los KR debe ser igual a 100%',
-        icon: 'error',   
-        button:"Aceptar"
+        icon: 'error',
+        button: "Aceptar"
       })
     }
-    
+
   };
 };
 
 export const putKR = (data, userId) => {
   return async (dispatch) => {
-    console.log("entro")
     swal({
       title: '¿Esta seguro que desea actualizar?',
       text: 'Una vez actualice, se guardaran los cambios',
       icon: 'warning',
-      buttons: ["Cancelar","Actualizar"],
+      buttons: ["Cancelar", "Actualizar"],
       dangerMode: true,
     }).then(async (willUpdate) => {
       if (willUpdate) {
+        axios.get(`${URI}/okr/${data.okrId}`)
+          .then(res => verificacion(`Se edito el KR ${data.keyResult} del OKR ${res.data.title}`, "OKREDITSCREEN"));
         await axios.put(`${URI}/kr`, data);
         swal(
           'Perfecto !',
@@ -156,10 +197,11 @@ export const putOKR = (data) => {
       title: '¿Esta seguro que desea actualizar?',
       text: 'Una vez actualice, se guardaran los cambios',
       icon: 'warning',
-      buttons: ["Cancelar","Actualizar"],
+      buttons: ["Cancelar", "Actualizar"],
       dangerMode: true,
     }).then(async (willUpdate) => {
       if (willUpdate) {
+        verificacion(`Se edito el OKR ${data.title}`, "OKREDITSCREEN");
         await axios.put(`${URI}/okr`, data);
         swal(
           'Perfecto !',
@@ -213,6 +255,7 @@ export function getMaxProgressOkr(userId) {
 
 export const updateKR = (kr, userId) => {
   return async (dispatch) => {
+    console.log(kr);
     console.log("entroperro")
     swal({
       title: '¿Esta seguro de actualizar?',
@@ -222,8 +265,11 @@ export const updateKR = (kr, userId) => {
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
-        //if(kr.progressK == 100)
-        //mandar notificacion edicion kr
+        console.log(kr.progressKr);
+        if (kr.progressKr == 100) {
+          axios.get(`${URI}/okr/${kr.okrId}`)
+            .then(res => verificacion(`Se completo el KR ${kr.keyResult} del OKR ${res.data.title}`, "KRFINISHSCREEN"));
+        }
         await axios.put(`${URI}/kr`, kr);
         swal(
           'Perfecto !',

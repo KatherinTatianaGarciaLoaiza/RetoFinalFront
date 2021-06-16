@@ -11,6 +11,7 @@ import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import EditIcon from '@material-ui/icons/Edit';
 import AirplayIcon from '@material-ui/icons/Airplay';
+import axios from 'axios';
 
 import { auth } from '../logging/Logging';
 import { URI } from '../../actions/okrActions';
@@ -18,18 +19,17 @@ import { URI } from '../../actions/okrActions';
 import '../../styles/style.css'
 import '../../styles/style2.css'
 import { OrangeSwitch } from '../structure/DesignNaSi'
-import axios from 'axios';
 
 export default function ConfNotifications() {
 	const [user] = useAuthState(auth);
 
 	const [state, setState] = useState({
         id: "",
-		userId: user.email,
-		oKRFinishScreen: true,
-		kRFinishScreen: true,
-		kRLateScreen: true,
-		oKREditScreen: true,
+		userId: "",
+		oKRFinishScreen: "",
+		kRFinishScreen: "",
+		kRLateScreen: "",
+		oKREditScreen:"",
 	});
 
 	const handleChange = (event) => {
@@ -39,39 +39,24 @@ export default function ConfNotifications() {
 
 
 	const getOrPostConfigNotification = () => {
-			//axios.get("http://localhost:8080/GetConfigNotifications/" + user.email)
-			axios.get(`${URI}/GetConfigNotifications/${user.email}`)
-				.then(res => {if(res.data==""){
-					// axios.post("http://localhost:8080/createConfigNotifications",{"userId":user.email,
-					// "oKRFinishScreen":true,
-					// "kRFinishScreen":true,
-					// "kRLateScreen":true,
-					// "oKREditScreen":true})
-					axios.post(`${URI}/createConfigNotifications`,{"userId":user.email,
-					"oKRFinishScreen":true,
-					"kRFinishScreen":true,
-					"kRLateScreen":true,
-					"oKREditScreen":true})
-					axios.get(`${URI}/GetConfigNotifications/${user.email}`)
+		axios.get(`http://localhost:8080/GetConfigNotifications/${user.email}`)
+					/* axios.get(`${URI}/GetConfigNotifications/${user.email}`) */
 					.then(res => setState(res.data))
-				}else{
-					setState(res.data)
-				}})
 	};
 
 	const putConfigNotification = () => {
-		axios.put(`${URI}/UpdateConfigNotifications`,{"id":state.id,
+		/* axios.put(`${URI}/UpdateConfigNotifications`,{"id":state.id,
 		"userId":user.email,
 		"oKRFinishScreen":state.oKRFinishScreen,
 		"kRFinishScreen":state.kRFinishScreen,
 		"kRLateScreen":state.kRLateScreen,
-		"oKREditScreen":state.oKREditScreen})
-			// axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
-            // "userId":user.email,
-            // "oKRFinishScreen":state.oKRFinishScreen,
-            // "kRFinishScreen":state.kRFinishScreen,
-            // "kRLateScreen":state.kRLateScreen,
-            // "oKREditScreen":state.oKREditScreen})
+		"oKREditScreen":state.oKREditScreen}) */
+			axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
+            "userId":user.email,
+            "oKRFinishScreen":state.oKRFinishScreen,
+            "kRFinishScreen":state.kRFinishScreen,
+            "kRLateScreen":state.kRLateScreen,
+            "oKREditScreen":state.oKREditScreen})
 				console.log(state);
 	};
 
