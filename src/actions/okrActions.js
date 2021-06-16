@@ -71,7 +71,30 @@ export const getAllOkrs = (data) => ({
   payload: data,
 });
 
-
+export const deleteKr=(krId, userId)=> {
+  return async (dispatch) => {
+    swal({
+      title: '¿Esta seguro de eliminar?',
+      text: 'Se borrará el KR seleccionado',
+      icon: 'warning',
+      buttons: ["Cancelar", "Aceptar"],
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        await axios.delete(`${URI}/`); //pdte
+        swal('Perfecto !', 'KR Eliminado exitosamente, por favor redirigir los porcentajes del kr eliminado', 'success').then((value) => {
+          dispatch(getOwnOKR(userId)); //pdte cambiar
+        });
+      } else {
+        swal({
+          title: 'No se eliminó',
+          icon: 'info',
+          button: "Aceptar"
+        });
+      }
+    });
+  };
+};
 
 export const deleteOkr = (okrId, userId) => {
   return async (dispatch) => {

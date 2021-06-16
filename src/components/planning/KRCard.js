@@ -14,7 +14,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
 import '../../styles/Card.css';
 import { Slider } from '@material-ui/core';
-import { cleanRedirect, editKr, updateKR } from '../../actions/okrActions';
+import { cleanRedirect, deleteKr, editKr, updateKR } from '../../actions/okrActions';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -48,6 +48,10 @@ const KRCard = ({ dispatch, kr, userId, redirect }) => {
   const handleEdit = (krId) => {
     dispatch(editKr(krId));
   };
+
+  const handleDelete = (krId, userId) => {
+    dispatch(deleteKr(krId, userId))
+  }
 
   return (
     <Card className={classes.root}>
@@ -94,7 +98,7 @@ const KRCard = ({ dispatch, kr, userId, redirect }) => {
           />
         </Button>
         <Button size='small' color='primary'>
-          <DeleteIcon className='btn_color' />
+          <DeleteIcon className='btn_color' onClick={()=> handleDelete(kr.krId, userId)}/>
         </Button>
         <Slider
           className='slider-input'
