@@ -125,10 +125,6 @@ export const deleteOkr = (okrId, userId) => {
       icon: 'warning',
       buttons: ["Cancelar", "Aceptar"],
       dangerMode: true,
-<<<<<<< HEAD
-=======
-
->>>>>>> 09181fac0d0fec76bc9b25dd1d257d0a1417f79a
     }).then(async (willDelete) => {
       if (willDelete) {
         axios.get(`${URI}/okr/${okrId}`)
