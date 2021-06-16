@@ -12,11 +12,14 @@ import { nombre } from './Avatar'
 
 import '../../styles/style.css';
 import { estilos } from './DesignNaSi';
+import { cleanRedirect } from '../../actions/okrActions';
 
 
-function Sidebar({ texto, ruta, redirect,dispatch}) {
+function Sidebar({ texto, ruta, redirect, dispatch }) {
 
- 
+  useEffect(() => {
+    dispatch(cleanRedirect())
+  }, [redirect])
 
   const classes = estilos();
   return (
@@ -46,7 +49,7 @@ function Sidebar({ texto, ruta, redirect,dispatch}) {
             </Accordion.Collapse>
             <Divider />
             <Accordion.Collapse eventKey="0">
-              <Card.Body><Link to={`/ShowMaxProgressOkr`}  className="button" style={{ color: "#000" }} >
+              <Card.Body><Link to={`/ShowMaxProgressOkr`} className="button" style={{ color: "#000" }} >
                 {nombre(auth.currentUser.displayName)}</Link></Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle as={Card.Header} variant="link" eventKey="1" style={{ background: "#ffffff", color: "#000", cursor: "pointer" }}>
@@ -66,6 +69,7 @@ function Sidebar({ texto, ruta, redirect,dispatch}) {
 
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
+  redirect: state.okr.redirect
 });
 
 export default connect(mapStateToProps)(Sidebar);
