@@ -22,7 +22,7 @@ function NavbarSofKa({ dispatch, classes }) {
         <AppBar position="fixed" className={classes.appBar} style={{ background: "#F0950E" }} >
             <div className="col-md">
                 <Navbar collapseOnSelect expand="lg" variant="dark">
-                    <Navbar.Brand ><Link to="/Home" onClick={onclick} style={{ color: "#ffffff" }} ><h1 className="title">SOKFA OKR</h1></Link> </Navbar.Brand>
+                    <Navbar.Brand ><Link to="/Home" onClick={onclick} style={{ color: "#ffffff" }} ><h1 className="title">SOFKA OKR</h1></Link> </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">

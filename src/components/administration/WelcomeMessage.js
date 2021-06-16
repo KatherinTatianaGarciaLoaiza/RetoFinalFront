@@ -8,15 +8,15 @@ import Logo from '../../images/Logo.png';
 
 import { auth } from '../logging/Logging';
 import { nombre } from '../structure/Avatar';
+import { URI } from '../../actions/okrActions';
 
 import '../../styles/style.css';
 
 const verificacion = () => {
-  axios.get("http://localhost:8080/GetConfigNotifications/" + auth.currentUser.email)
-  /* axios.get(`${URI}/GetConfigNotifications/${user.email}`) */
+  axios.get(`${URI}/GetConfigNotifications/${auth.currentUser.email}`)
   .then(res => {
     if (res.data == "") {
-      axios.post("http://localhost:8080/createConfigNotifications", {
+      axios.post(`${URI}/createConfigNotifications`, {
         "userId": auth.currentUser.email,
         "oKRFinishScreen": true,
         "kRFinishScreen": true,
@@ -24,13 +24,6 @@ const verificacion = () => {
         "oKREditScreen": true,
         "oKRDeleteScreen": true,
       })
-      /* axios.post(`${URI}/createConfigNotifications`,{"userId":user.email,
-      "oKRFinishScreen":true,
-      "kRFinishScreen":true,
-      "kRLateScreen":true,
-      "oKREditScreen":true,
-      "oKRDeleteScreen": true}) */
-
     }
   })
 }

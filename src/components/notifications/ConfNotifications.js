@@ -25,13 +25,13 @@ export default function ConfNotifications() {
 	const [user] = useAuthState(auth);
 
 	const [state, setState] = useState({
-        id: "",
+		id: "",
 		userId: "",
 		oKRFinishScreen: "",
 		kRFinishScreen: "",
 		kRLateScreen: "",
-		oKREditScreen:"",
-		oKRDeleteScreen:"",
+		oKREditScreen: "",
+		oKRDeleteScreen: "",
 	});
 
 	const handleChange = (event) => {
@@ -41,32 +41,25 @@ export default function ConfNotifications() {
 
 
 	const getOrPostConfigNotification = () => {
-		axios.get(`http://localhost:8080/GetConfigNotifications/${user.email}`)
-					/* axios.get(`${URI}/GetConfigNotifications/${user.email}`) */
-					.then(res => setState(res.data))
+		axios.get(`${URI}/GetConfigNotifications/${user.email}`)
+			.then(res => setState(res.data))
 	};
 
 	const putConfigNotification = () => {
-		/* axios.put(`${URI}/UpdateConfigNotifications`,{"id":state.id,
-		"userId":user.email,
-		"oKRFinishScreen":state.oKRFinishScreen,
-		"kRFinishScreen":state.kRFinishScreen,
-		"kRLateScreen":state.kRLateScreen,
-		"oKREditScreen":state.oKREditScreen
-		"oKRDeleteScreen":state.oKRDeleteScreen})*/
-			axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
-            "userId":user.email,
-            "oKRFinishScreen":state.oKRFinishScreen,
-            "kRFinishScreen":state.kRFinishScreen,
-            "kRLateScreen":state.kRLateScreen,
-            "oKREditScreen":state.oKREditScreen,
-			"oKRDeleteScreen":state.oKRDeleteScreen})
-				console.log(state);
+		axios.put(`${URI}/UpdateConfigNotifications`, {
+			"id": state.id,
+			"userId": user.email,
+			"oKRFinishScreen": state.oKRFinishScreen,
+			"kRFinishScreen": state.kRFinishScreen,
+			"kRLateScreen": state.kRLateScreen,
+			"oKREditScreen": state.oKREditScreen,
+			"oKRDeleteScreen": state.oKRDeleteScreen
+		})
 	};
 
 	const Swal = () => {
 		swal("Correcto", "La configuración ha sido guardada", "success");
-        putConfigNotification();
+		putConfigNotification();
 	};
 	useEffect(() => {
 		getOrPostConfigNotification();
