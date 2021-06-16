@@ -53,7 +53,7 @@ export const editokr = (data) => ({
 
 export const editkr = (data) => ({
   type: EDITKR,
-  payload: { EditKr: data, redirect: '/KrEditForm' },
+  payload: { EditKr: data, redirect: '/KrEditForm' }, 
 });
 
 export const progressOkr = (data) => ({
