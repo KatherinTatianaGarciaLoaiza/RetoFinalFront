@@ -36,17 +36,9 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
     data.okrId = krEdit.okrId;
     data.percentageWeight = krEdit.percentageWeight;
     data.progressKr = krEdit.progressKr;
-    data.startDate = data.startDate.toISOString().slice(0, 10);
-    data.endDate = data.endDate.toISOString().slice(0, 10);
     dispatch(putKR(data, userId))
   };
 
-  function transformDate(dateReceived) {
-    let year = dateReceived.substring(0, 4);
-    let month = dateReceived.substring(5, 7);
-    let day = dateReceived.substring(8, 10);
-    return new Date(`${month}-${day}-${year}`).toLocaleDateString();
-  }
 
   const redirectOKRForm = () => {
     history.push('/MyOKRS');
@@ -78,23 +70,27 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
         <Grid item xs={3}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Controller
-              render={({ field }) => (
-                <KeyboardDatePicker
-                  required
-                  disableToolbar
-                  autoOk
-                  variant='inline'
-                  inputVariant='outlined'
-                  onChange={field.onChange}
-                  disabled={true}
-                  InputAdornmentProps={{ position: 'start' }}
-                  label='Fecha Inicio'
-                  format='yyyy/MM/dd'
-                />
-              )}
+              render={({ field }) => {
+                
+                return (
+                  <KeyboardDatePicker
+                    required
+                    disableToolbar
+                    autoOk
+                    variant='inline'
+                    inputVariant='outlined'
+                    value={field.value}
+                    onChange={field.onChange}
+                    disabled={true}
+                    InputAdornmentProps={{ position: 'start' }}
+                    label='Fecha Inicio'
+                    format='yyyy-MM-dd'
+                  />
+                )
+              }}
               control={control}
               name='startDate'
-              defaultValue={new Date(transformDate(krEdit.startDate))}
+              defaultValue={new Date(krEdit.startDate.replaceAll("-",","))}
             />
           </MuiPickersUtilsProvider>
         </Grid>
@@ -118,7 +114,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
               )}
               control={control}
               name='endDate'
-              defaultValue={new Date(transformDate(krEdit.endDate))}
+              defaultValue={new Date(krEdit.endDate.replaceAll("-",","))}
             />
           </MuiPickersUtilsProvider>
         </Grid>

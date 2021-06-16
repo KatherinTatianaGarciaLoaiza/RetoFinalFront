@@ -57,7 +57,6 @@ export const POSTOKR = 'POSTOKR';
 export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
 export const EDITOKR = "EDITOKR";
 export const EDITKR = 'EDITKR';
-export const UPDATE_STATUS_BUTTON_OKR = "UPDATE_STATUS_BUTTON_OKR";
 export const DATACHARTOKR = "DATACHARTOKR";
 export const ALLOKRS = "ALLOKRS";
 
@@ -98,16 +97,11 @@ export const editokr = (data) => ({
 
 export const editkr = (data) => ({
   type: EDITKR,
-  payload: { EditKr: data, redirect: '/KrEditForm' },
+  payload: { EditKr: data, redirect: '/KrEditForm' }, 
 });
 
 export const progressOkr = (data) => ({
   type: OKRMAXPROGRESS,
-  payload: data,
-});
-
-export const updateStatusButton = (data) => ({
-  type: UPDATE_STATUS_BUTTON_OKR,
   payload: data,
 });
 
@@ -131,6 +125,10 @@ export const deleteOkr = (okrId, userId) => {
       icon: 'warning',
       buttons: ["Cancelar", "Aceptar"],
       dangerMode: true,
+<<<<<<< HEAD
+=======
+
+>>>>>>> 09181fac0d0fec76bc9b25dd1d257d0a1417f79a
     }).then(async (willDelete) => {
       if (willDelete) {
         axios.get(`${URI}/okr/${okrId}`)
