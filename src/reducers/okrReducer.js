@@ -82,7 +82,6 @@ export default function okrReducer(state = initialState, action) {
       return {
         ...state,
         DataProgressChart: payload,
-        redirect: "/UserOKRS",
       };
     case actions.ALLOKRS:
       return {

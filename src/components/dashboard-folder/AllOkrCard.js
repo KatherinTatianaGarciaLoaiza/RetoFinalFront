@@ -43,6 +43,9 @@ const AllOkrCard = ({ okr, dispatch, redirect }) => {
     }
   };
 
+ 
+
+
   return (
     <div>
       <div className="container_display_title"></div>

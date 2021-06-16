@@ -12,8 +12,15 @@ import { nombre } from './Avatar'
 
 import '../../styles/style.css';
 import { estilos } from './DesignNaSi';
+import { cleanRedirect } from '../../actions/okrActions';
 
-function Sidebar({ texto, ruta}) {
+function Sidebar({ texto, ruta, redirect,dispatch}) {
+
+  useEffect(() => {
+    return () => {
+      dispatch(cleanRedirect)
+    }
+  }, [redirect,dispatch])
 
   const classes = estilos();
   return (
