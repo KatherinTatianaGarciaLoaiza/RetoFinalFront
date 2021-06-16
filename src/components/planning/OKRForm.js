@@ -140,6 +140,7 @@ const OkrFormPage = ({ dispatch, okr, redirect }) => {
                 {...field}
                 autoComplete='off'
                 required
+                type='email'
                 variant='outlined'
                 fullWidth
                 id='input_responemail_okr'
