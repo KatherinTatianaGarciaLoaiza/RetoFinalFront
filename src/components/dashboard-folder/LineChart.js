@@ -9,9 +9,7 @@ const LineChart = ({ krs, dispatch, progressData, okrId }) => {
   let montDif = [];
   let porcentDif = [];
   let basicPorcentage = [];
-  useEffect(() => {
-    dispatch(getDataChart(okrId));
-  }, []);
+
 
   const progressSort = progressData.actualPercentage.sort();
 

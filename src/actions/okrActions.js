@@ -210,7 +210,7 @@ export function editKr(krId) {
 
 export function getOkrById(id) {
   return async (dispatch) => {
-    const { data } = await axios.get(`${URI}/okr/${id}`);
+    const { data } = await axios.get(`${URI}/okrid/${id}`);
     dispatch(progressOkr(data));
   };
 }
@@ -256,7 +256,6 @@ export function getDataChart(okrId) {
 export function getAllOkr() {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/all-okrs`);
-    console.log(data);
     dispatch(getAllOkrs(data));
   };
 }

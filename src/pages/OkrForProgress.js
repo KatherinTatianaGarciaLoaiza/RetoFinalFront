@@ -36,8 +36,8 @@ const OkrComplete = ({ dispatch, userId, okrs, state }) => {
         <h1>Historial</h1>
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {okrsProgress.map((okr) => (
-              <div className="col">
-            <AllOkrCard key={okr.id} okr={okr} />
+              <div className="col" key={okr.id}>
+            <AllOkrCard  okr={okr} />
             </div>
           ))}
         </div>
