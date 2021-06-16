@@ -42,7 +42,7 @@ const verificacion = (messagge, type) => {
         if (res.data.oKRDeleteScreen) {
           saveNotification(messagge, type);
         }
-        break;  
+        break;
       default:
         console.log("pao pao");
         break;
@@ -99,7 +99,7 @@ export const editokr = (data) => ({
 
 export const editkr = (data) => ({
   type: EDITKR,
-  payload: { EditKr: data, redirect: '/KrEditForm' }, 
+  payload: { EditKr: data, redirect: '/KrEditForm' },
 });
 
 export const progressOkr = (data) => ({
@@ -278,7 +278,7 @@ export const updateKR = (kr, userId) => {
           axios.get(`${URI}/okr/${kr.okrId}`)
             .then(res => {
               verificacion(`Se completo el KR ${kr.keyResult} del OKR ${res.data.title}`, "KRFINISHSCREEN")
-              if (res.data.progressOkr == 100){
+              if (res.data.progressOkr == 100) {
                 verificacion(`Se completo el OKR ${res.data.title}`, "OKRFINISHSCREEN")
               }
             });
