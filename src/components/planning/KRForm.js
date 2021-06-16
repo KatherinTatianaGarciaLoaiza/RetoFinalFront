@@ -52,6 +52,7 @@ const KRForm = ({ dispatch, okr, redirect }) => {
   const classes = useStyles();
   const [sumWeightKrs, setSumWeightKrs] = useState(0);
   const [disabledFields, setDisabledFields] = useState(false)
+  //const [dataEndMin, setDataEndMin] = useState(new Date());
 
   const save = () => {
     dispatch(postOKR(okr));
@@ -73,6 +74,7 @@ const KRForm = ({ dispatch, okr, redirect }) => {
   }, [redirect])
 
   const onSubmit = (data) => {
+
     if (data.percentageWeight === 0) {
       swal({
         title: 'El peso del KR debe ser superior a 0%',
@@ -120,21 +122,30 @@ const KRForm = ({ dispatch, okr, redirect }) => {
         <Grid item xs={3}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Controller
-              render={({ field }) => (
-                <KeyboardDatePicker
-                  required
-                  disableToolbar
-                  autoOk
-                  variant='inline'
-                  inputVariant='outlined'
-                  value={field.value}
-                  onChange={field.onChange}
-                  InputAdornmentProps={{ position: 'start' }}
-                  label='Fecha Inicio'
-                  format='yyyy/MM/dd'
-                  disablePast={true}
-                />
-              )}
+              render={({ field }) => {
+                return (
+                  <KeyboardDatePicker
+                    required
+                    disableToolbar
+                    autoOk
+                    variant='inline'
+                    inputVariant='outlined'
+                    value={field.value}
+
+                    onChange={(e) => {
+                      field.onChange(e)
+                     // setDataEndMin(e)
+                    }}
+                    InputAdornmentProps={{ position: 'start' }}
+                    label='Fecha Inicio'
+                    format='yyyy/MM/dd'
+                    disablePast={true}
+                  />
+                )
+
+              }
+
+              }
               control={control}
               name='startDate'
               defaultValue={new Date()}
@@ -151,12 +162,16 @@ const KRForm = ({ dispatch, okr, redirect }) => {
                   autoOk
                   variant='inline'
                   inputVariant='outlined'
+                  //minDate={dataEndMin}
                   value={field.value}
-                  onChange={field.onChange}
+                  onChange={(e) => {
+                    field.onChange(e)
+                  }}
                   InputAdornmentProps={{ position: 'start' }}
                   label='Fecha Fin'
                   format='yyyy/MM/dd'
                   disablePast={true}
+
                 />
               )}
               control={control}
