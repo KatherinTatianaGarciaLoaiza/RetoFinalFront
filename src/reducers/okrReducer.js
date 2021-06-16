@@ -29,6 +29,7 @@ export default function okrReducer(state = initialState, action) {
     case actions.UPDATE_STATE_OKR:
       return {
         ...state,
+        redirect: '/CreateKR',
         OKR: {
           ...state.OKR,
           ...payload,
@@ -98,11 +99,6 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         ...payload,
       };
-    case actions.UPDATE_STATUS_BUTTON_OKR:
-      return {
-        ...state,
-        ...payload,
-      }
     case actions.CLEAN_REDIRECT:
       return {
         ...state,

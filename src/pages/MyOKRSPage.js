@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import NavbarSofKa from '../components/structure/Navbar';
 import Sidebar from '../components/structure/Sidebar';
-import { getOwnOKR } from '../actions/okrActions';
+import { cleanRedirect, getOwnOKR } from '../actions/okrActions';
 
 import { estilos } from '../components/structure/DesignNaSi';
 import '../styles/OkrFormCss.css';

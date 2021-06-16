@@ -26,10 +26,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const OkrFormPage = ({ dispatch, okr, statusButton }) => {
+const OkrFormPage = ({ dispatch, okr, redirect }) => {
   const inputLabel = useRef(null);
   const [labelWidth, setLabelWidth] = useState(0);
-  const [disabledButton, setDisabledButton] = useState(statusButton);
   const classes = useStyles();
   const { handleSubmit, control } = useForm();
   const history = useHistory();
@@ -39,22 +38,18 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
   }, []);
 
   useEffect(() => {
-    dispatch(cleanRedirect())
-  }, [])
-
-  const onChange = (data) => {
-    const objectWithFields = control.fieldsRef.current;
-    const listFieldBlank = Object.keys(objectWithFields).filter(
-      (field) => objectWithFields[field]._f.value === ''
-    );
-    setDisabledButton(listFieldBlank.length > 0);
-    if (!disabledButton) {
-      dispatch(updateStateOKR(data));
+    if (redirect) {
+      history.push(redirect)
     }
+    dispatch(cleanRedirect())
+  }, [redirect])
+
+  const onSubmit = (data) => {
+    dispatch(updateStateOKR(data));
   };
 
   return (
-    <form onChange={handleSubmit(onChange)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <h2>Crear objetivo</h2>
       <Divider style={{ marginBottom: 20 }} />
       <Grid container spacing={2} style={{ marginBottom: 20 }}>
@@ -99,25 +94,16 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
           <Controller
             render={({ field }) => (
               <FormControl variant='outlined' className={classes.formControl}>
-                <InputLabel ref={inputLabel} htmlFor='input_vertical'>
-                  Seleccionar vertical
-                </InputLabel>
+                <InputLabel ref={inputLabel} htmlFor='input_vertical'>Seleccionar vertical</InputLabel>
                 <Select
-                  input={
-                    <OutlinedInput
-                      labelWidth={labelWidth}
-                      id='input_vertical'
-                    />
-                  }
-                  {...field}>
-                  <MenuItem value='DESARROLLO'>Sofka testing</MenuItem>
+                  {...field}
+                  required
+                  input={<OutlinedInput labelWidth={labelWidth}
+                    id='input_vertical' />} >
+                  <MenuItem value='Sofka testing'>Sofka testing</MenuItem>
                   <MenuItem value='Agile Services'>Agile Services</MenuItem>
-                  <MenuItem value='Arquitectura y Desarrollo'>
-                    Arquitectura y Desarrollo
-                  </MenuItem>
-                  <MenuItem value='IA (inteligencia artificial)'>
-                    IA (inteligencia artificial)
-                  </MenuItem>
+                  <MenuItem value='Arquitectura y Desarrollo'>Arquitectura y Desarrollo</MenuItem>
+                  <MenuItem value='IA (inteligencia artificial)'>IA (inteligencia artificial)</MenuItem>
                 </Select>
               </FormControl>
             )}
@@ -190,8 +176,7 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
       <Grid container spacing={2} style={{ marginTop: 20 }}>
         <Grid item xs={4}>
           <Button
-            disabled={disabledButton}
-            onClick={() => { history.push('/CreateKR') }}
+            type='submit'
             variant='contained'
             color='primary'
             endIcon={<NavigateNextIcon />}
@@ -206,7 +191,7 @@ const OkrFormPage = ({ dispatch, okr, statusButton }) => {
 
 const mapStateToProps = (state) => ({
   okr: state.okr.OKR,
-  statusButton: state.okr.disabledButtonOKRForm
+  redirect: state.okr.redirect
 });
 
 export default connect(mapStateToProps)(OkrFormPage);
