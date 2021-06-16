@@ -11,6 +11,7 @@ import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import EditIcon from '@material-ui/icons/Edit';
 import AirplayIcon from '@material-ui/icons/Airplay';
+import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 
 import { auth } from '../logging/Logging';
@@ -30,6 +31,7 @@ export default function ConfNotifications() {
 		kRFinishScreen: "",
 		kRLateScreen: "",
 		oKREditScreen:"",
+		oKRDeleteScreen:"",
 	});
 
 	const handleChange = (event) => {
@@ -50,13 +52,15 @@ export default function ConfNotifications() {
 		"oKRFinishScreen":state.oKRFinishScreen,
 		"kRFinishScreen":state.kRFinishScreen,
 		"kRLateScreen":state.kRLateScreen,
-		"oKREditScreen":state.oKREditScreen}) */
+		"oKREditScreen":state.oKREditScreen
+		"oKRDeleteScreen":state.oKRDeleteScreen})*/
 			axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
             "userId":user.email,
             "oKRFinishScreen":state.oKRFinishScreen,
             "kRFinishScreen":state.kRFinishScreen,
             "kRLateScreen":state.kRLateScreen,
-            "oKREditScreen":state.oKREditScreen})
+            "oKREditScreen":state.oKREditScreen,
+			"oKRDeleteScreen":state.oKRDeleteScreen})
 				console.log(state);
 	};
 
@@ -114,6 +118,14 @@ export default function ConfNotifications() {
 					<Col >
 						<FormControlLabel
 							control={<OrangeSwitch checked={state.oKREditScreen} onChange={handleChange} name="oKREditScreen" />} />
+					</Col>
+				</Row>
+				<Row>
+					<Col ><DeleteIcon fontSize="large" /></Col>
+					<Col xs={6}><p className="body">Generar notificaciones si se elimina un OKR</p></Col>
+					<Col >
+						<FormControlLabel
+							control={<OrangeSwitch checked={state.oKRDeleteScreen} onChange={handleChange} name="oKRDeleteScreen" />} />
 					</Col>
 				</Row>
 				<Row className="justify-content-md-center">

@@ -35,6 +35,11 @@ const verificacion = (messagge, type) => {
           saveNotification(messagge, type);
         }
         break;
+      case 'OKRDELETESCREEN':
+        if (res.data.oKRDeleteScreen) {
+          saveNotification(messagge, type);
+        }
+        break;  
       default:
         console.log("pao pao");
         break;
@@ -126,9 +131,10 @@ export const deleteOkr = (okrId, userId) => {
       icon: 'warning',
       buttons: ["Cancelar", "Aceptar"],
       dangerMode: true,
-
     }).then(async (willDelete) => {
       if (willDelete) {
+        axios.get(`${URI}/okr/${okrId}`)
+          .then(res => verificacion(`Se elimino el OKR ${res.data.title}`, "OKRDELETESCREEN"));
         await axios.delete(`${URI}/delete/${okrId}`);
         swal('Perfecto !', 'OKR Eliminado exitosamente', 'success').then((value) => {
           dispatch(getOwnOKR(userId));
@@ -255,7 +261,6 @@ export function getMaxProgressOkr(userId) {
 
 export const updateKR = (kr, userId) => {
   return async (dispatch) => {
-    console.log(kr);
     console.log("entroperro")
     swal({
       title: '¿Esta seguro de actualizar?',
@@ -265,11 +270,6 @@ export const updateKR = (kr, userId) => {
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
-        console.log(kr.progressKr);
-        if (kr.progressKr == 100) {
-          axios.get(`${URI}/okr/${kr.okrId}`)
-            .then(res => verificacion(`Se completo el KR ${kr.keyResult} del OKR ${res.data.title}`, "KRFINISHSCREEN"));
-        }
         await axios.put(`${URI}/kr`, kr);
         swal(
           'Perfecto !',
@@ -278,6 +278,15 @@ export const updateKR = (kr, userId) => {
         ).then(() => {
           dispatch(getOwnOKR(userId));
         });
+        if (kr.progressKr == 100) {
+          axios.get(`${URI}/okr/${kr.okrId}`)
+            .then(res => {
+              verificacion(`Se completo el KR ${kr.keyResult} del OKR ${res.data.title}`, "KRFINISHSCREEN")
+              if (res.data.progressOkr == 100){
+                verificacion(`Se completo el OKR ${res.data.title}`, "OKRFINISHSCREEN")
+              }
+            });
+        }
       } else {
         swal('No se ha actualizado nada');
       }

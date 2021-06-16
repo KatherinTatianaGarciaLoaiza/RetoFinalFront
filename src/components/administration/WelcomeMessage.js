@@ -21,13 +21,15 @@ const verificacion = () => {
         "oKRFinishScreen": true,
         "kRFinishScreen": true,
         "kRLateScreen": true,
-        "oKREditScreen": true
+        "oKREditScreen": true,
+        "oKRDeleteScreen": true,
       })
       /* axios.post(`${URI}/createConfigNotifications`,{"userId":user.email,
       "oKRFinishScreen":true,
       "kRFinishScreen":true,
       "kRLateScreen":true,
-      "oKREditScreen":true}) */
+      "oKREditScreen":true,
+      "oKRDeleteScreen": true}) */
 
     }
   })
