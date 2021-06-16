@@ -23,7 +23,6 @@ const DownloadChart = ({ data, burnDownChart, barChart, pieChart }) => {
     .map((e) => e.join(","))
     .join("\n");
 
-  console.log(data.krs);
   const columns = [
     {
       id: "csvString",

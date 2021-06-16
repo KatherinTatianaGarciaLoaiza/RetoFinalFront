@@ -57,7 +57,6 @@ export default function ConfNotifications() {
             "kRFinishScreen":state.kRFinishScreen,
             "kRLateScreen":state.kRLateScreen,
             "oKREditScreen":state.oKREditScreen})
-				console.log(state);
 	};
 
 	const Swal = () => {

@@ -245,7 +245,6 @@ export function getDataChart(okrId) {
 export function getAllOkr() {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/all-okrs`);
-    console.log(data)
     dispatch(getAllOkrs(data));
   };
 }
