@@ -17,6 +17,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import '../../styles/KRPage.css';
 import { cleanRedirect, putKR } from '../../actions/okrActions';
+import swal from 'sweetalert';
 
 
 const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
@@ -35,7 +36,15 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
     data.okrId = krEdit.okrId;
     data.percentageWeight = krEdit.percentageWeight;
     data.progressKr = krEdit.progressKr;
-    dispatch(putKR(data, userId))
+    if (data.startDate > data.endDate) {
+      swal({
+        title: 'La fecha de fin no puede ser inferior a la fecha de inicio',
+        icon: 'error',
+        button: "Aceptar"
+      })
+    } else {
+      dispatch(putKR(data, userId))
+    }
   };
 
 
@@ -70,7 +79,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Controller
               render={({ field }) => {
-                
+
                 return (
                   <KeyboardDatePicker
                     required
@@ -89,7 +98,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
               }}
               control={control}
               name='startDate'
-              defaultValue={new Date(krEdit.startDate.replaceAll("-",","))}
+              defaultValue={new Date(krEdit.startDate.replaceAll("-", ","))}
             />
           </MuiPickersUtilsProvider>
         </Grid>
@@ -113,7 +122,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
               )}
               control={control}
               name='endDate'
-              defaultValue={new Date(krEdit.endDate.replaceAll("-",","))}
+              defaultValue={new Date(krEdit.endDate.replaceAll("-", ","))}
             />
           </MuiPickersUtilsProvider>
         </Grid>

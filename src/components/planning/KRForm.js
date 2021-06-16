@@ -52,7 +52,7 @@ const KRForm = ({ dispatch, okr, redirect }) => {
   const classes = useStyles();
   const [sumWeightKrs, setSumWeightKrs] = useState(0);
   const [disabledFields, setDisabledFields] = useState(false)
-  //const [dataEndMin, setDataEndMin] = useState(new Date());
+  const [dataEndMin, setDataEndMin] = useState(new Date());
 
   const save = () => {
     dispatch(postOKR(okr));
@@ -78,6 +78,12 @@ const KRForm = ({ dispatch, okr, redirect }) => {
     if (data.percentageWeight === 0) {
       swal({
         title: 'El peso del KR debe ser superior a 0%',
+        icon: 'error',
+        button: "Aceptar"
+      })
+    } else if (data.startDate > data.endDate) {
+      swal({
+        title: 'La fecha de fin no puede ser inferior a la fecha de inicio',
         icon: 'error',
         button: "Aceptar"
       })
@@ -131,12 +137,8 @@ const KRForm = ({ dispatch, okr, redirect }) => {
                     variant='inline'
                     inputVariant='outlined'
                     value={field.value}
-
-                    onChange={(e) => {
-                      field.onChange(e)
-                     // setDataEndMin(e)
-                    }}
-                    InputAdornmentProps={{ position: 'start' }}
+                    onChange={field.onChange}
+                    InputAdornmentProps
                     label='Fecha Inicio'
                     format='yyyy/MM/dd'
                     disablePast={true}
@@ -162,16 +164,12 @@ const KRForm = ({ dispatch, okr, redirect }) => {
                   autoOk
                   variant='inline'
                   inputVariant='outlined'
-                  //minDate={dataEndMin}
                   value={field.value}
-                  onChange={(e) => {
-                    field.onChange(e)
-                  }}
-                  InputAdornmentProps={{ position: 'start' }}
+                  onChange={field.onChange}
+                  InputAdornmentProps
                   label='Fecha Fin'
                   format='yyyy/MM/dd'
                   disablePast={true}
-
                 />
               )}
               control={control}
@@ -207,6 +205,7 @@ const KRForm = ({ dispatch, okr, redirect }) => {
               <TextField
                 {...field}
                 required
+                type='email'
                 variant='outlined'
                 fullWidth
                 autoComplete='off'
