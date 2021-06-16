@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Divider, List, Drawer, Toolbar } from '@material-ui/core';
@@ -8,16 +8,20 @@ import Button from 'react-bootstrap/Button';
 
 import { auth } from '../logging/Logging';
 import { nombre } from './Avatar'
-import { getMaxProgressOkr } from '../../actions/okrActions';
+import { cleanRedirect, getMaxProgressOkr } from '../../actions/okrActions';
 
 import '../../styles/style.css';
 import { estilos } from './DesignNaSi';
 
-function Sidebar({ dispatch, userId, texto, ruta }) {
+function Sidebar({ dispatch, userId, texto, ruta, redirect }) {
 
   const progressOkrMax = (userId) => {
     dispatch(getMaxProgressOkr(userId))
   }
+
+  useEffect(() => {
+    dispatch(cleanRedirect())
+  }, [redirect])
 
   const classes = estilos();
   return (
@@ -66,6 +70,7 @@ function Sidebar({ dispatch, userId, texto, ruta }) {
 
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
+  redirect: state.okr.redirect
 });
 
 

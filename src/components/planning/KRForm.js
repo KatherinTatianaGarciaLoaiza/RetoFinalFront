@@ -11,7 +11,7 @@ import {
 import '../../styles/KRPage.css';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createKR, postOKR, updateStatusButton, cleanRedirect } from '../../actions/okrActions';
+import { createKR, postOKR, cleanRedirect } from '../../actions/okrActions';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -80,8 +80,6 @@ const KRForm = ({ dispatch, okr, redirect }) => {
         button: "Aceptar"
       })
     } else {
-      data.startDate = data.startDate.toISOString().slice(0, 10);
-      data.endDate = data.endDate.toISOString().slice(0, 10);
       dispatch(createKR(data));
       reset({
         startDate: new Date(),
@@ -92,7 +90,6 @@ const KRForm = ({ dispatch, okr, redirect }) => {
   };
 
   const redirectOKRForm = () => {
-    dispatch(updateStatusButton({ disabledButtonOKRForm: false }));
     history.push('/CreateOKR');
   };
 

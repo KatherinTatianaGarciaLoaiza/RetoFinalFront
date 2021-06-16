@@ -12,7 +12,6 @@ export const POSTOKR = 'POSTOKR';
 export const OKRMAXPROGRESS = "OKRMAXPROGRESS";
 export const EDITOKR = "EDITOKR";
 export const EDITKR = 'EDITKR';
-export const UPDATE_STATUS_BUTTON_OKR = "UPDATE_STATUS_BUTTON_OKR";
 export const DATACHARTOKR = "DATACHARTOKR";
 export const ALLOKRS = "ALLOKRS";
 
@@ -62,11 +61,6 @@ export const progressOkr = (data) => ({
   payload: data,
 });
 
-export const updateStatusButton = (data) => ({
-  type: UPDATE_STATUS_BUTTON_OKR,
-  payload: data,
-});
-
 export const DataProgressChart = (data) => ({
   type: DATACHARTOKR,
   payload: data,
@@ -85,9 +79,9 @@ export const deleteOkr = (okrId, userId) => {
       title: '¿Esta seguro de eliminar?',
       text: 'Una vez eliminado, se borrarán los OKR con sus KR',
       icon: 'warning',
-      buttons:["Cancelar","Aceptar"],
+      buttons: ["Cancelar", "Aceptar"],
       dangerMode: true,
-      
+
     }).then(async (willDelete) => {
       if (willDelete) {
         await axios.delete(`${URI}/delete/${okrId}`);
@@ -97,8 +91,8 @@ export const deleteOkr = (okrId, userId) => {
       } else {
         swal({
           title: 'No se eliminó',
-          icon: 'info',   
-          button:"Aceptar"
+          icon: 'info',
+          button: "Aceptar"
         });
       }
     });
@@ -107,21 +101,21 @@ export const deleteOkr = (okrId, userId) => {
 
 export const postOKR = (data) => {
   return async (dispatch) => {
-    try{
+    try {
       await axios.post(`${URI}/okr`, data);
       dispatch(postokr());
       swal('Perfecto !', 'OKR Creado exitosamente', 'success').then((value) => {
         dispatch(getOwnOKR(data.userId));
       });
 
-    }catch(err) {
+    } catch (err) {
       swal({
         title: 'El peso de los KR debe ser igual a 100%',
-        icon: 'error',   
-        button:"Aceptar"
+        icon: 'error',
+        button: "Aceptar"
       })
     }
-    
+
   };
 };
 
@@ -131,7 +125,7 @@ export const putKR = (data, userId) => {
       title: '¿Esta seguro que desea actualizar?',
       text: 'Una vez actualice, se guardaran los cambios',
       icon: 'warning',
-      buttons: ["Cancelar","Actualizar"],
+      buttons: ["Cancelar", "Actualizar"],
       dangerMode: true,
     }).then(async (willUpdate) => {
       if (willUpdate) {
@@ -156,7 +150,7 @@ export const putOKR = (data) => {
       title: '¿Esta seguro que desea actualizar?',
       text: 'Una vez actualice, se guardaran los cambios',
       icon: 'warning',
-      buttons: ["Cancelar","Actualizar"],
+      buttons: ["Cancelar", "Actualizar"],
       dangerMode: true,
     }).then(async (willUpdate) => {
       if (willUpdate) {
