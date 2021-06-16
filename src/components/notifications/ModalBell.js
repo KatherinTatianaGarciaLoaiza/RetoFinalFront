@@ -6,7 +6,13 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { URI } from '../../actions/okrActions';
 import { auth } from '../logging/Logging';
 
+
+export function NotificationsHistory(){
+    return axios.get(`${URI}/GetNotifications/${auth.currentUser.email}`).then(res => console.log(res.data)) 
+  }
+  
 function ModalBell() {
+    const [state, setState] = useState();
 
     const [estado, setEstado] = useState("message");
     const [modal, setModal] = useState(false);
@@ -20,9 +26,7 @@ function ModalBell() {
                 <header>
                     <strong>Notificaciones</strong>
                     <button onClick={() => open_close_Modal()}>X</button>
-                </header>
-                <body>
-                </body>
+                </header>   
             </div>
         </div>
     );

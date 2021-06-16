@@ -1,7 +1,10 @@
+import React from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
-
 import { auth } from '../components/logging/Logging';
+
+/* export const URI = 'https://api-okr.herokuapp.com'  */
+export const URI = 'http://localhost:8080'
 
 const saveNotification = (messagge, type) => {
   axios.post(`${URI}/createNotifications`,
@@ -13,7 +16,7 @@ const saveNotification = (messagge, type) => {
 }
 
 const verificacion = (messagge, type) => {
-  axios.get(`http://localhost:8080/GetConfigNotifications/${auth.currentUser.email}`).then(res => {
+  axios.get(`${URI}/${auth.currentUser.email}`).then(res => {
     switch (type) {
       case 'OKRFINISHSCREEN':
         if (res.data.oKRFinishScreen) {
@@ -46,8 +49,7 @@ const verificacion = (messagge, type) => {
     }
   })
 }
-/* export const URI = 'https://api-okr.herokuapp.com'  */
-export const URI = 'http://localhost:8080'
+
 
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
@@ -301,5 +303,3 @@ export function getAllOkr() {
     dispatch(getAllOkrs(data));
   };
 }
-
-//TODO -> Hacer el deslogueo
