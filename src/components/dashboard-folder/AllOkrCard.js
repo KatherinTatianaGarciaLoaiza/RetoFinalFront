@@ -33,9 +33,10 @@ const useStyles = makeStyles({
 const AllOkrCard = ({ okr, dispatch, redirect }) => {
   const classes = useStyles();
   const history = useHistory();
-  const okrById = (id) => {
-    dispatch(getOkrById(id));
+  const okrById = async (id) => {
+   await dispatch(getOkrById(id));
     dispatch(getDataChart(id));
+    
     if (redirect) {
       history.push(redirect);
       dispatch(cleanRedirect());
