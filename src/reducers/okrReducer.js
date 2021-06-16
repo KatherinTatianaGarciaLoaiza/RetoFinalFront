@@ -57,12 +57,12 @@ export default function okrReducer(state = initialState, action) {
       return {
         ...state,
         redirect: '/MyOKRS',
-        MyOkrs: payload,
+        OKRUser: payload,
       };
       case actions.GETMYOKRS:
         return {
           ...state,
-          OKRUser: payload,
+          MyOkrs: payload,
         };
     case actions.POSTOKR:
       return {
@@ -109,7 +109,12 @@ export default function okrReducer(state = initialState, action) {
       return {
         ...state,
         redirect: null,
-      }
+      };
+       case actions.CLEAN_DASHBOARD:
+        return {
+          ...state,
+          redirectDashboard: null,
+        } 
     default:
       return state;
   }

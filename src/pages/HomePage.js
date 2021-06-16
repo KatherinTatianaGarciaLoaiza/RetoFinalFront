@@ -9,10 +9,12 @@ import {  getOwnOKR, getOwnOKRHomePage } from "../actions/okrActions";
 import { connect } from "react-redux";
 import AllOkrCard from "../components/dashboard-folder/AllOkrCard";
 
-const HomePage = ({ state, dispatch, userId, okrs, redirect }) => {
+const HomePage = ({ state, dispatch, userId, okrs }) => {
   useEffect(() => {
     dispatch(getOwnOKRHomePage(userId));
-  }, [dispatch, userId,redirect]);
+  }, [dispatch, userId]);
+
+  console.log(okrs);
 
   const classes = estilos();
   return (
@@ -38,7 +40,6 @@ const HomePage = ({ state, dispatch, userId, okrs, redirect }) => {
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
   okrs: state.okr.MyOkrs,
-  redirect: state.okr.redirect,
 });
 
 export default connect(mapStateToProps)(HomePage);

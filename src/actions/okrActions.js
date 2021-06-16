@@ -16,7 +16,6 @@ export const DATACHARTOKR = 'DATACHARTOKR';
 export const ALLOKRS = 'ALLOKRS';
 export const GETMYOKRS = 'GETMYOKRS';
 export const CLEAN_DASHBOARD = 'CLEAN_DASHBOARD';
-
 export const CLEAN_REDIRECT = 'CLEAN_REDIRECT';
 
 export const updateStateOKR = (data) => ({
@@ -208,6 +207,7 @@ export function getOwnOKR(userId) {
 export function getOwnOKRHomePage(userId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/all-okr/${userId}`);
+    console.log(data);
     dispatch(getMyOkrs(data));
   };
 }

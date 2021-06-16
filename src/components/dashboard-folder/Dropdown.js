@@ -41,7 +41,7 @@ const Example = ({ dispatch, userId, okrs, title, redirect }) => {
 
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
-  okrs: state.okr.OKRUser,
+  okrs: state.okr.MyOkrs,
   id: state.okr.ProgressOKR.id,
   progressData: state.okr.DataProgressChart,
   redirect: state.okr.redirectDashboard,
