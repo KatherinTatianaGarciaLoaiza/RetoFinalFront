@@ -110,11 +110,6 @@ export default function okrReducer(state = initialState, action) {
         ...state,
         redirect: null,
       };
-       case actions.CLEAN_DASHBOARD:
-        return {
-          ...state,
-          redirectDashboard: null,
-        } 
     default:
       return state;
   }
