@@ -5,14 +5,14 @@ import NavbarSofKa from "../components/structure/Navbar";
 import Sidebar from "../components/structure/Sidebar";
 
 import { estilos } from "../components/structure/DesignNaSi";
-import { getOwnOKR } from "../actions/okrActions";
+import {  getOwnOKR, getOwnOKRHomePage } from "../actions/okrActions";
 import { connect } from "react-redux";
 import AllOkrCard from "../components/dashboard-folder/AllOkrCard";
 
-const HomePage = ({ state, dispatch, userId, okrs }) => {
+const HomePage = ({ state, dispatch, userId, okrs, redirect }) => {
   useEffect(() => {
-    dispatch(getOwnOKR(userId));
-  }, [dispatch, userId]);
+    dispatch(getOwnOKRHomePage(userId));
+  }, [dispatch, userId,redirect]);
 
   const classes = estilos();
   return (
@@ -37,7 +37,8 @@ const HomePage = ({ state, dispatch, userId, okrs }) => {
 
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
-  okrs: state.okr.OKRUser,
+  okrs: state.okr.MyOkrs,
+  redirect: state.okr.redirect,
 });
 
 export default connect(mapStateToProps)(HomePage);

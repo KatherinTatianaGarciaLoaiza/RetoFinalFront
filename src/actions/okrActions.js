@@ -14,6 +14,8 @@ export const EDITOKR = 'EDITOKR';
 export const EDITKR = 'EDITKR';
 export const DATACHARTOKR = 'DATACHARTOKR';
 export const ALLOKRS = 'ALLOKRS';
+export const GETMYOKRS = 'GETMYOKRS';
+export const CLEAN_DASHBOARD = 'CLEAN_DASHBOARD';
 
 export const CLEAN_REDIRECT = 'CLEAN_REDIRECT';
 
@@ -37,9 +39,18 @@ export const update = (data) => ({
   payload: data,
 });
 
+export const getMyOkrs = (data) => ({
+  type: GETMYOKRS,
+  payload: data,
+});
+
 export const cleanRedirect = () => ({
   type: CLEAN_REDIRECT,
 });
+
+export const cleanRedirectDashboard = () => ({
+  type: CLEAN_DASHBOARD,
+})
 
 export const postokr = () => ({
   type: POSTOKR,
@@ -191,6 +202,13 @@ export function getOwnOKR(userId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/all-okr/${userId}`);
     dispatch(update(data));
+  };
+}
+
+export function getOwnOKRHomePage(userId) {
+  return async (dispatch) => {
+    const { data } = await axios.get(`${URI}/all-okr/${userId}`);
+    dispatch(getMyOkrs(data));
   };
 }
 

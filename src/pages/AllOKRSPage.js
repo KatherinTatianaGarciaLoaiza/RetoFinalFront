@@ -3,10 +3,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import NavbarSofKa from "../components/structure/Navbar";
 import Sidebar from "../components/structure/Sidebar";
 import AllOkrCard from "../components/dashboard-folder/AllOkrCard";
-import { getAllOkr, getOwnOKR } from "../actions/okrActions";
+import { getAllOkr } from "../actions/okrActions";
 import { connect } from "react-redux";
 import { estilos } from "../components/structure/DesignNaSi";
-import { CardBody } from "reactstrap";
+
 
 const AllOKRSPage = ({ dispatch, allOkrs }) => {
   useEffect(() => {

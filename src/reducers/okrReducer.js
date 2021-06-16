@@ -3,6 +3,7 @@ import * as actions from "../actions/okrActions";
 export const initialState = {
   disabledButtonOKRForm: true,
   redirect: null,
+  redirectDashboard : null,
   OKR: {
     userId: "",
     title: "",
@@ -21,6 +22,7 @@ export const initialState = {
   EditOkr: {},
   EditKr: {},
   AllOkrs: [],
+  MyOkrs: [],
 };
 
 export default function okrReducer(state = initialState, action) {
@@ -55,8 +57,13 @@ export default function okrReducer(state = initialState, action) {
       return {
         ...state,
         redirect: '/MyOKRS',
-        OKRUser: payload,
+        MyOkrs: payload,
       };
+      case actions.GETMYOKRS:
+        return {
+          ...state,
+          OKRUser: payload,
+        };
     case actions.POSTOKR:
       return {
         ...state,
@@ -76,7 +83,7 @@ export default function okrReducer(state = initialState, action) {
       return {
         ...state,
         ProgressOKR: payload,
-        redirect: "/UserOKRS",
+        redirectDashboard: "/UserOKRS",
       };
     case actions.DATACHARTOKR:
       return {

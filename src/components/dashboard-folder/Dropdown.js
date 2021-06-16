@@ -1,6 +1,6 @@
 import React, { useEffect }  from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { getOwnOKR, getOkrById, cleanRedirect } from '../../actions/okrActions';
+import { getOwnOKRHomePage, getOkrById, cleanRedirectDashboard } from '../../actions/okrActions';
 import { Link } from 'react-router-dom'
 import { getDataChart } from "../../actions/okrActions";
 import { useHistory } from "react-router-dom";
@@ -14,11 +14,11 @@ const Example = ({ dispatch, userId, okrs, title, redirect }) => {
 
     if (redirect) {
       history.push(redirect);
-      dispatch(cleanRedirect());
+      dispatch(cleanRedirectDashboard());
     }
   }
   useEffect(() => {
-    dispatch(getOwnOKR(userId));
+    dispatch(getOwnOKRHomePage(userId));
   }, []);
 
   return (
@@ -44,7 +44,7 @@ const mapStateToProps = (state) => ({
   okrs: state.okr.OKRUser,
   id: state.okr.ProgressOKR.id,
   progressData: state.okr.DataProgressChart,
-  redirect: state.okr.redirect,
+  redirect: state.okr.redirectDashboard,
 
 });
 

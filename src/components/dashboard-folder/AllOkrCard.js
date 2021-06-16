@@ -14,7 +14,7 @@ import "../../styles/Card.css";
 import {
   getOkrById,
   getDataChart,
-  cleanRedirect,
+  cleanRedirectDashboard,
 } from "../../actions/okrActions";
 
 const useStyles = makeStyles({
@@ -31,21 +31,22 @@ const useStyles = makeStyles({
 });
 
 const AllOkrCard = ({ okr, dispatch, redirect }) => {
+  
   const classes = useStyles();
   const history = useHistory();
+
+
   const okrById = async (id) => {
    await dispatch(getOkrById(id));
     dispatch(getDataChart(id));
     
     if (redirect) {
       history.push(redirect);
-      dispatch(cleanRedirect());
+      dispatch(cleanRedirectDashboard());
     }
   };
 
  
-
-
   return (
     <div>
       <div className="container_display_title"></div>
@@ -104,7 +105,7 @@ const AllOkrCard = ({ okr, dispatch, redirect }) => {
 };
 
 const mapStateToProps = (state) => ({
-  redirect: state.okr.redirect,
+  redirect: state.okr.redirectDashboard,
   userId: state.okr.OKR.userId,
   okrs: state.okr.OKRUser,
   id: state.okr.ProgressOKR.id,

@@ -12,15 +12,11 @@ import { nombre } from './Avatar'
 
 import '../../styles/style.css';
 import { estilos } from './DesignNaSi';
-import { cleanRedirect } from '../../actions/okrActions';
+
 
 function Sidebar({ texto, ruta, redirect,dispatch}) {
 
-  useEffect(() => {
-    return () => {
-      dispatch(cleanRedirect)
-    }
-  }, [redirect,dispatch])
+ 
 
   const classes = estilos();
   return (
@@ -70,7 +66,6 @@ function Sidebar({ texto, ruta, redirect,dispatch}) {
 
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
-  redirect: state.okr.redirect
 });
 
 export default connect(mapStateToProps)(Sidebar);
