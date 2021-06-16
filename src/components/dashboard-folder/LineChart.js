@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
-import { getDataChart } from "../../actions/okrActions";
 
-const LineChart = ({ krs, dispatch, progressData, okrId }) => {
+
+const LineChart = ({ krs, progressData, }) => {
   let montArrayEnd = [];
   let montArrayStart = [];
   let montDif = [];

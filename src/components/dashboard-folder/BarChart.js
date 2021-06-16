@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { connect } from "react-redux";
 
 const BarChart = ({ krs,  progressData, }) => {
   let montArrayEnd = [];
@@ -7,7 +8,7 @@ const BarChart = ({ krs,  progressData, }) => {
   let montDif = [];
   let porcentDif = [];
 
-
+  
   const progressSort = progressData.actualPercentage.sort();
 
 
@@ -23,11 +24,22 @@ const BarChart = ({ krs,  progressData, }) => {
 
   let minMontStart = new Date(Math.min.apply(null, montArrayStart));
   let maxMontEnd = new Date(Math.max.apply(null, montArrayEnd));
-  let dif = maxMontEnd.getMonth() - minMontStart.getMonth();
+
+  let dif;
+  if (maxMontEnd.getFullYear() > minMontStart.getFullYear()) {
+    dif =
+      (maxMontEnd.getFullYear() - minMontStart.getFullYear()) * 12 -
+      minMontStart.getMonth();
+  } else {
+    dif = maxMontEnd.getMonth() - minMontStart.getMonth();
+  }
+
+
 
   for (var i = 1; i <= dif; i++) {
     montDif.push("mes " + i);
   }
+
 
   for (var i = 0; i < progressSort.length; i++) {
     porcentDif.push(Math.abs(0 + progressSort[i]));
@@ -70,5 +82,8 @@ const BarChart = ({ krs,  progressData, }) => {
 }
 
 
+const mapStateToProps = (state) => ({
+  progressData: state.okr.DataProgressChart,
+});
 
-export default BarChart;
+export default connect(mapStateToProps)(BarChart);
