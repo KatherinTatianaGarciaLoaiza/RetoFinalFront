@@ -54,8 +54,8 @@ const KRCard = ({ dispatch, kr, userId, okr, redirect }) => {
     dispatch(editKr(krId));
   };
 
-  const handleDelete = (krId, userId) => {
-    dispatch(deleteKr(krId, userId));
+  const handleDelete = (krId, okrId) => {
+    dispatch(deleteKr(krId, okrId));
   };
 
   return (
@@ -107,7 +107,7 @@ const KRCard = ({ dispatch, kr, userId, okr, redirect }) => {
           size='small'
           color='primary'
           disabled={okr.krs.length <= 1 ? true : false}
-          onClick={() => handleDelete(kr.krId, userId)}>
+          onClick={() => handleDelete(kr.krId,kr.okrId )}>
           <DeleteIcon className='btn_color' />
         </Button>
         <Slider

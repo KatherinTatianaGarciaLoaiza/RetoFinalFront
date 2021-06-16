@@ -17,6 +17,7 @@ export const ALLOKRS = 'ALLOKRS';
 export const GETMYOKRS = 'GETMYOKRS';
 export const CLEAN_DASHBOARD = 'CLEAN_DASHBOARD';
 export const CLEAN_REDIRECT = 'CLEAN_REDIRECT';
+export const UPDATE_WEIGTH = 'UPDATE_WEIGTH';
 
 export const updateStateOKR = (data) => ({
   type: UPDATE_STATE_OKR,
@@ -80,7 +81,13 @@ export const getAllOkrs = (data) => ({
   payload: data,
 });
 
-export const deleteKr = (krId, userId) => {
+export const updateWeigth = (data) => ({
+  type: UPDATE_WEIGTH,
+  payload: data,
+
+})
+
+export const deleteKr = (krId,okrId) => {
   return async (dispatch) => {
     swal({
       title: '¿Esta seguro de eliminar?',
@@ -90,14 +97,13 @@ export const deleteKr = (krId, userId) => {
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
-        // await axios.delete(`${URI}/`);
-        console.log('eliminando wiii')
+        await axios.delete(`${URI}/delete/kr/${krId}`);
         swal(
           'Perfecto !',
           'KR Eliminado exitosamente, por favor redirigir los porcentajes del kr eliminado',
           'success'
         ).then((value) => {
-          dispatch(getOwnOKR(userId));
+          dispatch(getOkrByIdForWeigth(okrId));
         });
       } else {
         swal({
@@ -231,6 +237,15 @@ export function getOkrById(id) {
     const { data } = await axios.get(`${URI}/okrid/${id}`);
     dispatch(progressOkr(data));
   };
+}
+
+export function getOkrByIdForWeigth(id) {
+  return async (dispatch) => {
+    const { data } = await axios.get(`${URI}/okrid/${id}`);
+    dispatch(updateWeigth(data));
+
+  }
+
 }
 
 export function getMaxProgressOkr(userId) {

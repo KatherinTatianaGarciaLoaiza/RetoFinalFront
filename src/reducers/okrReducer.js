@@ -23,6 +23,7 @@ export const initialState = {
   EditKr: {},
   AllOkrs: [],
   MyOkrs: [],
+  OkrWeigth: {},
 };
 
 export default function okrReducer(state = initialState, action) {
@@ -59,6 +60,13 @@ export default function okrReducer(state = initialState, action) {
         redirect: '/MyOKRS',
         OKRUser: payload,
       };
+    case actions.UPDATE_WEIGTH:
+      return {
+        ... state,
+        redirect: '/ReadjustPercentage',
+        OkrWeigth: payload,
+      };
+    
       case actions.GETMYOKRS:
         return {
           ...state,
