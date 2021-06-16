@@ -16,7 +16,7 @@ const saveNotification = (messagge, type) => {
 }
 
 const verificacion = (messagge, type) => {
-  axios.get(`${URI}/${auth.currentUser.email}`).then(res => {
+  axios.get(`${URI}/GetConfigNotifications/${auth.currentUser.email}`).then(res => {
     switch (type) {
       case 'OKRFINISHSCREEN':
         if (res.data.oKRFinishScreen) {
