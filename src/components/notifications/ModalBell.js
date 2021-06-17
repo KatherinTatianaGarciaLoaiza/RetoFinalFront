@@ -57,14 +57,14 @@ function ModalBell() {
             {
                 true ? <>
                     <Badge color="secondary" overlap="circle" badgeContent=" " variant="dot">
-                        <NotificationsIcon style={{ color: 'white', cursor: "pointer" }} fontSize="large" onClick={() => {
+                        <NotificationsIcon style={{ color: 'white', cursor: "pointer" }} style={{ fontSize:55 }} onClick={() => {
                             Respuesta()
                             open_close_Modal()
                         }
                         } />
                     </Badge>
                 </> :
-                    <NotificationsIcon style={{ color: 'white', cursor: "pointer" }} fontSize="large" onClick={() => {
+                    <NotificationsIcon style={{ color: 'white', cursor: "pointer" }} style={{ fontSize:55 }} onClick={() => {
                         Respuesta()
                         open_close_Modal()
                     }
