@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -14,7 +14,7 @@ import ModalBell from '../notifications/ModalBell';
 
 function NavbarSofKa({ dispatch, classes }) {
     const { displayName, photoURL } = auth.currentUser || { uid: "", displayName: "", photoURL: "", email: "" }
-    const onclick = () =>{
+    const onclick = () => {
         dispatch(postokr())
     }
 
@@ -27,8 +27,8 @@ function NavbarSofKa({ dispatch, classes }) {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
                         </Nav>
-                        <Nav>
-                            <ModalBell/>
+                        <Nav >
+                            <ModalBell />
                             <AvatarUser displayName={displayName} photoURL={photoURL} />
                             <SignOut />
                         </Nav>

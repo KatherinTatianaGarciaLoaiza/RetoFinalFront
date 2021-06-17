@@ -1,7 +1,11 @@
 import React from 'react';
+import {
+  Redirect
+} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { auth } from '../components/logging/Logging';
+import { nuevaNotificacion, newNotifications } from '../components/notifications/ModalBell';
 
 /* export const URI = 'https://api-okr.herokuapp.com'  */
 export const URI = 'http://localhost:8080'
@@ -13,6 +17,9 @@ const saveNotification = (messagge, type) => {
       "message": messagge,
       "type": type
     })
+  if (!newNotifications) {
+    nuevaNotificacion();
+  }
 }
 
 const verificacion = (messagge, type) => {
@@ -61,6 +68,7 @@ export const EDITOKR = "EDITOKR";
 export const EDITKR = 'EDITKR';
 export const DATACHARTOKR = "DATACHARTOKR";
 export const ALLOKRS = "ALLOKRS";
+export const UPDATE_KR = "UPDATE_KR";
 
 export const CLEAN_REDIRECT = "CLEAN_REDIRECT";
 
@@ -289,6 +297,7 @@ export const updateKR = (kr, userId) => {
     });
   };
 };
+
 export function getDataChart(okrId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/data-chart/${okrId}`);
