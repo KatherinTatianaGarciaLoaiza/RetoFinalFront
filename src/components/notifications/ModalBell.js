@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import {
+    Redirect,
+} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Modal, Badge } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -6,21 +10,20 @@ import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 
 import { URI } from '../../actions/okrActions';
 import { auth } from '../logging/Logging';
- 
+
 export var newNotifications = false;
 
-export function nuevaNotificacion(){
-    newNotifications = (!newNotifications);    
+export function nuevaNotificacion() {
+    newNotifications = (!newNotifications);
 }
 
-function ModalBell() {    
+function ModalBell() {
 
     const [estado, setEstado] = useState([]);
     const [modal, setModal] = useState(false);
     const open_close_Modal = () => {
         setModal(!modal);
     }
-    const invertido = estado;
 
     const body = (
         <Container>
@@ -36,10 +39,14 @@ function ModalBell() {
                                 <br />
                                 < Row className="justify-content-md-center">
                                     <Col xs="11">
-                                        <Card className="text-center">
+                                        <Card >
                                             <Card.Body>
                                                 <Card.Title>{res.message}</Card.Title>
-                                                <Button variant="primary">Eliminar Notificacion</Button>
+                                                <Button className="body" style={{ background: "#F0950E", color: "#ffffff" }}
+                                                    onClick={() => {
+                                                        axios.delete(`${URI}/deleteNotification/${res.id}`);
+                                                        open_close_Modal();
+                                                    }}>Eliminar Notificacion</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
@@ -62,7 +69,7 @@ function ModalBell() {
             {
                 newNotifications ? <>
                     <Badge color="secondary" overlap="circle" badgeContent=" " variant="dot">
-                        <NotificationsIcon style={{ color: 'white', cursor: "pointer", fontSize:55 }}  onClick={() => {
+                        <NotificationsIcon style={{ color: 'white', cursor: "pointer", fontSize: 55 }} onClick={() => {
                             Respuesta()
                             open_close_Modal()
                             nuevaNotificacion()
@@ -70,7 +77,7 @@ function ModalBell() {
                         } />
                     </Badge>
                 </> :
-                    <NotificationsIcon style={{ color: 'white', cursor: "pointer",fontSize:55 }} onClick={() => {
+                    <NotificationsIcon style={{ color: 'white', cursor: "pointer", fontSize: 55 }} onClick={() => {
                         Respuesta()
                         open_close_Modal()
                     }
