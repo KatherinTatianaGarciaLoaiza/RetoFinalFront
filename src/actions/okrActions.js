@@ -89,8 +89,8 @@ export const updateWeigth = (data) => ({
 export const deleteKr = (krId, okrId) => {
   return async (dispatch) => {
     swal({
-      title: '¿Esta seguro de eliminar?',
-      text: 'Se borrará el KR seleccionado',
+      title: '¿Está seguro de eliminar?',
+      text: 'Una vez elimine será redirigido a reajustar el peso de cada KR',
       icon: 'warning',
       buttons: ['Cancelar', 'Aceptar'],
       dangerMode: true,
@@ -99,7 +99,7 @@ export const deleteKr = (krId, okrId) => {
         await axios.delete(`${URI}/delete/kr/${krId}`);
         swal(
           'Perfecto !',
-          'KR Eliminado exitosamente, por favor redirigir los porcentajes del kr eliminado',
+          'KR Eliminado exitosamente',
           'success'
         ).then((value) => {
           dispatch(getOkrByIdForWeigth(okrId));
@@ -118,7 +118,7 @@ export const deleteKr = (krId, okrId) => {
 export const deleteOkr = (okrId, userId) => {
   return async (dispatch) => {
     swal({
-      title: '¿Esta seguro de eliminar?',
+      title: '¿Está seguro de eliminar?',
       text: 'Una vez eliminado, se borrarán los OKR con sus KR',
       icon: 'warning',
       buttons: ['Cancelar', 'Aceptar'],
@@ -164,7 +164,7 @@ export const putKR = (data, userId) => {
   return async (dispatch) => {
     swal({
       title: '¿Esta seguro que desea actualizar?',
-      text: 'Una vez actualice, se guardaran los cambios',
+      text: 'Una vez actualice, se guardarán los cambios',
       icon: 'warning',
       buttons: ['Cancelar', 'Actualizar'],
       dangerMode: true,
@@ -175,7 +175,7 @@ export const putKR = (data, userId) => {
           dispatch(getOwnOKR(userId));
         });
       } else {
-        swal('No se ha actualizado nada');
+        swal('No se  actualizó nada');
       }
     });
   };
@@ -185,7 +185,7 @@ export const putOKR = (data) => {
   return async (dispatch) => {
     swal({
       title: '¿Esta seguro que desea actualizar?',
-      text: 'Una vez actualice, se guardaran los cambios',
+      text: 'Una vez actualice, se guardarán los cambios',
       icon: 'warning',
       buttons: ['Cancelar', 'Actualizar'],
       dangerMode: true,
@@ -256,7 +256,7 @@ export const updateKR = (kr, userId) => {
   return async (dispatch) => {
     swal({
       title: '¿Esta seguro de actualizar?',
-      text: 'Una vez actualice, se guardaran los cambios',
+      text: 'Una vez actualice, se guardarán los cambios',
       icon: 'warning',
       buttons: true,
       dangerMode: true,

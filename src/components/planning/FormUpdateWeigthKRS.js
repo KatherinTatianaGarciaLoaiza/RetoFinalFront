@@ -5,6 +5,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Divider,
   Grid,
   Slider,
   Typography,
@@ -62,6 +63,8 @@ const FormUpdateWeigthKRS = ({ dispatch, OKR, userId, redirect }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <h2>Reasigne los pesos porcentuales de cada KR </h2>
+      <Divider style={{ marginBottom: 20 }} />
       <Grid container spacing={1} style={{ marginBottom: 20 }}>
         {OKR.krs.map((kr) => (
           <Grid item xs={3}>
