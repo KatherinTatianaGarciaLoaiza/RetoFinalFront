@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
 
@@ -9,8 +9,6 @@ const LineChart = ({ krs, progressData, }) => {
   let montDif = [];
   let porcentDif = [];
   let basicPorcentage = [];
-
-
   const progressSort = progressData.actualPercentage.sort();
 
   krs.map((el) => {

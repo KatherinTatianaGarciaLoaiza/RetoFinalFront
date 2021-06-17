@@ -3,13 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 import Scroll from "react-scroll";
 import Krs from "./FormKr";
 
-
 let Element = Scroll.Element;
-let scroll = Scroll.animateScroll;
-
 const Dashboard = (props) => {
-
-
   return (
     <div className="context-data" id="description-okr">
       <div className="title-context">

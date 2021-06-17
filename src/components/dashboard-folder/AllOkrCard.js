@@ -31,22 +31,17 @@ const useStyles = makeStyles({
 });
 
 const AllOkrCard = ({ okr, dispatch, redirect }) => {
-  
   const classes = useStyles();
   const history = useHistory();
-
-
   const okrById = async (id) => {
-   await dispatch(getOkrById(id));
+    await dispatch(getOkrById(id));
     dispatch(getDataChart(id));
-    
     if (redirect) {
       history.push(redirect);
       dispatch(cleanRedirectDashboard());
     }
   };
 
- 
   return (
     <div>
       <div className="container_display_title"></div>

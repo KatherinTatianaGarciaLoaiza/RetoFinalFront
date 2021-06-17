@@ -3,7 +3,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 
-const ProgressOkr = ({progress}) => {
+const ProgressOkr = ({ progress }) => {
   return (
     <CircularProgressbar value={progress} text={`${progress}%`} />
   );
