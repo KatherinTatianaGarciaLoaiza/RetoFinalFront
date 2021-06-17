@@ -7,8 +7,8 @@ import swal from 'sweetalert';
 import { auth } from '../components/logging/Logging';
 import { nuevaNotificacion, newNotifications } from '../components/notifications/ModalBell';
 
-export const URI = 'https://api-okr.herokuapp.com' 
-/* export const URI = 'http://localhost:8080' */
+/* export const URI = 'https://api-okr.herokuapp.com'  */
+export const URI = 'http://localhost:8080'
 
 const saveNotification = (messagge, type) => {
   axios.post(`${URI}/createNotifications`,
@@ -22,9 +22,9 @@ const saveNotification = (messagge, type) => {
   }
 }
 
-const verificacion = (messagge, type) => {
+export const verificacion = ({messagge, type}) => {
   axios.get(`${URI}/GetConfigNotifications/${auth.currentUser.email}`).then(res => {
-    switch (type) {
+    switch ({type}) {
       case 'OKRFINISHSCREEN':
         if (res.data.oKRFinishScreen) {
           saveNotification(messagge, type);
@@ -37,7 +37,7 @@ const verificacion = (messagge, type) => {
         break;
       case 'KRLATESCREEN':
         if (res.data.kRLateScreen) {
-          saveNotification(messagge, type);
+          saveNotification({messagge, type});
         }
         break;
       case 'OKREDITSCREEN':
@@ -272,7 +272,6 @@ export function getOwnOKR(userId) {
 export function getOwnOKRHomePage(userId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/all-okr/${userId}`);
-    console.log(data);
     dispatch(getMyOkrs(data));
   };
 }

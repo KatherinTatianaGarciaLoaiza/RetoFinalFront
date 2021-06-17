@@ -9,23 +9,39 @@ import Logo from '../../images/Logo.png';
 import { auth } from '../logging/Logging';
 import { nombre } from '../structure/Avatar';
 import { URI } from '../../actions/okrActions';
+import { verificacion as NotificationVerify } from '../../actions/okrActions';
 
 import '../../styles/style.css';
 
 const verificacion = () => {
   axios.get(`${URI}/GetConfigNotifications/${auth.currentUser.email}`)
-  .then(res => {
-    if (res.data == "") {
-      axios.post(`${URI}/createConfigNotifications`, {
-        "userId": auth.currentUser.email,
-        "oKRFinishScreen": true,
-        "kRFinishScreen": true,
-        "kRLateScreen": true,
-        "oKREditScreen": true,
-        "oKRDeleteScreen": true,
-      })
-    }
-  })
+    .then(res => {
+      if (res.data == "") {
+        axios.post(`${URI}/createConfigNotifications`, {
+          "userId": auth.currentUser.email,
+          "oKRFinishScreen": true,
+          "kRFinishScreen": true,
+          "kRLateScreen": true,
+          "oKREditScreen": true,
+          "oKRDeleteScreen": true,
+        })
+      }
+    })
+}
+
+var today = new Date();
+var date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
+
+const getOKRSByUserId = () => {
+  axios.get(`${URI}/all-okr/${auth.currentUser.uid}`)
+    .then(res => res.data.map(okr => okr.krs.map(kr => {
+      if (kr.progressKr != 100) {
+        if ((new Date(kr.endDate).getTime() < new Date(date).getTime())) {
+          <NotificationVerify message={`El KR ${kr.keyResult} del OKR ${okr.title}`} type={"KRLATESCREEN"} />
+        }
+      }
+    }))
+    )
 }
 
 function WelcomeMessage() {
@@ -35,7 +51,7 @@ function WelcomeMessage() {
 
   return (
     <>
-      <Link to={`/Home`} className="button" onClick={verificacion}>
+      <Link to={`/Home`} className="button" onClick={verificacion, getOKRSByUserId}>
         <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} style={{ border: '2px solid #F0950E' }}>
           <Modal.Header closeButton style={{ border: '2px solid #F0950E' }}>
             <Modal.Title>

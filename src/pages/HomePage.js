@@ -14,8 +14,6 @@ const HomePage = ({ state, dispatch, userId, okrs }) => {
     dispatch(getOwnOKRHomePage(userId));
   }, [dispatch, userId]);
 
-  console.log(okrs);
-
   const classes = estilos();
   return (
     <div className={classes.root}>
