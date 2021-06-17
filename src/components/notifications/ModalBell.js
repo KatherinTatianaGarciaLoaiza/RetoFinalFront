@@ -41,12 +41,12 @@ function ModalBell() {
                                     <Col xs="11">
                                         <Card >
                                             <Card.Body>
-                                                <Card.Title>{res.message}</Card.Title>
-                                                <Button className="body" style={{ background: "#F0950E", color: "#ffffff" }}
-                                                    onClick={() => {
-                                                        axios.delete(`${URI}/deleteNotification/${res.id}`);
-                                                        open_close_Modal();
-                                                    }}>Eliminar Notificacion</Button>
+                                                <Card>{res.message}</Card>
+                                                    <Button className="body" style={{ background: "#F0950E", color: "#ffffff",justifyContent:"end" }}
+                                                        onClick={() => {
+                                                            axios.delete(`${URI}/deleteNotification/${res.id}`);
+                                                            open_close_Modal();
+                                                        }}>Eliminar Notificacion</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
