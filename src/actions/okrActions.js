@@ -87,7 +87,7 @@ export const updateWeigth = (data) => ({
 
 })
 
-export const deleteKr = (krId,okrId) => {
+export const deleteKr = (krId, okrId) => {
   return async (dispatch) => {
     swal({
       title: '¿Esta seguro de eliminar?',
@@ -220,7 +220,7 @@ export function getOwnOKRHomePage(userId) {
 
 export function editOkr(id) {
   return async (dispatch) => {
-    const { data } = await axios.get(`${URI}/okr/${id}`);
+    const { data } = await axios.get(`${URI}/okrid/${id}`);
     dispatch(editokr(data));
   };
 }
