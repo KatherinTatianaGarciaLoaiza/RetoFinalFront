@@ -49,8 +49,15 @@ const FormUpdateWeigthKRS = ({ dispatch, OKR, userId, redirect }) => {
     for (let property in data) {
       list.push({ id: property, percentage: data[property] });
     }
-    const number = list.reduce((acc, curr) => acc + curr.percentage, 0);
-    if (number !== 100) {
+    const totalPercentage = list.reduce((acc, curr) => acc + curr.percentage, 0);
+
+    if (!validarPorcentage(list)) {
+      swal({
+        title: 'Algun porcentage es 0',
+        icon: 'error',
+        button: 'Aceptar',
+      });
+    } else if (totalPercentage !== 100) {
       swal({
         title: 'El porcentaje debe de ser igual a 100%',
         icon: 'error',
@@ -60,6 +67,11 @@ const FormUpdateWeigthKRS = ({ dispatch, OKR, userId, redirect }) => {
       dispatch(krWeightsRequest(list, userId));
     }
   };
+
+  const validarPorcentage = (list) => {
+    let newList = list.filter(el => el.percentage === 0);
+    return newList.length <= 0;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
