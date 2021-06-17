@@ -180,7 +180,7 @@ export const deleteOkr = (okrId, userId) => {
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
-        axios.get(`${URI}/okr/${okrId}`)
+        axios.get(`${URI}/okrid/${okrId}`)
           .then(res => verificacion(`Se elimino el OKR ${res.data.title}`, "OKRDELETESCREEN"));
         await axios.delete(`${URI}/delete/${okrId}`);
         swal('Perfecto !', 'OKR Eliminado exitosamente', 'success').then(
@@ -227,7 +227,7 @@ export const putKR = (data, userId) => {
       dangerMode: true,
     }).then(async (willUpdate) => {
       if (willUpdate) {
-        axios.get(`${URI}/okr/${data.okrId}`)
+        axios.get(`${URI}/okrid/${data.okrId}`)
           .then(res => verificacion(`Se edito el KR ${data.keyResult} del OKR ${res.data.title}`, "OKREDITSCREEN"));
         await axios.put(`${URI}/kr`, data);
         swal('Perfecto !', 'Se ha actualizado el KR', 'success').then(() => {
@@ -334,7 +334,7 @@ export const updateKR = (kr, userId) => {
           dispatch(getOwnOKR(userId));
         });
         if (kr.progressKr == 100) {
-          axios.get(`${URI}/okr/${kr.okrId}`)
+          axios.get(`${URI}/okrid/${kr.okrId}`)
             .then(res => {
               verificacion(`Se completo el KR ${kr.keyResult} del OKR ${res.data.title}`, "KRFINISHSCREEN")
               if (res.data.progressOkr == 100) {
