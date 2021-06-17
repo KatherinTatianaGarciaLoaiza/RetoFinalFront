@@ -104,7 +104,7 @@ export const cleanRedirect = () => ({
 
 export const cleanRedirectDashboard = () => ({
   type: CLEAN_DASHBOARD,
-})
+});
 
 export const postokr = () => ({
   type: POSTOKR,
@@ -138,8 +138,7 @@ export const getAllOkrs = (data) => ({
 export const updateWeigth = (data) => ({
   type: UPDATE_WEIGTH,
   payload: data,
-
-})
+});
 
 export const deleteKr = (krId, okrId) => {
   return async (dispatch) => {
@@ -301,9 +300,7 @@ export function getOkrByIdForWeigth(id) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/okrid/${id}`);
     dispatch(updateWeigth(data));
-
-  }
-
+  };
 }
 
 export function getMaxProgressOkr(userId) {
@@ -361,3 +358,18 @@ export function getAllOkr() {
     dispatch(getAllOkrs(data));
   };
 }
+
+export function krWeightsRequest(data, userId) {
+  return async (dispatch) => {
+    await axios.put(`${URI}/kr/weight`, data);
+    swal(
+      'Perfecto !',
+      'Se ha actualizado los pesos de sus KRs',
+      'success'
+    ).then((value) => {
+      dispatch(getOwnOKR(userId));
+    });
+  };
+}
+
+//TODO -> Hacer el deslogueo

@@ -35,3 +35,7 @@
   background-color: #F0950E;
   color: #fff;
 }
+
+.btn_disabled{
+  color: gray;
+}
