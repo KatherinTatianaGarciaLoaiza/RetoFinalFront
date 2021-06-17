@@ -7,8 +7,8 @@ import swal from 'sweetalert';
 import { auth } from '../components/logging/Logging';
 import { nuevaNotificacion, newNotifications } from '../components/notifications/ModalBell';
 
-/* export const URI = 'https://api-okr.herokuapp.com'  */
-export const URI = 'http://localhost:8080'
+export const URI = 'https://api-okr.herokuapp.com' 
+/* export const URI = 'http://localhost:8080' */
 
 const saveNotification = (messagge, type) => {
   axios.post(`${URI}/createNotifications`,
