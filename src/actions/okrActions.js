@@ -22,9 +22,9 @@ const saveNotification = (messagge, type) => {
   }
 }
 
-export const verificacion = ({messagge, type}) => {
+export const verificacion = (messagge, type) => {
   axios.get(`${URI}/GetConfigNotifications/${auth.currentUser.email}`).then(res => {
-    switch ({type}) {
+    switch (type) {
       case 'OKRFINISHSCREEN':
         if (res.data.oKRFinishScreen) {
           saveNotification(messagge, type);
@@ -37,7 +37,7 @@ export const verificacion = ({messagge, type}) => {
         break;
       case 'KRLATESCREEN':
         if (res.data.kRLateScreen) {
-          saveNotification({messagge, type});
+          saveNotification(messagge, type);
         }
         break;
       case 'OKREDITSCREEN':

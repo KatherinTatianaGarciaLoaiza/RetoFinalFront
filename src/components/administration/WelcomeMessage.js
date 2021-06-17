@@ -37,7 +37,7 @@ const getOKRSByUserId = () => {
     .then(res => res.data.map(okr => okr.krs.map(kr => {
       if (kr.progressKr != 100) {
         if ((new Date(kr.endDate).getTime() < new Date(date).getTime())) {
-          <NotificationVerify message={`El KR ${kr.keyResult} del OKR ${okr.title}`} type={"KRLATESCREEN"} />
+          NotificationVerify(`El KR ${kr.keyResult} del OKR ${okr.title} esta atrasado`,"KRLATESCREEN")
         }
       }
     }))
@@ -51,7 +51,7 @@ function WelcomeMessage() {
 
   return (
     <>
-      <Link to={`/Home`} className="button" onClick={verificacion, getOKRSByUserId}>
+      <Link to={`/Home`} className="button" onClick={verificacion, getOKRSByUserId }>
         <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} style={{ border: '2px solid #F0950E' }}>
           <Modal.Header closeButton style={{ border: '2px solid #F0950E' }}>
             <Modal.Title>
