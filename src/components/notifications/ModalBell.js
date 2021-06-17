@@ -62,7 +62,7 @@ function ModalBell() {
             {
                 newNotifications ? <>
                     <Badge color="secondary" overlap="circle" badgeContent=" " variant="dot">
-                        <NotificationsIcon style={{ color: 'white', cursor: "pointer" }} style={{ fontSize:55 }} onClick={() => {
+                        <NotificationsIcon style={{ color: 'white', cursor: "pointer", fontSize:55 }}  onClick={() => {
                             Respuesta()
                             open_close_Modal()
                             nuevaNotificacion()
@@ -70,7 +70,7 @@ function ModalBell() {
                         } />
                     </Badge>
                 </> :
-                    <NotificationsIcon style={{ color: 'white', cursor: "pointer" }} style={{ fontSize:55 }} onClick={() => {
+                    <NotificationsIcon style={{ color: 'white', cursor: "pointer",fontSize:55 }} onClick={() => {
                         Respuesta()
                         open_close_Modal()
                     }

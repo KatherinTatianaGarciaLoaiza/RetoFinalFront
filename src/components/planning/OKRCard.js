@@ -13,36 +13,43 @@ const OkrCard = ({ okr, dispatch, redirect, userId }) => {
 
   useEffect(() => {
     if (redirect) {
-      history.push(redirect)
-      dispatch(cleanRedirect())
+      history.push(redirect);
+      dispatch(cleanRedirect());
     }
-  }, [redirect])
+  }, [redirect]);
 
   const handleEdit = (id) => {
-    dispatch(editOkr(id))
-  }
+    dispatch(editOkr(id));
+  };
 
   const handleDelete = (okrId, userId) => {
-    dispatch(deleteOkr(okrId, userId))
-  }
+    dispatch(deleteOkr(okrId, userId));
+  };
 
   return (
     <div>
       <div className='container_display_title'>
         <h2>{okr.title}</h2>
-        <IconButton aria-label='editar' color='primary' onClick={() => { handleEdit(okr.id) }}>
+        <IconButton
+          aria-label='editar'
+          color='primary'
+          onClick={() => {
+            handleEdit(okr.id);
+          }}>
           <EditIcon className='btn_color' />
         </IconButton>
-        <IconButton aria-label='eliminar' color='primary' onClick={() => { handleDelete(okr.id, userId) }}>
+        <IconButton
+          aria-label='eliminar'
+          color='primary'
+          onClick={() => {
+            handleDelete(okr.id, userId);
+          }}>
           <DeleteIcon className='btn_color' />
         </IconButton>
       </div>
       <div className='container_cards'>
         {okr.krs.map((kr) => (
-          <KRCard
-            key={kr.krId}
-            kr={kr}
-          />
+          <KRCard key={kr.krId} kr={kr} okr={okr} />
         ))}
       </div>
       <hr />
@@ -52,9 +59,7 @@ const OkrCard = ({ okr, dispatch, redirect, userId }) => {
 
 const mapStateToProps = (state) => ({
   redirect: state.okr.redirect,
-  userId: state.okr.OKR.userId
-
-})
-
+  userId: state.okr.OKR.userId,
+});
 
 export default connect(mapStateToProps)(OkrCard);

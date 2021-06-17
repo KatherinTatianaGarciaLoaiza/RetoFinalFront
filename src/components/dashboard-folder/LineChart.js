@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
-import { getDataChart } from "../../actions/okrActions";
 
-const LineChart = ({ krs, dispatch, progressData, okrId }) => {
+
+const LineChart = ({ krs, progressData, }) => {
   let montArrayEnd = [];
   let montArrayStart = [];
   let montDif = [];
   let porcentDif = [];
   let basicPorcentage = [];
-  useEffect(() => {
-    dispatch(getDataChart(okrId));
-  }, []);
-
   const progressSort = progressData.actualPercentage.sort();
 
   krs.map((el) => {

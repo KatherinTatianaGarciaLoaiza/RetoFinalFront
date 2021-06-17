@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { getOwnOKR } from "../actions/okrActions";
+import { getOwnOKR, getOwnOKRHomePage, progressOkr } from "../actions/okrActions";
 import Toolbar from "@material-ui/core/Toolbar";
 
 import NavbarSofKa from "../components/structure/Navbar";
@@ -15,7 +15,7 @@ const OkrComplete = ({ dispatch, userId, okrs, state }) => {
  
 
   useEffect(() => {
-    dispatch(getOwnOKR(userId));
+    dispatch(getOwnOKRHomePage(userId));
   }, []);
   const classes = estilos();
 
@@ -36,8 +36,8 @@ const OkrComplete = ({ dispatch, userId, okrs, state }) => {
         <h1>Historial</h1>
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {okrsProgress.map((okr) => (
-              <div className="col">
-            <AllOkrCard key={okr.id} okr={okr} />
+              <div className="col" key={okr.id}>
+            <AllOkrCard  okr={okr} />
             </div>
           ))}
         </div>
@@ -48,7 +48,7 @@ const OkrComplete = ({ dispatch, userId, okrs, state }) => {
 
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
-  okrs: state.okr.OKRUser,
+  okrs: state.okr.MyOkrs,
 });
 
 export default connect(mapStateToProps)(OkrComplete);

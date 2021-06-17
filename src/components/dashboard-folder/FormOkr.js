@@ -6,8 +6,6 @@ import Krs from "./FormKr";
 let Element = Scroll.Element;
 
 const Dashboard = (props) => {
-
-
   return (
     <div className="context-data" id="description-okr">
       <div className="title-context">

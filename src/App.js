@@ -25,6 +25,8 @@ import EditOKRPage from './pages/EditOKRPage'
 import KREditPage from './pages/EditKRPage';
 import OkrForProgress from './pages/OkrForProgress';
 import OkrsComplete from './pages/OkrsComplete';
+import ReadjustPercentage from './pages/ReadjustPercentage';
+import ShowMaxProgressDashboard from './pages/ShowMaxProgressDashboard';
 
 function App({ dispatch }) {
   const [user] = useAuthState(auth);
@@ -58,7 +60,8 @@ function App({ dispatch }) {
           <Route exact path='/KREditForm' component={KREditPage} />
           <Route exact path='/ProgressOkr' component={OkrForProgress} />
           <Route exact path='/Complete' component={OkrsComplete} />
-
+          <Route exact path='/ReadjustPercentage' component={ReadjustPercentage} />
+          <Route exact path='/ShowMaxProgressOkr' component={ShowMaxProgressDashboard} />
         </Switch>
       ) : (
         <Switch>

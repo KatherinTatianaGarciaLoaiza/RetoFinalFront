@@ -26,7 +26,6 @@ const UserOKRSPage = ({ krs, id, title, progress, objective, data, dispatch, pro
   let useRefLineChart = useRef();
   let useRefBarChart = useRef();
   let useRefPieChart = useRef();
-  console.log(data)
   const classes = estilos();
 
   return (

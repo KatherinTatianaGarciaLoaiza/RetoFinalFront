@@ -8,16 +8,14 @@ import Button from 'react-bootstrap/Button';
 
 import { auth } from '../logging/Logging';
 import { nombre } from './Avatar'
-import { cleanRedirect, getMaxProgressOkr } from '../../actions/okrActions';
+
 
 import '../../styles/style.css';
 import { estilos } from './DesignNaSi';
+import { cleanRedirect } from '../../actions/okrActions';
 
-function Sidebar({ dispatch, userId, texto, ruta, redirect }) {
 
-  const progressOkrMax = (userId) => {
-    dispatch(getMaxProgressOkr(userId))
-  }
+function Sidebar({ texto, ruta, redirect, dispatch }) {
 
   useEffect(() => {
     dispatch(cleanRedirect())
@@ -51,7 +49,7 @@ function Sidebar({ dispatch, userId, texto, ruta, redirect }) {
             </Accordion.Collapse>
             <Divider />
             <Accordion.Collapse eventKey="0">
-              <Card.Body><Link to={`/UserOKRS`} onClick={progressOkrMax(userId)} className="button" style={{ color: "#000" }} >
+              <Card.Body><Link to={`/ShowMaxProgressOkr`} className="button" style={{ color: "#000" }} >
                 {nombre(auth.currentUser.displayName)}</Link></Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle as={Card.Header} variant="link" eventKey="1" style={{ background: "#ffffff", color: "#000", cursor: "pointer" }}>
@@ -68,10 +66,10 @@ function Sidebar({ dispatch, userId, texto, ruta, redirect }) {
   )
 }
 
+
 const mapStateToProps = (state) => ({
   userId: state.okr.OKR.userId,
   redirect: state.okr.redirect
 });
-
 
 export default connect(mapStateToProps)(Sidebar);
