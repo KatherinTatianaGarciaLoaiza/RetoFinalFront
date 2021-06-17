@@ -34,6 +34,7 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
+  btn: {},
 });
 
 const KRCard = ({ dispatch, kr, userId, okr, redirect }) => {
@@ -90,7 +91,10 @@ const KRCard = ({ dispatch, kr, userId, okr, redirect }) => {
             {kr.keyResult}
           </Typography>
           <Typography variant='body2' color='textSecondary' component='p'>
-            {kr.description}
+            Descripcion: {kr.description}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' component='p'>
+            Peso porcentual: {kr.percentageWeight}%
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -107,8 +111,10 @@ const KRCard = ({ dispatch, kr, userId, okr, redirect }) => {
           size='small'
           color='primary'
           disabled={okr.krs.length <= 1 ? true : false}
-          onClick={() => handleDelete(kr.krId,kr.okrId )}>
-          <DeleteIcon className='btn_color' />
+          onClick={() => handleDelete(kr.krId, kr.okrId)}>
+          <DeleteIcon
+            className={okr.krs.length <= 1 ? 'btn_disabled' : 'btn_color'}
+          />
         </Button>
         <Slider
           className='slider-input'

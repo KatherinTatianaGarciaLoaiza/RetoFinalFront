@@ -15,9 +15,25 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import { cleanRedirect, krWeightsRequest } from '../../actions/okrActions';
+import { makeStyles } from '@material-ui/core/styles';
+import '../../styles/Card.css';
+
+const useStyles = makeStyles({
+  root: {
+    border: '1px solid #E5DFDA',
+    background: '#F9F9F5',
+    maxWidth: 300,
+    minWidth: 300,
+    margin: '25px',
+  },
+  media: {
+    height: 140,
+  },
+});
 
 const FormUpdateWeigthKRS = ({ dispatch, OKR, userId, redirect }) => {
   const { handleSubmit, control, reset } = useForm();
+  const classes = useStyles();
   const history = useHistory();
 
   useEffect(() => {
@@ -46,21 +62,21 @@ const FormUpdateWeigthKRS = ({ dispatch, OKR, userId, redirect }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid container spacing={2} style={{ marginBottom: 20 }}>
+      <Grid container spacing={1} style={{ marginBottom: 20 }}>
         {OKR.krs.map((kr) => (
-          <Grid item xs={5}>
-            <Card>
+          <Grid item xs={3}>
+            <Card className={classes.root}>
               <CardActionArea>
-                <CardMedia>{kr.keyResult}</CardMedia>
                 <CardContent>
-                  <Typography gutterBottom variant='h5' component='h2'>
-                    {kr.percentageWeight}
+                  <Typography component='h6'>{kr.keyResult}</Typography>
+                  <Typography component='h2'>
+                    Peso porcentual: {kr.percentageWeight}%
                   </Typography>
                   <Typography
                     variant='body2'
                     color='textSecondary'
                     component='p'>
-                    {kr.responName}
+                    Responsable: {kr.responName}
                   </Typography>
                   <CardActions>
                     <Controller
@@ -90,7 +106,10 @@ const FormUpdateWeigthKRS = ({ dispatch, OKR, userId, redirect }) => {
           </Grid>
         ))}
       </Grid>
-      <Button type='submit' variant='contained'>
+      <Button
+        type='submit'
+        variant='contained'
+        style={{ backgroundColor: '#f0950e', color: 'white' }}>
         Confirmar ajuste
       </Button>
     </form>
