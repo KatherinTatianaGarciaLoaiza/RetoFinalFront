@@ -9,10 +9,10 @@ import firebase from "./FirebaseInit.js";
 import botonGoogle from '../../images/BotonGoogle.png'
 
 export const auth = firebase.auth();
-  var IdleTime;
-  window.onload = ResetClock;
-  document.onkeypress = ResetClock;
-  document.onmousemove = ResetClock;
+var IdleTime;
+window.onload = ResetClock;
+document.onkeypress = ResetClock;
+document.onmousemove = ResetClock;
 
 export function SignIn() {
   const signInWithGoogle = () => {
@@ -26,10 +26,12 @@ export function SignIn() {
 export function SignOut() {
   return (
     auth.currentUser && (
-      <ExitToAppIcon onClick={() => {
-        localStorage.removeItem("uid");
-        auth.signOut();
-      }} style={{ color: 'white', cursor: "pointer" }} fontSize="large" />
+      <ExitToAppIcon
+        onClick={() => {
+          localStorage.removeItem("uid");
+          auth.signOut();
+        }}
+        style={{ color: 'white', cursor: "pointer", fontSize: 55 }} />
     )
   );
 }
@@ -40,10 +42,10 @@ export function Logout() {
   <Redirect to="/" />;
 }
 
- export function ResetClock() {
-   if (auth.currentUser) {
-     clearTimeout(IdleTime);
-     IdleTime = setTimeout(Logout, 120000)
-   }
- }
+export function ResetClock() {
+  if (auth.currentUser) {
+    clearTimeout(IdleTime);
+    IdleTime = setTimeout(Logout, 120000)
+  }
+}
 

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function AvatarUser({ photoURL, displayName }) {
     return (
         <div>
-            <picture>
+            <picture style={{justifyItems:"center"}}>
                 <Link to={`/ProfileUser`}>
                 <Avatar src={photoURL}/></Link>
                 {nombre(displayName)}
@@ -18,5 +18,5 @@ export default function AvatarUser({ photoURL, displayName }) {
 export const nombre = (name) =>{
     let nombres;
     nombres=name.split(" ")
-    return nombres[0];
+    return nombres[0].toUpperCase();
 }

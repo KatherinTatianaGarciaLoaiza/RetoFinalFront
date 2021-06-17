@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, Navbar, Container, Row, Col } from 'react-bootstrap';
+import { Nav, Navbar, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -27,10 +27,20 @@ function NavbarSofKa({ dispatch, classes }) {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
                         </Nav>
+                        <Nav>
+                            <Col xs="1">
+                                <ModalBell/>
+                            </Col>
+                        </Nav >
                         <Nav >
-                            <ModalBell />
-                            <AvatarUser displayName={displayName} photoURL={photoURL} />
-                            <SignOut />
+                            <Col xs="1">
+                                <AvatarUser displayName={displayName} photoURL={photoURL} />
+                            </Col>
+                        </Nav >
+                        <Nav>
+                            <Col xs="1">
+                                <SignOut />
+                            </Col>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
