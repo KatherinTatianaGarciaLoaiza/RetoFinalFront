@@ -1,7 +1,6 @@
 import * as actions from "../actions/okrActions";
 
 export const initialState = {
-  disabledButtonOKRForm: true,
   redirect: null,
   redirectDashboard : null,
   OKR: {
