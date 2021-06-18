@@ -1,14 +1,10 @@
-import React from 'react';
-import {
-  Redirect
-} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { auth } from '../components/logging/Logging';
 import { nuevaNotificacion, newNotifications } from '../components/notifications/ModalBell';
 
-export const URI = 'https://api-okr.herokuapp.com' 
-/* export const URI = 'http://localhost:8080' */
+/* export const URI = 'https://api-okr.herokuapp.com'  */
+export const URI = 'http://localhost:8080'
 
 const saveNotification = (messagge, type) => {
   axios.post(`${URI}/createNotifications`,
@@ -51,7 +47,6 @@ export const verificacion = (messagge, type) => {
         }
         break;
       default:
-        console.log("pao pao");
         break;
     }
   })
@@ -312,7 +307,6 @@ export function getMaxProgressOkr(userId) {
 
 export const updateKR = (kr, userId) => {
   return async (dispatch) => {
-    console.log("entroperro")
     swal({
       title: '¿Esta seguro de actualizar?',
       text: 'Una vez actualice, se guardaran los cambios',
@@ -329,11 +323,11 @@ export const updateKR = (kr, userId) => {
         ).then(() => {
           dispatch(getOwnOKR(userId));
         });
-        if (kr.progressKr == 100) {
+        if (kr.progressKr === 100) {
           axios.get(`${URI}/okrid/${kr.okrId}`)
             .then(res => {
               verificacion(`Se completo el KR ${kr.keyResult} del OKR ${res.data.title}`, "KRFINISHSCREEN")
-              if (res.data.progressOkr == 100) {
+              if (res.data.progressOkr === 100) {
                 verificacion(`Se completo el OKR ${res.data.title}`, "OKRFINISHSCREEN")
               }
             });

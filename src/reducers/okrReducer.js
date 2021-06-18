@@ -61,7 +61,7 @@ export default function okrReducer(state = initialState, action) {
       };
     case actions.UPDATE_WEIGTH:
       return {
-        ... state,
+        ...state,
         redirect: '/ReadjustPercentage',
         OkrWeigth: payload,
       };

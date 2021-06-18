@@ -17,7 +17,7 @@ import '../../styles/style.css';
 const verificacion = () => {
   axios.get(`${URI}/GetConfigNotifications/${auth.currentUser.email}`)
     .then(res => {
-      if (res.data == "") {
+      if (res.data === "") {
         axios.post(`${URI}/createConfigNotifications`, {
           "userId": auth.currentUser.email,
           "oKRFinishScreen": true,
@@ -36,12 +36,12 @@ var date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.get
 const getOKRSByUserId = () => {
   axios.get(`${URI}/all-okr/${auth.currentUser.uid}`)
     .then(res => res.data.map(okr => okr.krs.map(kr => {
-      if (kr.progressKr != 100) {
+      if (kr.progressKr !== 100) {
         if ((new Date(kr.endDate).getTime() < new Date(date).getTime())) {
           NotificationVerify(`El KR ${kr.keyResult} del OKR ${okr.title} esta atrasado`, "KRLATESCREEN")
         }
       }
-    }))
+}))
     )
 }
 
@@ -66,7 +66,7 @@ function WelcomeMessage() {
               <Avatar src={auth.currentUser.photoURL} style={{ width: "150px", height: "150px" }} />
             </div>
             <br />
-            <h3 className="title3 centrar" className="title3">!!Te damos la bienvenida
+            <h3 className="title3 centrar" >!!Te damos la bienvenida
               {nombre(auth.currentUser.displayName).toUpperCase()},
               Estamos felices de tenerte con nosotros!!</h3>
             <br />
