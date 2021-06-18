@@ -112,6 +112,7 @@ const KRForm = ({ dispatch, okr, redirect }) => {
               <TextField
                 {...field}
                 required
+                onPaste={(e)=> e.preventDefault()}
                 autoFocus={true}
                 autoComplete='off'
                 variant='outlined'
@@ -187,6 +188,7 @@ const KRForm = ({ dispatch, okr, redirect }) => {
               <TextField
                 {...field}
                 required
+                onPaste={(e)=> e.preventDefault()}
                 variant='outlined'
                 fullWidth
                 autoComplete='off'
@@ -204,6 +206,7 @@ const KRForm = ({ dispatch, okr, redirect }) => {
             render={({ field }) => (
               <TextField
                 {...field}
+                onPaste={(e)=> e.preventDefault()}
                 required
                 type='email'
                 variant='outlined'

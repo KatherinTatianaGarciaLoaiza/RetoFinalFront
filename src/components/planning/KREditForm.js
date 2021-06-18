@@ -66,6 +66,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
                 {...field}
                 required
                 variant='outlined'
+                autoComplete='off'
                 fullWidth
                 id='input_keyresult_kr'
                 label='Resultado clave'
@@ -138,6 +139,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
                 required
                 variant='outlined'
                 fullWidth
+                autoComplete='off'
                 id='input_responname_kr'
                 label='Nombre'
               />
@@ -154,6 +156,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
                 {...field}
                 required
                 variant='outlined'
+                autoComplete='off'
                 fullWidth
                 id='input_responemail_kr'
                 label='Email'
@@ -172,6 +175,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
               <TextField
                 {...field}
                 variant='outlined'
+                autoComplete='off'
                 rows='3'
                 fullWidth
                 id='input_description_okr'

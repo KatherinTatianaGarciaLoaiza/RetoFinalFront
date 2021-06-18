@@ -59,6 +59,7 @@ const OkrFormPage = ({ dispatch, okr, redirect }) => {
               <TextField
                 {...field}
                 autoFocus={true}
+                onPaste={(e)=> e.preventDefault()}
                 autoComplete='off'
                 required
                 variant='outlined'
