@@ -11,24 +11,27 @@ import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import EditIcon from '@material-ui/icons/Edit';
 import AirplayIcon from '@material-ui/icons/Airplay';
+import DeleteIcon from '@material-ui/icons/Delete';
+import axios from 'axios';
 
 import { auth } from '../logging/Logging';
+import { URI } from '../../actions/okrActions';
 
 import '../../styles/style.css'
 import '../../styles/style2.css'
 import { OrangeSwitch } from '../structure/DesignNaSi'
-import axios from 'axios';
 
 export default function ConfNotifications() {
 	const [user] = useAuthState(auth);
 
 	const [state, setState] = useState({
-        id: "",
-		userId: user.email,
-		oKRFinishScreen: true,
-		kRFinishScreen: true,
-		kRLateScreen: true,
-		oKREditScreen: true,
+		id: "",
+		userId: "",
+		oKRFinishScreen: "",
+		kRFinishScreen: "",
+		kRLateScreen: "",
+		oKREditScreen: "",
+		oKRDeleteScreen: "",
 	});
 
 	const handleChange = (event) => {
@@ -38,40 +41,29 @@ export default function ConfNotifications() {
 
 
 	const getOrPostConfigNotification = () => {
-			axios.get("http://localhost:8080/GetConfigNotifications/" + user.email)
-				.then(res => {if(res.data==""){
-					axios.post("http://localhost:8080/createConfigNotifications",{"userId":user.email,
-					"oKRFinishScreen":true,
-					"kRFinishScreen":true,
-					"kRLateScreen":true,
-					"oKREditScreen":true})
-				}else{
-					setState(res.data)
-				}})
+		axios.get(`${URI}/GetConfigNotifications/${user.email}`)
+			.then(res => setState(res.data))
 	};
 
 	const putConfigNotification = () => {
-			axios.put("http://localhost:8080/UpdateConfigNotifications",{"id":state.id,
-            "userId":user.email,
-            "oKRFinishScreen":state.oKRFinishScreen,
-            "kRFinishScreen":state.kRFinishScreen,
-            "kRLateScreen":state.kRLateScreen,
-            "oKREditScreen":state.oKREditScreen})
+		axios.put(`${URI}/UpdateConfigNotifications`, {
+			"id": state.id,
+			"userId": user.email,
+			"oKRFinishScreen": state.oKRFinishScreen,
+			"kRFinishScreen": state.kRFinishScreen,
+			"kRLateScreen": state.kRLateScreen,
+			"oKREditScreen": state.oKREditScreen,
+			"oKRDeleteScreen": state.oKRDeleteScreen
+		})
 	};
 
 	const Swal = () => {
 		swal("Correcto", "La configuración ha sido guardada", "success");
-        putConfigNotification();
+		putConfigNotification();
 	};
 	useEffect(() => {
 		getOrPostConfigNotification();
-		// eslint-disable-next-line
 	}, [])
-
-	//FKR = Finish KR
-	//FOKR = Finish OKR
-	//LKR = Late KR
-	//EOKR = Edit OKR
 
 	return (
 		<>
@@ -119,6 +111,14 @@ export default function ConfNotifications() {
 					<Col >
 						<FormControlLabel
 							control={<OrangeSwitch checked={state.oKREditScreen} onChange={handleChange} name="oKREditScreen" />} />
+					</Col>
+				</Row>
+				<Row>
+					<Col ><DeleteIcon fontSize="large" /></Col>
+					<Col xs={6}><p className="body">Generar notificaciones si se elimina un OKR</p></Col>
+					<Col >
+						<FormControlLabel
+							control={<OrangeSwitch checked={state.oKRDeleteScreen} onChange={handleChange} name="oKRDeleteScreen" />} />
 					</Col>
 				</Row>
 				<Row className="justify-content-md-center">

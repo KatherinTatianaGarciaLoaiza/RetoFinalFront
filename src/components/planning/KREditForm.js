@@ -32,6 +32,7 @@ const KREditForm = ({ dispatch, krEdit, userId, redirect }) => {
   }, [redirect])
 
   const onSubmit = (data) => {
+    console.log(data)
     data.krId = krEdit.krId;
     data.okrId = krEdit.okrId;
     data.percentageWeight = krEdit.percentageWeight;

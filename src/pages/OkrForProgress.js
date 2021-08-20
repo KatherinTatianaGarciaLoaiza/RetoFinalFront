@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { getOwnOKR, getOwnOKRHomePage, progressOkr } from "../actions/okrActions";
+import {  getOwnOKRHomePage } from "../actions/okrActions";
 import Toolbar from "@material-ui/core/Toolbar";
 
 import NavbarSofKa from "../components/structure/Navbar";

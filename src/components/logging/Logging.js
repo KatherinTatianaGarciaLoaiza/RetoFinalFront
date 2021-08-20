@@ -26,10 +26,12 @@ export function SignIn() {
 export function SignOut() {
   return (
     auth.currentUser && (
-      <ExitToAppIcon onClick={() => {
-        localStorage.removeItem("uid");
-        auth.signOut();
-      }} style={{ color: 'white', cursor: "pointer" }} fontSize="large" />
+      <ExitToAppIcon
+        onClick={() => {
+          localStorage.removeItem("uid");
+          auth.signOut();
+        }}
+        style={{ color: 'white', cursor: "pointer", fontSize: 55 }} />
     )
   );
 }

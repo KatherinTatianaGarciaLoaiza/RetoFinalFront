@@ -1,8 +1,57 @@
 import axios from 'axios';
 import swal from 'sweetalert';
-const URI = 'http://localhost:8080';
+import { auth } from '../components/logging/Logging';
+import { nuevaNotificacion, newNotifications } from '../components/notifications/ModalBell';
 
-//'https://api-okr.herokuapp.com';
+/* export const URI = 'https://api-okr.herokuapp.com'  */
+export const URI = 'http://localhost:8080'
+
+const saveNotification = (messagge, type) => {
+  axios.post(`${URI}/createNotifications`,
+    {
+      "userId": auth.currentUser.email,
+      "message": messagge,
+      "type": type
+    })
+  if (!newNotifications) {
+    nuevaNotificacion();
+  }
+}
+
+export const verificacion = (messagge, type) => {
+  axios.get(`${URI}/GetConfigNotifications/${auth.currentUser.email}`).then(res => {
+    switch (type) {
+      case 'OKRFINISHSCREEN':
+        if (res.data.oKRFinishScreen) {
+          saveNotification(messagge, type);
+        }
+        break;
+      case 'KRFINISHSCREEN':
+        if (res.data.kRFinishScreen) {
+          saveNotification(messagge, type);
+        }
+        break;
+      case 'KRLATESCREEN':
+        if (res.data.kRLateScreen) {
+          saveNotification(messagge, type);
+        }
+        break;
+      case 'OKREDITSCREEN':
+        if (res.data.oKREditScreen) {
+          saveNotification(messagge, type);
+        }
+        break;
+      case 'OKRDELETESCREEN':
+        if (res.data.oKRDeleteScreen) {
+          saveNotification(messagge, type);
+        }
+        break;
+      default:
+        break;
+    }
+  })
+}
+
 
 export const CREATEKR = 'CREATE_KR';
 export const LOGIN = 'LOGIN';
@@ -125,6 +174,8 @@ export const deleteOkr = (okrId, userId) => {
       dangerMode: true,
     }).then(async (willDelete) => {
       if (willDelete) {
+        axios.get(`${URI}/okrid/${okrId}`)
+          .then(res => verificacion(`Se elimino el OKR ${res.data.title}`, "OKRDELETESCREEN"));
         await axios.delete(`${URI}/delete/${okrId}`);
         swal('Perfecto !', 'OKR Eliminado exitosamente', 'success').then(
           (value) => {
@@ -170,6 +221,8 @@ export const putKR = (data, userId) => {
       dangerMode: true,
     }).then(async (willUpdate) => {
       if (willUpdate) {
+        axios.get(`${URI}/okrid/${data.okrId}`)
+          .then(res => verificacion(`Se edito el KR ${data.keyResult} del OKR ${res.data.title}`, "OKREDITSCREEN"));
         await axios.put(`${URI}/kr`, data);
         swal('Perfecto !', 'Se ha actualizado el KR', 'success').then(() => {
           dispatch(getOwnOKR(userId));
@@ -191,6 +244,7 @@ export const putOKR = (data) => {
       dangerMode: true,
     }).then(async (willUpdate) => {
       if (willUpdate) {
+        verificacion(`Se edito el OKR ${data.title}`, "OKREDITSCREEN");
         await axios.put(`${URI}/okr`, data);
         swal('Perfecto !', 'Se ha actualizado el OKR', 'success').then(() => {
           dispatch(getOwnOKR(data.userId));
@@ -212,7 +266,6 @@ export function getOwnOKR(userId) {
 export function getOwnOKRHomePage(userId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/all-okr/${userId}`);
-    console.log(data);
     dispatch(getMyOkrs(data));
   };
 }
@@ -270,12 +323,22 @@ export const updateKR = (kr, userId) => {
         ).then(() => {
           dispatch(getOwnOKR(userId));
         });
+        if (kr.progressKr === 100) {
+          axios.get(`${URI}/okrid/${kr.okrId}`)
+            .then(res => {
+              verificacion(`Se completo el KR ${kr.keyResult} del OKR ${res.data.title}`, "KRFINISHSCREEN")
+              if (res.data.progressOkr === 100) {
+                verificacion(`Se completo el OKR ${res.data.title}`, "OKRFINISHSCREEN")
+              }
+            });
+        }
       } else {
         swal('No se ha actualizado nada');
       }
     });
   };
 };
+
 export function getDataChart(okrId) {
   return async (dispatch) => {
     const { data } = await axios.get(`${URI}/data-chart/${okrId}`);

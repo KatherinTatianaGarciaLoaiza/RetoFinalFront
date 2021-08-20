@@ -5,7 +5,7 @@ import NavbarSofKa from "../components/structure/Navbar";
 import Sidebar from "../components/structure/Sidebar";
 
 import { estilos } from "../components/structure/DesignNaSi";
-import {  getOwnOKR, getOwnOKRHomePage } from "../actions/okrActions";
+import { getOwnOKRHomePage } from "../actions/okrActions";
 import { connect } from "react-redux";
 import AllOkrCard from "../components/dashboard-folder/AllOkrCard";
 
@@ -13,8 +13,6 @@ const HomePage = ({ state, dispatch, userId, okrs }) => {
   useEffect(() => {
     dispatch(getOwnOKRHomePage(userId));
   }, [dispatch, userId]);
-
-  console.log(okrs);
 
   const classes = estilos();
   return (
